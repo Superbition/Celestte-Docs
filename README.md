@@ -1,2 +1,2 @@
-# Celestte-Docs
-The documentation for the Celestte PHP framework
+# Polyel-Docs
+The documentation for the Polyel PHP framework
