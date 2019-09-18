@@ -1,0 +1,22 @@
+{
+  "docs": {
+
+    "Polyel": [
+      "intro",
+      "requirements",
+      "release_process"
+    ],
+
+    "Getting Started": [
+      "getting_started/install",
+      "getting_started/configuration",
+      "getting_started/directory_format",
+      "getting_started/development"
+    ],
+
+    "Architectural Design": [
+      "architectural_design/lifecycle"
+    ]
+
+  }
+}
