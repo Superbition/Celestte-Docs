@@ -132,3 +132,5 @@ You can configure global Middleware to run on every request either before or aft
 ```
 
 Polyel will execute any Middleware keys which are configured here on each request on every route.
+
+> Global Middleware will be executed first before any manually configurated Middleware
