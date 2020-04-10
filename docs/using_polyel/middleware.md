@@ -21,6 +21,7 @@ You can use `middleware create` to define a new Middleware and this command will
 
 ## Before and After Middleware
 
+### Before
 ```php
 namespace App\Middleware;
 
@@ -40,6 +41,8 @@ class BeforeExampleMiddleware extends Middleware
 Above is what a standard before Middleware class looks like, Polyel will execute the `process()` function before an application request takes place, allowing you to perform actions before a request is processed further.
 
 You define a Middleware as “before” by setting the class property ` $middlewareType` to “before” and by doing this it tells Polyel that this Middleware should be executed before a HTTP request.
+
+### After
 
 To define a Middleware which executes after a request has been processed, you simple define the property ` $middlewareType` to equal “after”, the class definition is the same though:
 
@@ -64,7 +67,7 @@ class AfterExampleMiddleware extends Middleware
 Once you have defined your Middleware you will want to attach them to a Route request. This can be easily done by defining a route using `middleware()`:
 
 ```php
-Route::get("/", "Indexr@home")
+Route::get("/", "Index@home")
         ->middleware("LogRequestMiddleware");
 ```
 
