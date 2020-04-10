@@ -20,7 +20,11 @@
     ],
 
     "Using Polyel": [
-      "using_polyel/middleware"
+      "using_polyel/routing",
+      "using_polyel/controllers",
+      "using_polyel/middleware",
+      "using_polyel/request",
+      "using_polyel/response"
     ]
   }
 }
