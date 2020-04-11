@@ -109,8 +109,8 @@ Middleware has its own configuration inside ` /config/middleware.php` and the fi
 	"AfterMiddlewareExample" => \App\Middleware\AfterExampleMiddleware::class,
 ]
 ```
-
-> You will need to make sure your Middleware has its own key and full class name here, otherwise Polyel won't know which class to use when the time comes.
+<div class="warnMsg"></div>
+<div class="warnMsg">You will need to make sure your Middleware has its own key and full class name here, otherwise Polyel won't know which class to use when the time comes.</div>
 
 ### Global Middleware
 
@@ -136,4 +136,4 @@ You can configure global Middleware to run on every request either before or aft
 
 Polyel will execute any Middleware keys which are configured here on each request on every route.
 
-> Global Middleware will be executed first before any manually configurated Middleware
+<div class="warnMsg">Global Middleware will be executed first before any manually configurated Middleware</div>
