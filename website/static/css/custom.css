@@ -12,6 +12,13 @@
 	border-left: 8px solid #e77a7a;
 }
 
+.noteMsg
+{
+	background-color: #6fb2e983;
+	padding: 15px 30px 15px 15px;
+	border-left: 8px solid #549edb;
+}
+
 #social_links
 {
 	text-align: center;
