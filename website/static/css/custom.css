@@ -5,6 +5,13 @@
 	font-weight: bold;
 }
 
+.warnMsg
+{
+	background-color: #f5bfbf96;
+	padding: 15px 30px 15px 15px;
+	border-left: 8px solid #e77a7a;
+}
+
 #social_links
 {
 	text-align: center;
