@@ -109,7 +109,7 @@ Middleware has its own configuration inside ` /config/middleware.php` and the fi
 	"AfterMiddlewareExample" => \App\Middleware\AfterExampleMiddleware::class,
 ]
 ```
-<div class="warnMsg"></div>
+
 <div class="warnMsg">You will need to make sure your Middleware has its own key and full class name here, otherwise Polyel won't know which class to use when the time comes.</div>
 
 ### Global Middleware
