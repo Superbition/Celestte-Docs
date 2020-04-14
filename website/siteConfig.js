@@ -36,6 +36,7 @@ const siteConfig = {
     //{doc: 'doc4', label: 'API'},
     //{page: 'help', label: 'Help'},
     //{blog: true, label: 'Blog'},
+    {href: 'https://polyel.io', label: 'Home'}
   ],
 
   // If you have users set above, you add it here:
