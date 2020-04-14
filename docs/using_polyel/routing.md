@@ -41,10 +41,10 @@ Route::get("/user/profile/{id}", "UserController@showProfile");
 
 This route defines a dynamic URL where `{id}` will be passed along to the `showProfile()` function inside a Controller called `User`. You can be expressive with how you accept data in URLs by using this feature and accessing the parameters inside the Controller.
 
-```
+```php
 namespace App\Controllers;
 
-class UserController
+class UserController extends Controller
 {
     public function showProfile($id)
     {
