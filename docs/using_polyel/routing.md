@@ -41,15 +41,31 @@ Route::get("/user/profile/{id}", "UserController@showProfile");
 
 This route defines a dynamic URL where `{id}` will be passed along to the `showProfile()` function inside a Controller called `User`. You can be expressive with how you accept data in URLs by using this feature and accessing the parameters inside the Controller.
 
-It’s possible to have as many route parameters as you need, for example:
-
 ```
-Route::get("/blog/posts/{postID}/comment/{commentID}", "Post@showPost");
+namespace App\Controllers;
+
+class UserController
+{
+    public function showProfile($id)
+    {
+        echo $id;
+    }
+}
 ```
 
 Route parameter names should consist of alphanumeric characters and not contain `-`, instead using camelCase or underscores `_` to seperate words.
 
 <div class="noteMsg">The parameter name you choose does not matter, it is purely to make development easier, route parameters are passed into the Controller function in the order they sit in the URL you define.</div>
+
+Note: Any type-hinted services should come first before any Route parameters in controller methods.
+
+### Multiple Route Parameters
+
+It’s possible to have as many route parameters as you need, for example:
+
+```
+Route::get("/blog/posts/{postID}/comment/{commentID}", "Post@showPost");
+```
 
 ### Parameter Tag Configuration
 
