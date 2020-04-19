@@ -20,3 +20,5 @@ docker-compose.yml
 
 # Not using blogging feature
 blog
+
+.wakatime-project
