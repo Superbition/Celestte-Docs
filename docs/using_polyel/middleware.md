@@ -44,7 +44,7 @@ You define a Middleware as “before” by setting the class property ` $middlew
 
 ### After
 
-To define a Middleware which executes after a request has been processed, you simple define the property ` $middlewareType` to equal “after”, the class definition is the same though:
+To define a Middleware which executes after a request has been processed, you simply define the property ` $middlewareType` to equal “after”, the class definition is the same though:
 
 ```php
 namespace App\Middleware;
@@ -55,12 +55,14 @@ class AfterExampleMiddleware extends Middleware
 {
     public $middlewareType = "after";
 
-    public function process($response)
+    public function process($request, $response)
     {
 
     }
 }
 ```
+
+After Middleware gets access to both the `$request` and `$response` as the framework has already handled the request from the client and will be ready to send the response but this gives you the chance to edit the response before it's sent off.
 
 ## Attaching Middleware to a Route
 
