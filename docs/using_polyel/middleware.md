@@ -40,7 +40,7 @@ class BeforeExampleMiddleware extends Middleware
 
 Above is what a standard before Middleware class looks like, Polyel will execute the `process()` function before an application request takes place, allowing you to perform actions before a request is processed further.
 
-You define a Middleware as “before” by setting the class property ` $middlewareType` to “before” and by doing this it tells Polyel that this Middleware should be executed before a HTTP request.
+You define a Middleware as “before” by setting the class property ` $middlewareType` to “before” and by doing this it tells Polyel that this Middleware should be executed before a HTTP request. A before middleware only gets passed the `$request` service because the application has not yet processed the request.
 
 ### After
 
@@ -62,7 +62,7 @@ class AfterExampleMiddleware extends Middleware
 }
 ```
 
-After Middleware gets access to both the `$request` and `$response` as the framework has already handled the request from the client and will be ready to send the response but this gives you the chance to edit the response before it's sent off.
+After Middleware gets access to both the `$request` and `$response` services as the framework has already handled the request from the client and will be ready to send the response but this gives you the chance to edit the response before it's sent off.
 
 ## Attaching Middleware to a Route
 
