@@ -93,6 +93,61 @@ Route::post("/", "Indexr@home")
 
 You can pass in as many as you like but take note that each Middleware will be executed by the framework in the order they sit from the array that is passed in. If you want a Middleware to be executed in a different order, just rearrange the order of the array.
 
+## Returning a Response from Middleware
+
+If you need to return a response early within a middleware, both through before and after middleware types, you can easily by performing a normal return just like you would do inside a Controller. For example:
+
+```php
+class BeforeExampleMiddleware extends Middleware
+{
+    public $middlewareType = "before";
+
+    public function process($request)
+    {
+        // Halts further execution early
+        return "Early Response";
+    }
+}
+```
+
+This will return a response early and send the string back to the client, meaning execution for any other Middleware will not happen, nor will the Controller be executed. You can still use all the same response types inside Middleware as well:
+
+```php
+class AfterExampleMiddleware extends Middleware
+{
+    public $middlewareType = "after";
+
+    public function process($request, $response)
+    {
+        $json = ["user"=>"joe", "age" => 33, "location" => "uk"];
+
+        return Response($json);
+    }
+}
+```
+
+Here just like in a Controller Response, a JSON object will be sent back to the client, the PHP array will automatically be converted to JSON and the JSON header content type included.
+
+If you don’t want a Middleware to halt execution early, don’t send back a return and the application will continue to execute further. But if you want to just add something to the Response like a header, you can do this:
+
+```php
+class AfterExampleMiddleware extends Middleware
+{
+    public $middlewareType = "after";
+
+    public function process($request, $response)
+    {
+        $response->queueHeader("key", "value");
+    }
+}
+```
+
+Here this middleware will queue a header to be added to the Response and the final Response won't be affected because nothing was returned by the middleware
+
+For more documentation on sending back a Response, checkout the [Response Documentation](/docs/using_polyel/response)
+
+<div class="warnMsg">If you return a response in an after middleware, this return will take priority over the Controller Response, because it means the middleware gives you the ability to change the response just before the final response is sent to the client.</div>
+
 ## Middleware Configuration
 
 When you create new Middleware, you are setting a key to be used, this is because Polyel works by matching this key to a fully qualified class name. During the boot process of the Polyel server, all Middleware is preloaded to save time and have them ready for requests straight away. It is also easier and quicker to attach Middleware to a route using a key instead of a fully qualified class name.
