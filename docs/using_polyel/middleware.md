@@ -148,6 +148,23 @@ For more documentation on sending back a Response, checkout the [Response Docume
 
 <div class="warnMsg">If you return a response in an after middleware, this return will take priority over the Controller Response, because it means the middleware gives you the ability to change the response just before the final response is sent to the client.</div>
 
+### Setting the HTTP status code
+
+You may want to use a middleware to specifically set the HTTP status code but not want to force an early response, you can do this by using an after middleware and using the response service.
+
+```php
+class AfterExampleMiddleware extends Middleware
+{
+    public $middlewareType = "after";
+
+    public function process($request, $response)
+    {
+        // Server Error
+        $response->setStatusCode(500);
+    }
+}
+```
+
 ## Middleware Configuration
 
 When you create new Middleware, you are setting a key to be used, this is because Polyel works by matching this key to a fully qualified class name. During the boot process of the Polyel server, all Middleware is preloaded to save time and have them ready for requests straight away. It is also easier and quicker to attach Middleware to a route using a key instead of a fully qualified class name.
