@@ -25,6 +25,7 @@
       "using_polyel/middleware",
       "using_polyel/request",
       "using_polyel/response",
+      "using_polyel/views",
       "using_polyel/storage"
     ]
   }
