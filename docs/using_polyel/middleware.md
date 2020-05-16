@@ -165,6 +165,25 @@ class AfterExampleMiddleware extends Middleware
 }
 ```
 
+### Returning a View
+
+It is possible to return a view from your middleware, for example:
+
+```php
+class BeforeExampleMiddleware extends Middleware
+{
+    public $middlewareType = "before";
+
+    public function process($request)
+    {
+        // Halts further execution early and returns a rendered view
+        return response(view('InvalidRequest:error'));
+    }
+}
+```
+
+This is a very simple example and there is much more to the view system, visit its full documentation [here.](/docs/using_polyel/views)
+
 ## Middleware Configuration
 
 When you create new Middleware, you are setting a key to be used, this is because Polyel works by matching this key to a fully qualified class name. During the boot process of the Polyel server, all Middleware is preloaded to save time and have them ready for requests straight away. It is also easier and quicker to attach Middleware to a route using a key instead of a fully qualified class name.

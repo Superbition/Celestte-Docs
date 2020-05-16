@@ -87,6 +87,22 @@ return response("Hello World!")->usingHeaders([
 	]);
 ```
 
+## Returning a View
+
+You can return a View from a Controller or Middleware but the most common way is most likely from a Controller, for example:
+
+```php
+class WelcomeController extends Controller
+{
+    public function welcome()
+    {
+        return response(view('welcome:view'));
+    }
+}
+```
+
+This is a very simple example and there is much more to the view system, visit its full documentation [here.](/docs/using_polyel/views)
+
 ## Global Headers
 
 With Polyel it is possible to set headers using the response object or through using a middleware to attach headers to a response. But if you want a set a header for every request, you can use global headers. These global headers can be set inside of `/config/response.php`, an example of this is:
