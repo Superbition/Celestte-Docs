@@ -53,6 +53,8 @@ Storage::access("local")->write("/error/last_error/error.txt", "[10:29 21/04/202
 
 The file will be created if it does not exist. By default the second parameter is set to `null` so you are not required to pass in file contents to write to the file.
 
+The write mode for writing to a file is `w+`.
+
 ### Prepending
 
 ```
