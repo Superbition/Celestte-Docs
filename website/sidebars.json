@@ -26,6 +26,7 @@
       "using_polyel/request",
       "using_polyel/response",
       "using_polyel/views",
+      "using_polyel/session",
       "using_polyel/storage"
     ]
   }
