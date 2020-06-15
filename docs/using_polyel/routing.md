@@ -114,17 +114,3 @@ Route::get("/events", "EventController@showEvents");
 ```
 
 Notice the difference between the two controller actions. This way both routes are supported and seperated into their own directions.
-
-## Accessing Current Route Information
-
-You can access current route information by using the `Route::` Facade:
-
-```php
-use Polyel\Router\Facade\Route;
-
-$routeURL = Route::getCurrentRoute();
-
-$routeURLSplit = Route::getCurrentRouteSplit();
-
-$routeAction = Route::getCurrentRouteAction();
-```
