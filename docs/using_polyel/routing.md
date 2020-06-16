@@ -95,7 +95,7 @@ By default the HTTP redirect status code is set to 302 but you can pass in your 
 
 These redirect routes are defined inside your `web.php` file, just like any `Route::get()` or `Route::post()` for example.
 
-### Redirecting Outside
+### Redirecting Away
 
 Very simple, all you need to do is set a full URL like so:
 
