@@ -349,7 +349,7 @@ class ExampleElement extends Element
 		$this->appendHtmlTag('<li>', $name1, '</li>');
 
 		$name2 = 'Dan';
-		$this->appendHtmlTag('<li>', $nam2, '</li>');
+		$this->appendHtmlTag('<li>', $name2, '</li>');
 
 		$name3 = 'Luke';
 		$this->appendHtmlTag('<li>', $name3, '</li>');
