@@ -5,29 +5,21 @@ title: Routing
 
 ## Creating New Routes
 
-A request to your application is filtered through using routes that you define. A basic route can be defined by using the route files located in `/app/routing`, the most common being `web.php`:
+A request to your application is filtered through using routes that you define. A basic route can be defined by using the route files located in `/app/routing/web.php`:
 
 ```
-// Inside /app/routing/web.php
-
-Route::get("/", "HomeController@Index");
+Route::get("/", function() {
+    return 'Hello World!';
+});
 ```
 
-This defines what happens when the index route is called by a request to the application, the result will be that the `Home` controller will be used and the `Index()` function will be called.
+This defines what happens when the index route is called by a request to the application, the result will be that the Closure function will be called and `Hello World!` will be displayed.
+
+By defining a web route, you can use a browser to access the route and see your `Hello World!` result.
 
 <div class="warnMsg">A fatal error will be thrown upon server boot if a route already exists when trying to add another which is already registered</div>
 
-Another route example:
-
-```
-Route::get("/pets/dog", "PetController@dog");
-```
-
-Above is another example how you can route requests to different controllers and organise them.
-
-It’s best to keep your routes expressive and short so your application is maintainable and easy to navigate when writing Controllers or Models, discussed later.
-
-By defining a web route, you can use a browser to access this page.
+<br/>
 
 <div class="noteMsg">All routes are automatically loaded when the HTTP server is booted up, all routes are saved in memory thus, already cached. You will need to restart your server for new routes to take affect.</div>
 
