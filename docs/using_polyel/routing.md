@@ -48,7 +48,9 @@ Route parameter names should consist of alphanumeric characters and not contain 
 It’s possible to have as many route parameters as you need, for example:
 
 ```
-Route::get("/blog/posts/{postID}/comment/{commentID}", "Post@showPost");
+Route::get("/user/{name}/age/{age}", function($name, $age) {
+    return $name . ' ' . $age;
+});
 ```
 
 ### Parameter Tag Configuration
@@ -92,9 +94,9 @@ Route::redirect("/direct/away", "https://www.google.co.uk", 301);
 If you require a route which has optional parameters, you should define those routes separately. One route with the optional parameter and one without.
 
 ```
-Route::get("/events/{eventName}", "EventController@showEvent");
+Route::get("/events/{eventName}", function($eventName) {});
 
-Route::get("/events", "EventController@showEvents");
+Route::get("/events", function() {});
 ```
 
 Notice the difference between the two controller actions. This way both routes are supported and seperated into their own directions.
