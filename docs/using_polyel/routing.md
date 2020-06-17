@@ -33,31 +33,23 @@ By defining a web route, you can use a browser to access this page.
 
 ## Routing Parameters
 
-We’ve only gone through how to define static routes but eventually you might want to accept parameters and process them from the URL. Polyel has the ability to accept route parameters which let you take in data from the request and URL. They are defined by default using `{ }`:
+We’ve only gone through how to define static routes but eventually you might want to accept parameters and process them from the URL. Polyel has the ability to accept route parameters which let you take in data from the request and URL. They are defined by using `{ }`:
 
 ```
-Route::get("/user/profile/{id}", "UserController@showProfile");
+Route::get("/user/profile/{id}", function ($id) {
+    echo $id;
+});
 ```
 
-This route defines a dynamic URL where `{id}` will be passed along to the `showProfile()` function inside a Controller called `User`. You can be expressive with how you accept data in URLs by using this feature and accessing the parameters inside the Controller.
+This route defines a dynamic URL where `{id}` will be passed to the Closure function.
 
-```php
-namespace App\Controllers;
+Route parameter names should consist of alphanumeric characters and not contain `-`, instead use camelCase or underscores `_` to seperate words.
 
-class UserController extends Controller
-{
-    public function showProfile($id)
-    {
-        echo $id;
-    }
-}
-```
+<div class="noteMsg">The parameter name you choose does not matter, it is purely to make development easier, route parameters are passed into the Closure function in the order they sit in the URL you define.</div>
 
-Route parameter names should consist of alphanumeric characters and not contain `-`, instead using camelCase or underscores `_` to seperate words.
+<br/>
 
-<div class="noteMsg">The parameter name you choose does not matter, it is purely to make development easier, route parameters are passed into the Controller function in the order they sit in the URL you define.</div>
-
-Note: Any type-hinted services should come first before any Route parameters in controller methods.
+<div class="warnMsg">Any type-hinted services should come first before any Route parameters in controller methods.</div>
 
 ### Multiple Route Parameters
 
