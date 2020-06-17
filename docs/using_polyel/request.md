@@ -34,6 +34,14 @@ class ProfileController extends Controller
 
 You can see how the Request service is passed in along with route parameters afterwards, this is because the Polyel dependency injection container passes in services first and then route parameters second.
 
+## Request Capture data
+
+Polyel automatically captures data about the request for you, most of the common request data you can access via class properties.
+
+Below is a list of all the public properties you can use:
+
+`$hostIP`, `$clientIP`, `$userAgent`, `$serverPort`, `$serverProtocol`, `$uri`, `$path`, `$method`.
+
 ## Getting input data from a request
 
 You can retrieve data from a request by using `data()` and passing in the inputs name.
