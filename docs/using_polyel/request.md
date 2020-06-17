@@ -16,7 +16,7 @@ Route::get("/user/profile/{id}", "ProfileController@showProfile");
 
 And it's controller defined like so:
 
-```
+```php
 namespace App\Controllers;
 
 use Polyel\Http\Request;
@@ -54,7 +54,7 @@ False will be returned if the input is not present.
 
 To receive all the data from a request, simply just call `data()` without any parameters:
 
-```
+```php
 $data = $request->data();
 ```
 
