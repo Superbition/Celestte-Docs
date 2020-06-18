@@ -86,10 +86,10 @@ The `copy()` function requires a source and destination and will copy the file w
 ## Moving a file
 
 ```
-Storage::access("local")->move("", "", $absoluteOldPath = false);
+Storage::access("local")->move("", "");
 ```
 
-The `move()` function accepts an old file path, new file path and an optional parameter to use an absolute file path for the file you want to move, allowing you to move a file from outside of your root directory if you need to.
+The `move()` function accepts an old file path, new file path.
 
 This function will return the file path that was used to save the moved file.
 
