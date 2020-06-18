@@ -157,12 +157,10 @@ The Expiration is set using the native `time()` function in PHP and expects its 
 
 ### Queuing Cookies
 
-Sometimes you may want to add a cookie but not return a response right away, that's where you can use the Cookie Facade to queue a cookie.
+Sometimes you may want to add a cookie but not return a response right away, that's where you can use the `queueCookie` method:
 
 ```php
-use Polyel\Http\Facade\Cookie;
-
-Cookie::queue("cookie-name", "cookie-value");
+$response->queueCookie("cookie-name", "cookie-value");
 ```
 
 This method of adding a cookie uses the same defaults as using the response object.
