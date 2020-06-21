@@ -28,6 +28,11 @@
       "using_polyel/views",
       "using_polyel/session",
       "using_polyel/storage"
+    ],
+
+    "Database": [
+      "database/introduction",
+      "database/query-builder"
     ]
   }
 }
