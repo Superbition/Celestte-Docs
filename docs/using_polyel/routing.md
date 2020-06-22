@@ -69,6 +69,18 @@ Route::patch($url, $controller);
 Route::delete($url, $controller);
 ```
 
+## CSRF Protection
+
+When making `POST`, `PUT`, `PATCH`and `DELETE` routes where you intend to use HTML forms or AJAX requests to interact with your server, you need to include the CSRF token to protect your application from CSRF attacks, please visit the [CSRF documentation](/docs/using_polyel/csrf_protection) for more details.
+
+```
+<form method="POST" action="/update/profile">
+    
+    {{ @csrfToken }}
+
+</form>
+```
+
 ## Route Redirecting
 
 If you need to redirect a URL to another destination you can use `Route::redirect()`:
