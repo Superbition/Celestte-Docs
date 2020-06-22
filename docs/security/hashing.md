@@ -9,7 +9,7 @@ In Polyel you are provided with a hashing Facade called `Hash` which gives you a
 
 The Polyel registration and authentication system will by default use ` argon2id` as the hashing algorithm to handle passwords, ` argon2id` is also the default set within the hashing configuration file.
 
-<div class="warnMsg">As Polyel by default will use the Argon2id hashing algorithm, PHP 7.3.0 is required</div>
+<div class="warnMsg">Polyel by default will use the Argon2id hashing algorithm, meaning PHP 7.3.0+ is required</div>
 
 ## Configuration
 
