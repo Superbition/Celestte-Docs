@@ -1,0 +1,108 @@
+---
+id: encryption
+title: Encryption
+---
+
+## Introduction
+
+Polyel supports a range of different AES encryption ciphers which are using the `openssl` library to perform secure encryption for you. It is recommended you use the Polyel encrypters for data encryption and generate a secure key before you deploy your application.
+
+For encryptions ciphers which are using the `CBC` mode, they are validated using a message authentication code (MAC) to ensure data authenticity and that nothing was changed during decryption. If you are using `GCM` the data authentication is handled automatically and a secure cryptographically strong initialisation vector is generated using `random_bytes()` along with a 16 bit tag value.
+
+Current supported encryption ciphers are:
+
+- AES-128-CBC & AES-256-CBC
+- AES-128-GCM & AES-256-GCM
+
+Support for `libsodium` is coming.
+
+## Configuration
+
+You can find the configuration for encryption inside `/config/main.php` where you should make sure you have a secure encryption key generated, which respects the required cipher key length depending on which cipher you are using. You can use `php polyel key:gen` to build an encryption key for you which uses PHP's secure `random_bytes()` method.
+
+## Encrypting Data
+
+### Encryption Helper
+
+You have a few ways to access the encryption service, the quickest being using the encrypt helper:
+
+```
+$data = "Luke's secret note!";
+
+$encrypted = encrypt($data);
+```
+
+The `encrypt()` method also allows you to turn off serialization by passing `false` as the second argument.
+
+### Encryption Facade
+
+You can also use the available encryption Facade to access the encrypt method:
+
+```
+use Polyel\Encryption\Facade\Crypt;
+
+$data = ['name' => 'Luke Embrey!'];
+
+$encrypted = Crypt::encrypt($data);
+```
+
+Again, `encrypt()` also allows you to turn off serialization by passing `false` as the second argument.
+
+### String Encryption
+
+If you just want to encrypt a normal string without serialization, you can use:
+
+```
+$data = "Luke Embrey!";
+
+$encrypted = Crypt::encryptString($data);
+```
+
+## Decrypting Data
+
+### Decryption Helper
+
+```
+$decrypted = decrypt($encrypted);
+```
+
+If you don't want to unserialize your encrypted data, `decrypt()` allows you to turn this off by passing `false` as the second argument.
+
+### Decryption Facade
+
+```
+use Polyel\Encryption\Facade\Crypt;
+
+$decrypted = Crypt::decrypt($encrypted);
+```
+
+Again, to not unserialize your encrypted data, `decrypt()` allows you to turn this off by passing `false` as the second argument.
+
+### String Decryption
+
+```
+$decrypted = Crypt::decryptString($encrypted);
+```
+
+Decryption without serialization by default.
+
+## Encryption & Decryption Example
+
+During encryption and decryption you can wrap your calls inside try-catch blocks to handle any errors during the process. For example, you can handle such Exceptions like when the MAC does not match, JSON payload encode and decode errors or invalid or incorrectly formatted payload data.
+
+```
+use Polyel\Encryption\Exception\EncryptionException;
+use Polyel\Encryption\Exception\DecryptionException;
+
+try {
+    $encrypted = encrypt($plainData);
+} catch (EncryptionException $e) {
+    //...
+}
+
+try {
+    $decrypted = decrypt($encryptedData);
+} catch (DecryptException $e) {
+    //...
+}
+```
