@@ -49,13 +49,15 @@ class ValidateCsrfToken extends CsrfTokenVerifier
      */
     protected array $except = [
 
-        // For example
+        // For example:
         '/api/*',
         '/payment',
 
     ];
 }
 ```
+
+<div class="warnMsg">By default <code>/api/*</code> is added to the exceptions array, you may remove it but API routes should be authenicated with API tokens instead</div>
 
 ## CSRF Header & JavaScript
 
