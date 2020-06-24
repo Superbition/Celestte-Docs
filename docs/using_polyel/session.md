@@ -7,6 +7,8 @@ title: Session
 
 HTTP applications and requests are by default stateless, meaning they don’t hold data between requests, as far as the HTTP server is concerned, each request is separate from another. To enable us to store data between requests, we use a session and Polyel provides a session system ready for you to use. By default the session system uses the file system to store sessions as JSON objects, support for other session systems like database or Redis are supported.
 
+<div class="warnMsg">Routes defined in <code>/app/routing/api.php</code> are stateless, meaning they don't have access to the Session System</div>
+
 ## Setup
 
 The default session driver is file based storage and a session is created no matter what, even if you are not authenticated, a client will have its own session. You can review the session system configuration by opening `/config/session.php`. File based session storage will work for most application loads.
