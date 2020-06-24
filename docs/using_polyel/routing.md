@@ -112,3 +112,83 @@ Route::get("/events", function() {});
 ```
 
 Notice the difference between the two controller actions. This way both routes are supported and seperated into their own directions.
+
+## Routing Groups
+
+You can use routing groups for when you need to attach a prefix or middleware to multiple routes but don't want to perform this action for every route that shares the same attributes.
+
+<div class="noteMsg">Routing groups are especially helpful for when you are building API routes inside <code>/app/routing/api.php</code> as you can attach prefixes and middleware across the whole API defined routes, but you can still use groups in your normal web routes as well.</div>
+
+<br/>
+
+For example, here is a group which shares the same prefix:
+
+```
+Route::group(['prefix' => '/api'], function()
+{
+
+    Route::get("/create", function()
+    {
+        // ...
+    });
+
+    Route::group(['prefix' => '/data'], function()
+    {
+        Route::get("/get", function()
+        {
+            // ...
+        });
+
+        Route::get("/set", function()
+        {
+            // ...
+        });
+
+        // ...
+    });
+
+});
+```
+
+The example above demonstrates a range of functionality by the Polyel Router, you can nest Routing Groups with different attributes. Each route being defined will always use the attributes from the parent first, so the `/api` prefix gets applied first and then the `/data` prefix for routes within that group.
+
+As you have seen, we can apply prefixes to our routing groups but we can also apply middleware as well. This is useful for when you want multiple routes to share the same middleware but don’t want to define that middleware manually for every route, so we can set it as an attribute:
+
+```
+Route::group(['prefix' => '/api', 'middleware' => 'auth:api'], function()
+{
+
+    Route::get("/create", function()
+    {
+        // ...
+    });
+
+    Route::group(['prefix' => '/data', 'middleware' => 'ApiCounterMiddleware'], function()
+    {
+        Route::get("/get", function()
+        {
+            // ...
+        });
+
+        Route::get("/set", function()
+        {
+            // ...
+        });
+
+        // ...
+    });
+
+});
+```
+
+From the example above, the `auth` middleware is applied to all routes but only the second routing group uses the second middleware ` ApiCounterMiddleware`.
+
+You can also define multiple Middleware in a single group by using an array:
+
+
+```
+Route::group(['prefix' => '/api', 'middleware' => ['auth:api', 'ApiCounterMiddleware']], function()
+{
+    // ...
+});
+```
