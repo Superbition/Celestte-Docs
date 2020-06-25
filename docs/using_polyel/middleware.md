@@ -80,14 +80,14 @@ This attaches the Middleware called ` LogRequestMiddleware` to the `/` Route and
 Sometimes a route may be required to have more than one Middleware attached to it, this can be easily done by sending an array to the `middleware()` function:
 
 ```php
-Route::get("/", "Indexr@home")
+Route::get("/", "Index@home")
         ->middleware(["LogRequestMiddleware", "UserAuthMiddleware"]);
 ```
 
 Same goes for any other HTTP Request Method:
 
 ```php
-Route::post("/", "Indexr@home")
+Route::post("/", "Index@home")
         ->middleware(["LogRequestMiddleware", "UserAuthMiddleware"]);
 ```
 
