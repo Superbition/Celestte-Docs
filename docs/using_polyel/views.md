@@ -462,7 +462,7 @@ In out profile box example above, we are creating two new elements from the data
 
 Just like you would with a normal single use element, you only need to include the add element function in your view, so for our profile example, it would be: `{{ @addElement(profileBoxElement) }}`. Remember the add element view function expects the element class name and not the name of the HTML element template. All element classes are resolved from the service container.
 
-## Resetting Elements
+### Resetting Elements
 
 If you need to, you can reset elements when you are building them, this must be done within the build function, you can call `reset()`:
 
