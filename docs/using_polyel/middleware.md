@@ -184,6 +184,51 @@ class BeforeExampleMiddleware extends Middleware
 
 This is a very simple example and there is much more to the view system, visit its full documentation [here.](/docs/using_polyel/views)
 
+## Middleware Parameters
+
+Your Middleware can also accept optional parameters, making it easy to adjust what the Middleware can respond to. For example, you might have a Middleware which checks if the user was active on a certain device but want to keep all the functionality in the same place, take a look at this example:
+
+```
+<?php
+
+namespace App\Middleware;
+
+use Polyel\Middleware\Middleware;
+
+class CheckLastActiveMiddleware extends Middleware
+{
+    public $middlewareType = "before";
+
+    public function process($request, $device)
+    {
+        if($device === 'ios)
+        {
+            // ...
+        }
+
+        // ...
+    }
+}
+```
+
+You can use the parameter to alter the way a Middleware response to your request. Middleware parameters are always pass into the `handle` method last.
+
+To define the above Middleware example using parameters you can assign this to a route like so:
+
+```
+Route::get('active/check', function () {
+    // ...
+})->middleware('CheckLastActiveMiddleware:ios');
+```
+
+Parameters are set after the `:`, multiple parameters can be passed by using a comma to separate them apart:
+
+```
+Route::get('active/check', function () {
+    // ...
+})->middleware('CheckLastActiveMiddleware:ios,android,pc');
+```
+
 ## Middleware Configuration
 
 When you create new Middleware, you are setting a key to be used, this is because Polyel works by matching this key to a fully qualified class name. During the boot process of the Polyel server, all Middleware is preloaded to save time and have them ready for requests straight away. It is also easier and quicker to attach Middleware to a route using a key instead of a fully qualified class name.
