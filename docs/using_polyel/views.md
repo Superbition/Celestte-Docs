@@ -462,6 +462,10 @@ In out profile box example above, we are creating two new elements from the data
 
 Just like you would with a normal single use element, you only need to include the add element function in your view, so for our profile example, it would be: `{{ @addElement(profileBoxElement) }}`. Remember the add element view function expects the element class name and not the name of the HTML element template. All element classes are resolved from the service container.
 
+### Not using an Element
+
+Just like in many other frameworks, they use control structures within HTML to decide when to include certain content or not, especially when rendering multiple elements or HTML content. With Polyel, if you decide based on the request that you don’t want to render an element but you still have the ` {{ @addElement(elementName) }}` tag in your views, you can choose to not render this element and Polyel will automatically just remove the tag for you. All you have to do is return `false` inside your element’s `build()` method, this tells Polyel you won’t be rendering this element, so Polyel will remove the element tag for you.
+
 ### Resetting Elements
 
 If you need to, you can reset elements when you are building them, this must be done within the build function, you can call `reset()`:
