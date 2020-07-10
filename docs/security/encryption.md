@@ -106,3 +106,15 @@ try {
     //...
 }
 ```
+
+## Getting the Encryption Key
+
+If you want to get the encryption key that is being used to perform encryption, you can by using the `Crypt` Facade:
+
+```
+$rawKey = Crypt::getEncryptionKey();
+
+$base64Key = Crypt::getEncryptionKey($decode = false);
+```
+
+By not passing anything to this method, the key is automatically decoded from `base64` for you but if you don't want the key to be decoded, then pass `false` to the method.
