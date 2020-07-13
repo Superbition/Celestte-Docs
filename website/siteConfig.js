@@ -97,7 +97,7 @@ const siteConfig = {
   enableUpdateBy: false,
 
   // Show documentation's last update time.
-  enableUpdateTime: true,
+  enableUpdateTime: false,
 
   // You may provide arbitrary config keys to be used as needed by your
   // template. For example, if you need your repo's URL...
