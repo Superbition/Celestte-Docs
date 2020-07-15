@@ -80,7 +80,7 @@ $htmlBlock = <<<HTML
 $this->appendHtmlBlock($htmlBlock, ["name" => "Luke", "age" => 22]);
 ```
 
-And when you append HTML blocks, you can also pass in any data like you would normally with any data tag, this also gets filtered for XSS attacks. You may use the standard `!name!` syntax to escape the filtering process.
+And when you append HTML blocks, you can also pass in any data like you would normally with any data tag, this also gets filtered for XSS attacks. You may use the standard `!name!` syntax to escape the filtering process. If you don't need to pass any data to a HTML block, don't pass any and only the block will be added to the element.
 
 ## Including Elements
 
