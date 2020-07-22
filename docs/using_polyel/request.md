@@ -245,6 +245,17 @@ Checks if a checkbox called `sendEmails` is checked. Values deemed to be true: `
 
 Everything else will return `false`.
 
+### expectsJson()
+
+```
+if($request->expectsJson())
+{
+    // ...
+}
+```
+
+Returns true if the request wants to accept a JSON response from the `Accept` header or when the request sets the content type of `application/json`.
+
 ## Request cookie access
 
 To access a cookie value using its name, you can do so by doing:
