@@ -69,7 +69,7 @@ Calling `read()` with the file path will return the contents of the file you wis
 Storage::drive("local")->write("/error/last_error/error.txt", "[10:29 21/04/2020] - ...");
 ```
 
-The file will be created if it does not exist. By default the second parameter is set to `null` so you are not required to pass in file contents to write to the file. The default writing mode is `ab`. The write method obtains a file lock which blocks any other file writes, the process will wait until a lock is released but not block the entire server.
+The file will be created if it does not exist. By default the second parameter is set to `null` so you are not required to pass in file contents to write to the file. The default writing mode is `ab`. The write method obtains a file lock which blocks any other file writes, the process will wait until a lock is released but not block the entire server. The write mode `w+` does not work with file locking.
 
 ### Prepending
 
