@@ -39,7 +39,11 @@
 
     "Security": [
       "security/encryption",
-      "security/hashing"
+      "security/hashing",
+      "security/authentication",
+      "security/api_authentication",
+      "security/email_verification",
+      "security/password_reset"
     ]
   }
 }
