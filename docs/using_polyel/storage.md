@@ -61,7 +61,7 @@ Storage::read("/logs/error.log");
 Storage::drive("local")->read("/logs/error.log");
 ```
 
-Calling `read()` with the file path will return the contents of the file you wish to read. The enitre file is read and returned with the file handle being closed once done.
+Calling `read()` with the file path will return the contents of the file you wish to read. The enitre file is read and returned with the file handle being closed once done. The read method will obtain a shared reader lock which prevents any processes from writing until all reads are complete.
 
 ## Writing to Files
 
@@ -69,7 +69,7 @@ Calling `read()` with the file path will return the contents of the file you wis
 Storage::drive("local")->write("/error/last_error/error.txt", "[10:29 21/04/2020] - ...");
 ```
 
-The file will be created if it does not exist. By default the second parameter is set to `null` so you are not required to pass in file contents to write to the file.
+The file will be created if it does not exist. By default the second parameter is set to `null` so you are not required to pass in file contents to write to the file. The default writing mode is `ab`. The write method obtains a file lock which blocks any other file writes, the process will wait until a lock is released but not block the entire server.
 
 ### Prepending
 
