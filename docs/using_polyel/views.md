@@ -9,7 +9,7 @@ Polyel comes with its own View system which you can use to manage rendering a re
 
 Polyel's View layer does work a little differently compared to other frameworks, the main difference being, Polyel expects you to have your data ready before you pass data to a View. Polyel completely separates your logic away from your presentation layer. Meaning you will have to get your data ready and in the right state before passing it to a View.
 
-However, Polyel does provide you with different functions and services which will help you follow this structure, the main thing to keep in mind is that PHP code (logic) and presentation (HTML or CSS) are separated apart, strictly following the MVC design pattern.
+However, Polyel does provide you with different directives and services which will help you follow this structure, the main thing to keep in mind is that PHP code (logic) and presentation (HTML or CSS) are separated apart, strictly following the MVC design pattern.
 
 ## What is a View?
 
@@ -187,11 +187,11 @@ The mini view above uses the `!` to declare that any data passed to this tag sho
 
 You may have already noticed that some views are defined using dot notation, this allows you to access nested views in multiple directories, so `common.sidebar.view.html` is actually leading to `/app/resources/views/common/sidebar.view.html`. This is automatically converted by Polyel.
 
-## View Functions
+## View Directives
 
-View functions allow you to manipulate the view layer even more and give you that bridge between logic and presentation.
+View directives allow you to manipulate the view layer even more and give you that bridge between logic and presentation.
 
-### @include
+### include
 
 Before data is injected into the main view, Polyel gives you the ability to include other sub-views, meaning you can include another view and then add any data to the included data tags as well.
 
@@ -227,7 +227,7 @@ This is a typical use case for includes, it allows you to bring in sub-views and
 
 Another example of using includes is for including common HTML sections like a header or footer, it may be easier to split these sections into different files and then pull them in using the `@include` function. Giving you the ability to manage complex templates in separate files.
 
-### @includeCSS
+### includeCSS
 
 Most of the time you will just end up putting all your CSS links into your head element in your master view, but sometimes you may have a certain page which requires a lot of extra styling with CSS, it’s best to only include certain CSS files for different pages, that’s why Polyel allows you to use `@includeCSS` to require certain CSS files on different views.
 
@@ -265,7 +265,7 @@ Finally, to get Polyel to insert these CSS links into the HTML head, you must us
 
 <div class="noteMsg">You can place CSS includes in any view or element, they all get processed at the end before the final render.</div>
 
-### @includeJS
+### includeJS
 
 When building web applications you will end up having different Java Script files for different logic and pages, but you won’t want to load Java Script files on pages where they won’t get used. So Polyel allows you to also `@includeJS` files dynamically between different views or elements.
 
