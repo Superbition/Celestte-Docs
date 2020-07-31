@@ -278,6 +278,14 @@ By calling `->file()` it will return an instance of an `UploadedFile` and you ca
 
 The `UploadedFile` service is based on the `SplFileInfo` PHP class so you have access automatically to its functions and features on each file.
 
+You can also use `files` to retrieve an array of all uploaded files:
+
+```php
+$files = $request->files();
+```
+
+The `files` method will return null if no files exist for the request.
+
 ### Checking for a file
 
 You can use `hasFile` to see if a file is present on the request:
