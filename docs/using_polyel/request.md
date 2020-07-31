@@ -289,6 +289,17 @@ if($request->hasFile("profilePicUpdate"))
 }
 ```
 
+### Checking for any files
+
+The method `hasFiles` can be used to detect if any files have been uploaded at all, it will return true if any files exist and false if no files have been sent at all.
+
+```php
+if($request->hasFiles())
+{
+    // ...
+}
+```
+
 It will return true if the file is found and false when no file exists on the request.
 
 ### Making sure a file is valid
