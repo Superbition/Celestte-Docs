@@ -311,3 +311,43 @@ If you use a group, remember `@old` will require you to define the group name as
 
 A list of the provided validation rules you can use and their meaning:
 
+[Accepted](#accepted),
+[ActiveURL](#activeurl),
+[After](#after),
+
+#### Accepted
+---
+
+Used for checking a field’s value equates to a true state like a checkbox for example, this rule deems the following values as true and anything else as false: yes, on, true, 1.
+
+#### ActiveURL
+---
+
+Validate that a URL is active by checking it can return a hostname, works for both IPv4 and IPv6 addresses.
+
+#### After
+---
+
+`After:date`
+
+Validate that the field is a date and that the date is after the given value.
+
+For example:
+
+```
+'end_date' => ['Required', 'After:tomorrow']
+```
+
+Or you can pass in a formatted date:
+
+```
+'end_date' => ['Required', 'After:2021-08-28']
+```
+
+You may pass other date formats in but it is best to stick to `yyy-mm-dd` as all the dates are processed through the `strtotime` PHP function.
+
+You can also use another field's value:
+
+```
+'end_date' => ['Required', 'After:start_date']
+```
