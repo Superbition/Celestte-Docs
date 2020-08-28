@@ -29,6 +29,7 @@
       "using_polyel/views",
       "using_polyel/elements",
       "using_polyel/session",
+      "using_polyel/validation",
       "using_polyel/storage"
     ],
 
