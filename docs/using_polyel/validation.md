@@ -314,6 +314,7 @@ A list of the provided validation rules you can use and their meaning:
 [Accepted](#accepted),
 [ActiveURL](#activeurl),
 [After](#after),
+[AfterOrEqual](#afterorequal),
 
 #### Accepted
 ---
@@ -351,3 +352,10 @@ You can also use another field's value:
 ```
 'end_date' => ['Required', 'After:start_date']
 ```
+
+#### AfterOrEqual
+---
+
+`AfterOrEqual:date`
+
+Validate that the field is either after or equal to the given date, operates the same as the [After](#after) rule but also checks if dates are equal.
