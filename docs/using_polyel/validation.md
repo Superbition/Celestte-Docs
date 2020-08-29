@@ -315,6 +315,10 @@ A list of the provided validation rules you can use and their meaning:
 [ActiveURL](#activeurl),
 [After](#after),
 [AfterOrEqual](#afterorequal),
+[Alpha](#alpha),
+[Alpha Dash](#alpha-dash),
+[Alpha Numeric Dash](#alpha-numeric-dash),
+[Alpha Numeric](#alpha-numeric),
 
 #### Accepted
 ---
@@ -359,3 +363,23 @@ You can also use another field's value:
 `AfterOrEqual:date`
 
 Validate that the field is either after or equal to the given date, operates the same as the [After](#after) rule but also checks if dates are equal.
+
+#### Alpha
+---
+
+Validate that a field’s value is only alphabetical characters. Supports any language and Unicode.
+
+#### Alpha Dash
+---
+
+Validate that a field’s value is only alphabetical characters with either using dashes or underscores, but no numbers. Supports any language and Unicode.
+
+#### Alpha Numeric Dash
+---
+
+Validate that a field’s value is only alpha-numeric characters with either using dashes or underscores. Supports any language and Unicode.
+
+#### Alpha Numeric
+---
+
+Validate that a field’s value is only alpha-numeric characters. Supports any language and Unicode.
