@@ -319,6 +319,7 @@ A list of the provided validation rules you can use and their meaning:
 [Alpha Dash](#alpha-dash),
 [Alpha Numeric Dash](#alpha-numeric-dash),
 [Alpha Numeric](#alpha-numeric),
+[Array](#array),
 [Break](#break),
 
 #### Accepted
@@ -384,6 +385,11 @@ Validate that a field’s value is only alpha-numeric characters with either usi
 ---
 
 Validate that a field’s value is only alpha-numeric characters. Supports any language and Unicode.
+
+#### Array
+---
+
+The field being validated must be a PHP array.
 
 #### Break
 ---
