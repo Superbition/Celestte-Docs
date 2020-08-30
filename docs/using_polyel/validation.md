@@ -319,6 +319,7 @@ A list of the provided validation rules you can use and their meaning:
 [Alpha Dash](#alpha-dash),
 [Alpha Numeric Dash](#alpha-numeric-dash),
 [Alpha Numeric](#alpha-numeric),
+[Break](#break),
 
 #### Accepted
 ---
@@ -383,3 +384,12 @@ Validate that a field’s value is only alpha-numeric characters with either usi
 ---
 
 Validate that a field’s value is only alpha-numeric characters. Supports any language and Unicode.
+
+#### Break
+---
+
+`Break:rule|field` - Default is `rule`
+
+When a field has the `Break` rule applied, if it is using the `rule` argument then validation will stop if it fails on an error but continue onto the next field to validate. If the field is using the `Break:field` argument, then validation stops completely on the first error for any field.
+
+You may just use `Break` and the validator will default to the `rule` argument.
