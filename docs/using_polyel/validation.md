@@ -321,6 +321,7 @@ A list of the provided validation rules you can use and their meaning:
 [Alpha Numeric](#alpha-numeric),
 [Array](#array),
 [Break](#break),
+[Before](#before),
 
 #### Accepted
 ---
@@ -399,3 +400,10 @@ The field being validated must be a PHP array.
 When a field has the `Break` rule applied, if it is using the `rule` argument then validation will stop if it fails on an error but continue onto the next field to validate. If the field is using the `Break:field` argument, then validation stops completely on the first error for any field.
 
 You may just use `Break` and the validator will default to the `rule` argument.
+
+#### Before
+---
+
+`Before:date`
+
+The field being validated must be before the given date. All dates will be passed into the `strtotime` PHP function. This rule like the [After](#after) rule allows you to use another fields value as the date, for example: 'Before:start_date'. Be careful when validating dates, make sure you are using the correct date formats.
