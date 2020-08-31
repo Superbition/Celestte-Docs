@@ -322,6 +322,7 @@ A list of the provided validation rules you can use and their meaning:
 [Array](#array),
 [Break](#break),
 [Before](#before),
+[BeforeOrEqual](#beforeorequal),
 [DateFormat](#dateformat),
 
 #### Accepted
@@ -408,6 +409,13 @@ You may just use `Break` and the validator will default to the `rule` argument.
 `Before:date`
 
 The field being validated must be before the given date. All dates will be passed into the `strtotime` PHP function. This rule like the [After](#after) rule allows you to use another fields value as the date, for example: 'Before:start_date'. Be careful when validating dates, make sure you are using the correct date formats.
+
+#### BeforeOrEqual
+---
+
+`BeforeOrEqual:date`
+
+The field being validated must be a date before or equal to the given date. All dates will be passed into the `strtotime` PHP function. This rule like the [After](#after) rule allows you to use another fields value as the date, for example: BeforeOrEqual:start_date'. Be careful when validating dates, make sure you are using the correct date formats.
 
 #### DateFormat
 ---
