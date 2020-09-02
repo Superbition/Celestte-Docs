@@ -330,6 +330,7 @@ A list of the provided validation rules you can use and their meaning:
 [Date](#date),
 [DateFormat](#dateformat),
 [DateEquals](#dateequals),
+[DistinctFrom](#distinctfrom)
 
 #### Accepted
 ---
@@ -465,3 +466,10 @@ The field being validated must match the given format, this rule uses the PHP `D
 `DateEquals:date|field`
 
 The field under validation must match the given date, you may use another field's name as the date value. All dates are processed through the PHP `strtotime` function.
+
+#### DistinctFrom
+---
+
+`DistinctFrom:field|value1,value2,...`
+
+The field being validated must be different from the given fields value or different from the given value. Note that you can pass multiple fields or values.
