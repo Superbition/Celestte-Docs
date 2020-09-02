@@ -327,6 +327,7 @@ A list of the provided validation rules you can use and their meaning:
 [Bool](#bool),
 [Confirmed](#confirmed),
 [Match](#match),
+[Date](#date),
 [DateFormat](#dateformat),
 
 #### Accepted
@@ -444,6 +445,11 @@ The field being validated must have a field which confirms the fields value, thi
 `Match:field`
 
 Validate that two field’s values match and are of the same type.
+
+#### Date
+---
+
+The field being validated must be a valid date which is not relative (no timestamp) and work with the `strtotime` PHP function.
 
 #### DateFormat
 ---
