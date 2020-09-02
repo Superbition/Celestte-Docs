@@ -329,6 +329,7 @@ A list of the provided validation rules you can use and their meaning:
 [Match](#match),
 [Date](#date),
 [DateFormat](#dateformat),
+[DateEquals](#dateequals),
 
 #### Accepted
 ---
@@ -457,3 +458,10 @@ The field being validated must be a valid date which is not relative (no timesta
 `DateFormat:format`
 
 The field being validated must match the given format, this rule uses the PHP `DateTime` class to parse formats and validate them, so you may use any date format supported by the `DateTime` class. You should either use this rule or `date` when validating dates, not both at the same time.
+
+#### DateEquals
+---
+
+`DateEquals:date|field`
+
+The field under validation must match the given date, you may use another field's name as the date value. All dates are processed through the PHP `strtotime` function.
