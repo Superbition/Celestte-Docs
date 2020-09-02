@@ -325,6 +325,8 @@ A list of the provided validation rules you can use and their meaning:
 [BeforeOrEqual](#beforeorequal),
 [Between](#between),
 [Bool](#bool),
+[Confirmed](#confirmed),
+[Match](#match),
 [DateFormat](#dateformat),
 
 #### Accepted
@@ -430,6 +432,18 @@ The field being validated must be a size between the given min and max values. A
 ---
 
 The field being validated must be of a boolean type: `true, false, 'true', 'false', 0, 1, '0', '1'`.
+
+#### Confirmed
+---
+
+The field being validated must have a field which confirms the fields value, this confirmation field must be called `{field}_confirmed` and must match with the field under validation. This is useful for password confirmations.
+
+#### Match
+---
+
+`Match:field`
+
+Validate that two field’s values match and are of the same type.
 
 #### DateFormat
 ---
