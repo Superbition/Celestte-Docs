@@ -330,7 +330,9 @@ A list of the provided validation rules you can use and their meaning:
 [Date](#date),
 [DateFormat](#dateformat),
 [DateEquals](#dateequals),
-[DistinctFrom](#distinctfrom)
+[DistinctFrom](#distinctfrom),
+[Digits](#digits),
+[DigitsBetween](#digitsbetween),
 
 #### Accepted
 ---
@@ -473,3 +475,17 @@ The field under validation must match the given date, you may use another field'
 `DistinctFrom:field|value1,value2,...`
 
 The field being validated must be different from the given fields value or different from the given value. Note that you can pass multiple fields or values.
+
+#### Digits
+---
+
+`Digits:length`
+
+The field being validated must be numeric and match the exact length defined by the `length` parameter.
+
+#### DigitsBetween
+---
+
+`Digits:min,max`
+
+The field being validated must be numeric and between the `min` and `max` parameters in length.
