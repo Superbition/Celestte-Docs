@@ -324,6 +324,7 @@ A list of the provided validation rules you can use and their meaning:
 [Before](#before),
 [BeforeOrEqual](#beforeorequal),
 [Between](#between),
+[Bool](#bool),
 [DateFormat](#dateformat),
 
 #### Accepted
@@ -424,6 +425,11 @@ The field being validated must be a date before or equal to the given date. All 
 `Between:min,max`
 
 The field being validated must be a size between the given min and max values. As this is a size related rule, it works with numbers, arrays, files and strings. This rule works the same way as any other size rule.
+
+#### Bool
+---
+
+The field being validated must be of a boolean type: `true, false, 'true', 'false', 0, 1, '0', '1'`.
 
 #### DateFormat
 ---
