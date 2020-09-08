@@ -293,7 +293,15 @@ Each time data is found with the request, Polyel will store this in the session 
 If your data is part of a group or nested you may use dot syntax to access the data. For example:
 
 ```
-{{ @old(blog.post.name) }
+{{ @old(blog:post.name) }
+```
+
+Where the above example shows `blog` being the group and `post.name` being the nested array. A group and nested field is split up by using `:` as the delimiter.
+
+Without a group but for when the field is still nested, you can use dot syntax:
+
+```
+{{ @old(post.name) }
 ```
 
 You may also give a default value if no old request data can be found within the session:
