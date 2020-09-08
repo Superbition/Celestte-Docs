@@ -310,6 +310,8 @@ You may also give a default value if no old request data can be found within the
 {{ @old(name, John Doe) }
 ```
 
+<div class="warnMsg">If the field you have given to <code>@old</code> is not a string or a number, it will not be output to the view, a blank string will be instead as array to string conversion is not possible</div>
+
 ## Working with Arrays
 
 Most of the time request data is not nested but if you have to nest your data, you can access nested elements by using dot notation where applicable. For example, to access nested values during validation:
