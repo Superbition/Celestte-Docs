@@ -162,10 +162,24 @@ If you have multiple forms on a single page and want to use `@errors` for a cert
 And if you want to only display all the errors for a specific field you can use the second argument to select that field:
 
 ```
-{{ @errors(list, login.email) }}
+{{ @errors(list, email) }}
+```
+
+And with a field inside a group:
+
+```
+{{ @errors(list, login:email) }}
 ```
 
 The above would only display all the errors for the group called `login` and the field within that group called `email`.
+
+And with a wildcard when wanting to display all error messages from nested elements:
+
+```
+{{ @errors(list, login:name.*.email) }}
+
+{{ @errors(list, login:name.luke.email) }}
+```
 
 ### Displaying only certain errors
 
@@ -209,28 +223,55 @@ Wherever you place `@message` will be where the actual error message is placed.
 
 If no errors exist, then the tags are just removed and nothing is output, only when errors exist for the given field, is when something is processed using `@error`.
 
-For when you have errors which are part of a group or nested array, you may use dot syntax to access them:
+For when you have errors which are part of a group `group:field` or nested array, you may use dot syntax to access them:
 
 ```
-{{ @error(login.email) }}
-{{ @error(login.password) }}
+// Shows the email error for the login group
+{{ @error(login:email) }}
+
+// Shows the password error for the login group
+{{ @error(login:password) }}
+
+// shows the error for Luke's email
+{{ @error(login:name.luke.email) }}
+
+// Displays Dan's email error using the given output
+{{ @error(login:name.dan.email, <h1>@message</h1>) }}
+
+// Shows the first error in the login group for someones email
+{{ @error(login:name.*.email) }}
+
+// Displays the first error in the login group for someones email but using the give output
+{{ @error(login:name.*.email, <h1>@message</h1>) }}
 ```
 
-The first element `login` would be the group name in this case but if this array was deeper you could do `login.details.email` for example.
+<div class="noteMsg">Remember <code>@error()</code> will only ever display the first error for the given field, use <code>@errors()</code> to display multiple errors for a field. When using an <code>*</code> wildcard with <code>@error()</code>, it will only display the first error found and not all of them.</div>
 
 ### Displaying the error count
 
 If you wish to display the number of errors a given field has after validation onto a view, you can do this by using `@errorCount`:
 
 ```
-<div id='errors'>{{ @errorCount(content) }}</div>
+<div id='errors'>{{ @errorCount(email) }}</div>
 ```
 
-Expecting you to pass in the name of the field from the request data. If no errors are found then 0 will be shown. If your error is part of a group you may use dot syntax to access it, for example:
+If your field is part of a group `group:field` or an array you may use dot syntax to access it, for example:
 
 ```
+// Shows the error count for a group named login
+{{ @errorCount(login) }}
+
+// Shows an error count for the post content field which is nested
 {{ @errorCount(post.content) }}
+
+// Shows an error count for email inside the login group
+{{ @errorCount(login:email) }}
+
+// Shows the error count for all the emails
+{{ @errorCount(login:person.*.email) }}
 ```
+
+If no errors are found then 0 will be shown.
 
 ## Showing Old Request Data
 
