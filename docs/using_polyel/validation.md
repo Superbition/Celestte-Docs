@@ -386,6 +386,8 @@ A list of the provided validation rules you can use and their meaning:
 [DigitsBetween](#digitsbetween),
 [Dimensions](#dimensions),
 [UniqueArray](#uniquearray),
+[StartsWith](#startswith),
+[EndsWith](#endswith),
 
 #### Accepted
 ---
@@ -570,3 +572,17 @@ You can also ignore case differences by passing the parameter:
 ```
 'person.*.name' => 'UniqueArray:IgnoreCase'
 ```
+
+#### StartsWith
+---
+
+`StartsWith:value1,value2,value3,...`
+
+Validate that a field starts with one of the provided values in the parameters.
+
+#### EndsWith
+---
+
+`EndsWith:value1,value2,value3,...`
+
+Validate that a field ends with one of the provided values in the parameters.
