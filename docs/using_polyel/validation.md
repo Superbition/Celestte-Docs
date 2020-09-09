@@ -384,6 +384,8 @@ A list of the provided validation rules you can use and their meaning:
 [DistinctFrom](#distinctfrom),
 [Digits](#digits),
 [DigitsBetween](#digitsbetween),
+[Dimensions](#dimensions),
+[UniqueArray](#uniquearray),
 
 #### Accepted
 ---
@@ -540,3 +542,31 @@ The field being validated must be numeric and match the exact length defined by 
 `Digits:min,max`
 
 The field being validated must be numeric and between the `min` and `max` parameters in length.
+
+#### Dimensions
+---
+
+Allows you to validate an image and its dimensions based on the parameters you pass to the validator. For example:
+
+```
+'profileImage' => 'Dimensions:minWidth=400,maxHeight=400'
+```
+
+The above will only allow an image to be 400 x 400 and will result in a failure if the uploaded image does not meet these constraints.
+
+The parameters which you can use are: minWidth, maxWidth, minHeight, maxHeight, width and height.
+
+#### UniqueArray
+---
+
+If you are working with arrays, you can validate that a field must not have any duplicate values:
+
+```
+'person.*.name' => 'UniqueArray'
+```
+
+You can also ignore case differences by passing the parameter:
+
+```
+'person.*.name' => 'UniqueArray:IgnoreCase'
+```
