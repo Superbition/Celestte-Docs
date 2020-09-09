@@ -388,6 +388,8 @@ A list of the provided validation rules you can use and their meaning:
 [UniqueArray](#uniquearray),
 [StartsWith](#startswith),
 [EndsWith](#endswith),
+[RemoveIf](#removeif),
+[RemoveUnless](#removeunless),
 
 #### Accepted
 ---
@@ -586,3 +588,21 @@ Validate that a field starts with one of the provided values in the parameters.
 `EndsWith:value1,value2,value3,...`
 
 Validate that a field ends with one of the provided values in the parameters.
+
+#### RemoveIf
+---
+
+`RemoveIf:foo,bar`
+
+The field being validated will have its data and rule removed from the validator if the other field is equal to the given value. So if the other field called `foo` is equal to the value of `bar`, then the field being validated will be removed from the request data returned by the validator.
+
+<div class="noteMsg">If a field is removed because it fails its removal rule validation and the field has other rules to validate against, they won’t be processed because the field has already been removed.</div>
+
+#### RemoveUnless
+---
+
+`RemoveUnless:foo,bar`
+
+The field being validated will have its data and rule removed from the validator unless the other field is equal to the given value. So if the other field called `foo` is not equal to the value of `bar`, then the field being validated will be removed from the request data returned by the validator.
+
+<div class="noteMsg">If a field is removed because it fails its removal rule validation and the field has other rules to validate against, they won’t be processed because the field has already been removed.</div>
