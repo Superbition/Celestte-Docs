@@ -390,6 +390,8 @@ A list of the provided validation rules you can use and their meaning:
 [EndsWith](#endswith),
 [RemoveIf](#removeif),
 [RemoveUnless](#removeunless),
+[Exists](#exists),
+[Unique](#unique),
 
 #### Accepted
 ---
@@ -610,3 +612,48 @@ The field being validated will have its data and rule removed from the validator
 If you have multiple values you want to validate against you can just keep adding them as parameters like `RemoveUnless:foo,bar1,bar2,bar3,…` and `foo` will be checked against all `bar` values.
 
 <div class="noteMsg">If a field is removed because it fails its removal rule validation and the field has other rules to validate against, they won’t be processed because the field has already been removed.</div>
+
+#### Exists
+---
+
+`Exists:table,column`
+
+The field being validated must exist within the given database table and column.
+
+The Exists rule expects you to pass in the table name and the column name where the validator should check for existing values in the database. However, if you omit the column, the validator will assume the column name is the same as the field name.
+
+```
+'tag' => `Exists:post_tags'
+
+'tag' => `Exists:post_tags,tag'
+```
+
+With the Exists rule you can also pass in an array and check if multiple values exist within the database, the validator will check all values from the array and pass if they all exist.
+
+#### Unique
+---
+
+`Unique:table,column,ignoreId,idColumn`
+
+The field being validated must not exist within the given database table and column.
+
+```
+'email' => 'Unique:users,email'
+```
+
+With the Unique rule you can ignore a specific ID and this is useful for when a user updates their profile and only changes their username, we don't want to fail on their unchanged email as already existing, as they already own it. So we can specify an ID to ignore and the ID column that we want to ignore; if the ID column is not given, the validator will use the default of `id` as the column name. The Unique rule does not work with arrays.
+
+Ignoring the current logged in user:
+
+```
+// $auth is from Polyel\Auth\AuthManager
+$userId = $auth->userId();
+
+// Only providing the ID
+'email' => "Unique:users,email,$userId"
+
+// Providing the ID column to ignore
+'email' => "Unique:users,email,$userId,user_id"
+```
+
+<div class="warnMsg">You should never let the user provide the actual ID to ignore otherwise you will be vulnerable to SQL injection attacks, always use an ID which is generated from the server side, like in our example, we use the currently logged in user’s ID from the AuthManager</div>
