@@ -393,7 +393,9 @@ A list of the provided validation rules you can use and their meaning:
 [Exists](#exists),
 [Unique](#unique),
 [File](#file),
-[Populated](#populated)
+[Populated](#populated),
+[GreaterThan](#greaterthan),
+[GreaterThanOrEqual](#greaterthanorequal),
 
 #### Accepted
 ---
@@ -669,3 +671,17 @@ The field being validated must be a successfully uploaded file and have a reacha
 ---
 
 The field being validated must be populated and not empty when it is present in the request, this rule will not fail if the field is not sent.
+
+#### GreaterThan
+---
+
+`GreaterThan:anotherField`
+
+The field being validated must be greater than the given field’s value and both values from each field must be of the same type. Types of strings, numerics, arrays and files are evaluated on the same basis as the [Size](#size) rule. You must add a type rule like `Integer` or `File` etc… If you want to guarantee type comparison.
+
+#### GreaterThanOrEqual
+---
+
+`GreaterThanOrEqual:anotherField`
+
+The field being validated must be greater than or equal to the given field’s value and both values from each field must be of the same type. Types of strings, numerics, arrays and files are evaluated on the same basis as the [Size](#size) rule. You must add a type rule like `Integer` or `File` etc… If you want to guarantee type comparison.
