@@ -392,6 +392,7 @@ A list of the provided validation rules you can use and their meaning:
 [RemoveUnless](#removeunless),
 [Exists](#exists),
 [Unique](#unique),
+[File](#file),
 
 #### Accepted
 ---
@@ -657,3 +658,9 @@ $userId = $auth->userId();
 ```
 
 <div class="warnMsg">You should never let the user provide the actual ID to ignore otherwise you will be vulnerable to SQL injection attacks, always use an ID which is generated from the server side, like in our example, we use the currently logged in user’s ID from the AuthManager</div>
+
+#### File
+---
+
+The field being validated must be a successfully uploaded file and have a reachable file path.
+
