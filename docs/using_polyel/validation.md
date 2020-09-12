@@ -393,6 +393,7 @@ A list of the provided validation rules you can use and their meaning:
 [Exists](#exists),
 [Unique](#unique),
 [File](#file),
+[Populated](#populated)
 
 #### Accepted
 ---
@@ -664,3 +665,7 @@ $userId = $auth->userId();
 
 The field being validated must be a successfully uploaded file and have a reachable file path.
 
+#### Populated
+---
+
+The field being validated must be populated and not empty when it is present in the request, this rule will not fail if the field is not sent.
