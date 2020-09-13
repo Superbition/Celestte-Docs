@@ -396,6 +396,8 @@ A list of the provided validation rules you can use and their meaning:
 [Populated](#populated),
 [GreaterThan](#greaterthan),
 [GreaterThanOrEqual](#greaterthanorequal),
+[LessThan](#lessthan),
+[LessThanOrEqual](#lessthanorequal),
 
 #### Accepted
 ---
@@ -685,3 +687,17 @@ The field being validated must be greater than the given field’s value and bot
 `GreaterThanOrEqual:anotherField`
 
 The field being validated must be greater than or equal to the given field’s value and both values from each field must be of the same type. Types of strings, numerics, arrays and files are evaluated on the same basis as the [Size](#size) rule. You must add a type rule like `Integer` or `File` etc… If you want to guarantee type comparison.
+
+#### LessThan
+---
+
+`LessThan:anotherField`
+
+The field being validated must be less than the given field’s value and both values from each field must be of the same type. Types of strings, numerics, arrays and files are evaluated on the same basis as the [Size](#size) rule. You must add a type rule like `Integer` or `File` etc… If you want to guarantee type comparison.
+
+#### LessThanOrEqual
+---
+
+`LessThanOrEqual:anotherField`
+
+The field being validated must be less than or equal to the given field’s value and both values from each field must be of the same type. Types of strings, numerics, arrays and files are evaluated on the same basis as the [Size](#size) rule. You must add a type rule like `Integer` or `File` etc… If you want to guarantee type comparison.
