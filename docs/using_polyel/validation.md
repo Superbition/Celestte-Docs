@@ -398,6 +398,7 @@ A list of the provided validation rules you can use and their meaning:
 [GreaterThanOrEqual](#greaterthanorequal),
 [LessThan](#lessthan),
 [LessThanOrEqual](#lessthanorequal),
+[Image](#image),
 
 #### Accepted
 ---
@@ -701,3 +702,8 @@ The field being validated must be less than the given field’s value and both v
 `LessThanOrEqual:anotherField`
 
 The field being validated must be less than or equal to the given field’s value and both values from each field must be of the same type. Types of strings, numerics, arrays and files are evaluated on the same basis as the [Size](#size) rule. You must add a type rule like `Integer` or `File` etc… If you want to guarantee type comparison.
+
+#### Image
+---
+
+Validates that the file uploaded is an image, valid image types are: jpeg, png, bmp, gif, svg or webp.
