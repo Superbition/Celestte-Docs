@@ -400,7 +400,7 @@ A list of the provided validation rules you can use and their meaning:
 [LessThanOrEqual](#lessthanorequal),
 [Image](#image),
 [Within](#within),
-[WithinArray](#WithinArray),
+[WithinArray](#withinarray),
 
 #### Accepted
 ---
@@ -723,3 +723,5 @@ The field under validation must be found within the list of values set within th
 `WithinArray:anotherFieldArray.*`
 
 The field being validated must exist within the other array defined in the rules parameters. If you only include the array name like `Within:names` and no wildcard, Polyel will assume you mean `names.*` for you.
+
+#### 
