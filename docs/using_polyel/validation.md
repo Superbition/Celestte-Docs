@@ -402,6 +402,11 @@ A list of the provided validation rules you can use and their meaning:
 [Within](#within),
 [WithinArray](#withinarray),
 [Integer](#integer),
+[IP](#ip),
+[IPv4](#ipv4),
+[IPv6](#ipv6),
+[IPNotPriv](#ipnotpriv),
+[IPNotRes](#ipnotres),
 
 #### Accepted
 ---
@@ -729,3 +734,28 @@ The field being validated must exist within the other array defined in the rules
 ---
 
 The field being validated must be a valid Integer, even if it is a string containing a valid Integer or numeric value.
+
+#### IP
+----
+
+The field being validated must be an IP address.
+
+#### IPv4
+---
+
+The field being validated must be an IPv4 address only.
+
+#### IPv6
+---
+
+The field being validated must be an IPv6 address only.
+
+#### IPNotPriv
+---
+
+The field being validated must not be a private IP address.
+
+#### IPNotRes
+---
+
+The field being validated must not be a reserved IP address.
