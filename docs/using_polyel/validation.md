@@ -407,6 +407,7 @@ A list of the provided validation rules you can use and their meaning:
 [IPv6](#ipv6),
 [IPNotPriv](#ipnotpriv),
 [IPNotRes](#ipnotres),
+[JSON](#json),
 
 #### Accepted
 ---
@@ -759,3 +760,8 @@ The field being validated must not be a private IP address.
 ---
 
 The field being validated must not be a reserved IP address.
+
+#### JSON
+---
+
+The field being validated must be a valid JSON string.
