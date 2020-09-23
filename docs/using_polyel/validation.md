@@ -408,6 +408,7 @@ A list of the provided validation rules you can use and their meaning:
 [IPNotPriv](#ipnotpriv),
 [IPNotRes](#ipnotres),
 [JSON](#json),
+[Max](#max),
 
 #### Accepted
 ---
@@ -765,3 +766,8 @@ The field being validated must not be a reserved IP address.
 ---
 
 The field being validated must be a valid JSON string.
+
+#### Max
+---
+
+The field being validated must not be more than the given max value. Types of strings, numerics, arrays and files are evaluated on the same basis as the [Size](#size) rule.
