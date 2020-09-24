@@ -411,6 +411,7 @@ A list of the provided validation rules you can use and their meaning:
 [Max](#max),
 [MimesAllowed](#mimesallowed),
 [Min](#min),
+[NotWithin](#notwithin),
 
 #### Accepted
 ---
@@ -807,3 +808,10 @@ For a list of different MIME types, please visit: https://svn.apache.org/repos/a
 `Min:3`
 
 The field being validated must not be less than the given min value. Types of strings, numerics, arrays and files are evaluated on the same basis as the [Size](#size) rule.
+
+#### NotWithin
+---
+
+`NotWithin:foo,bar,baz,...`
+
+The field under validation must not be found within the list of values set within the rule.
