@@ -409,6 +409,7 @@ A list of the provided validation rules you can use and their meaning:
 [IPNotRes](#ipnotres),
 [JSON](#json),
 [Max](#max),
+[MimesAllowed](#mimesallowed),
 
 #### Accepted
 ---
@@ -773,3 +774,28 @@ The field being validated must be a valid JSON string.
 `Max:64`
 
 The field being validated must not be more than the given max value. Types of strings, numerics, arrays and files are evaluated on the same basis as the [Size](#size) rule.
+
+#### MimesAllowed
+---
+
+`MimesAllowed:application/json,text/plain,...`
+
+The file being validated must match one of the given MIME types.
+
+For example, if you want to make sure a file is a `png` image only:
+
+```
+'profile_image' => 'MimesAllowed:image/png'
+```
+
+Or if you want to only accept a selection of image types:
+
+```
+'profile_image' => 'MimesAllowed:image/png,image/jpeg,image/gif,image/bmp'
+```
+
+You just need to use the full MIME type standard for the type of file you want to validate.
+
+This rule is the preferred way if you need a reliable method to check the actual file type for an uploaded file, it gets the MIME type from 3 different sources, compares they all match and then checks to see if the detected MIME type matches any of the given types from the parameter list. This rule does not check the file extension, it relies on checking the files content to detect the correct MIME type.
+
+For a list of different MIME types, please visit: https://svn.apache.org/repos/asf/httpd/httpd/trunk/docs/conf/mime.types
