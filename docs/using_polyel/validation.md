@@ -410,6 +410,7 @@ A list of the provided validation rules you can use and their meaning:
 [JSON](#json),
 [Max](#max),
 [MimesAllowed](#mimesallowed),
+[Min](#min),
 
 #### Accepted
 ---
@@ -799,3 +800,10 @@ You just need to use the full MIME type standard for the type of file you want t
 This rule is the preferred way if you need a reliable method to check the actual file type for an uploaded file, it gets the MIME type from 3 different sources, compares they all match and then checks to see if the detected MIME type matches any of the given types from the parameter list. This rule does not check the file extension, it relies on checking the files content to detect the correct MIME type.
 
 For a list of different MIME types, please visit: https://svn.apache.org/repos/asf/httpd/httpd/trunk/docs/conf/mime.types
+
+#### Min
+---
+
+`Min:3`
+
+The field being validated must not be less than the given min value. Types of strings, numerics, arrays and files are evaluated on the same basis as the [Size](#size) rule.
