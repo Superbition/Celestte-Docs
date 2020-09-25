@@ -412,6 +412,8 @@ A list of the provided validation rules you can use and their meaning:
 [MimesAllowed](#mimesallowed),
 [Min](#min),
 [NotWithin](#notwithin),
+[Regex](#regex),
+[RegexNot](#regexnot),
 
 #### Accepted
 ---
@@ -815,3 +817,33 @@ The field being validated must not be less than the given min value. Types of st
 `NotWithin:foo,bar,baz,...`
 
 The field under validation must not be found within the list of values set within the rule.
+
+#### Regex
+---
+
+`Regex:pattern`
+
+The field being validated must match the given regular expression.
+
+Within the framework, the PHP function `preg_match` is used to execute the given regular expression. The pattern you give needs to follow how `preg_match` expects its pattern to be formatted along with valid delimiters.
+
+An example use:
+
+```
+'username' => 'Regex:/^[a-z0-9_-]{3,16}$/'
+```
+
+#### RegexNot
+---
+
+`RegexNot:pattern`
+
+The field being validated must not match the given regular expression.
+
+Within the framework, the PHP function `preg_match` is used to execute the given regular expression. The pattern you give needs to follow how `preg_match` expects its pattern to be formatted along with valid delimiters.
+
+An example use:
+
+```
+'email' => 'RegexNot:/(\W|^)[\w.\-]{0,25}@(yahoo|hotmail|gmail)\.com(\W|$)/'
+```
