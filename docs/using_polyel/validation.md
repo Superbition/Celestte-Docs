@@ -415,6 +415,7 @@ A list of the provided validation rules you can use and their meaning:
 [Regex](#regex),
 [RegexNot](#regexnot),
 [Optional](#optional),
+[PasswordAuth](#passwordauth),
 
 #### Accepted
 ---
@@ -861,3 +862,45 @@ For example, here is a date input but it is also allowed to be `null` or not pre
 ```
 
 If the date is left empty or is `null` then the date rule will not be executed against the fields empty value in this case, but if `Optional` was omitted the date rule would fail. If the `date` was not sent at all, there would be no errors because the validator would class the `date` as `null`.
+
+#### PasswordAuth
+---
+
+`PasswordAuth:web|api`
+
+The field being validated must pass the authentication from the chosen protector defined as the first parameter, either `web` or `api`.
+
+##### Web Auth
+
+For example:
+
+```
+'password' => ['PasswordAuth:web']
+```
+
+The above would validate the current authenticated user’s password against the given fields value, so the user must already be logged in for this to not fail.
+
+##### API Auth
+
+```
+'api' => ['PasswordAuth:api']
+```
+
+The above would validate the given API token against the user based upon the given API client ID. For the API protector to work with this rule, you must pass an array which contains the Client ID and then the actual API token. 
+
+For example, to send the client ID and token using a form you can do this like so:
+
+```
+<form action="/" method="POST" enctype="multipart/form-data">
+	<input id="api_client_id" name="api[0]">
+	<input id="api_token" name="api[1]">
+</form>
+```
+
+Or if you are using JSON:
+
+```
+{
+	"api": ["de480d78-a958...", "Bearer 54de0f90e2e4d875741a..."]
+}
+```
