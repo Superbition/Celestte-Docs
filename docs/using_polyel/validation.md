@@ -414,6 +414,7 @@ A list of the provided validation rules you can use and their meaning:
 [NotWithin](#notwithin),
 [Regex](#regex),
 [RegexNot](#regexnot),
+[Optional](#optional),
 
 #### Accepted
 ---
@@ -847,3 +848,16 @@ An example use:
 ```
 'email' => 'RegexNot:/(\W|^)[\w.\-]{0,25}@(yahoo|hotmail|gmail)\.com(\W|$)/'
 ```
+
+#### Optional
+---
+
+The field being validated is allowed to be `null`. When using the `Optional` rule it allows the field to be present in the request data but still pass if it is deemed as `null`.
+
+For example, here is a date input but it is also allowed to be `null` or not present in the request data at all:
+
+```
+'date' => ['Optional', 'Date']
+```
+
+If the date is left empty or is `null` then the date rule will not be executed against the fields empty value in this case, but if `Optional` was omitted the date rule would fail. If the `date` was not sent at all, there would be no errors because the validator would class the `date` as `null`.
