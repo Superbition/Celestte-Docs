@@ -422,6 +422,7 @@ A list of the provided validation rules you can use and their meaning:
 [RequiredWithAll](#requiredwithall),
 [RequiredWithoutAny](#requiredwithoutany),
 [RequiredWithoutAll](#requiredwithoutall),
+[Size](#size),
 
 #### Accepted
 ---
@@ -956,3 +957,24 @@ The field being validated must be present and not empty only when any of the oth
 `RequiredWithoutAllfield1,field2,...`
 
 The field being validated must be present and not empty only when all of the other given fields are not present, the ones defined in the rules parameters.
+
+#### Size
+---
+
+`Size:value`
+
+The field being validated must be equal to the given size value from the rules parameter. The size rule works differently for all the different size types supported by the validator, to change the behavior of how the size rule validates a value, you may need to include a type rule, see the following examples:
+
+```php
+// Validate that a string is equal to 6 characters in length
+'name' => ['size:6'],
+
+// Validate that a numerical value (integer) is equal to 23, using either numeric or integer rules
+'cars' => ['numeric|integer', 'size:23'],
+
+// Validate that an array is only equal to 15 items
+'parts' => ['Array', 'size:15'],
+
+// Validate that an uploaded file is only equal to exactly 1024 kilobytes
+'image' => ['File', 'size:1024'],
+```
