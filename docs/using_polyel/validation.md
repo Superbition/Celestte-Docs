@@ -416,6 +416,8 @@ A list of the provided validation rules you can use and their meaning:
 [RegexNot](#regexnot),
 [Optional](#optional),
 [PasswordAuth](#passwordauth),
+[RequiredIf](#requiredif),
+[RequiredUnless](#requiredunless),
 
 #### Accepted
 ---
@@ -904,3 +906,21 @@ Or if you are using JSON:
 	"api": ["de480d78-a958...", "Bearer 54de0f90e2e4d875741a..."]
 }
 ```
+
+#### RequiredIf
+---
+
+`RequiredIf:anotherField,value1,value2,...`
+
+The field being validated must be present and not empty if the specified field is equal to any of the given values from the parameters.
+
+You may list as many parameters as you like as long as the first parameter is the name of the other field.
+
+#### RequiredUnless
+---
+
+`RequiredUnless:anotherField,value1,value2,...`
+
+The field being validated must be present and not empty unless the other field is equal to any of the given values from the parameters.
+
+You may list as many parameters as you like as long as the first parameter is the name of the other field.
