@@ -423,6 +423,7 @@ A list of the provided validation rules you can use and their meaning:
 [RequiredWithoutAny](#requiredwithoutany),
 [RequiredWithoutAll](#requiredwithoutall),
 [Size](#size),
+[String](#string),
 
 #### Accepted
 ---
@@ -978,3 +979,8 @@ The field being validated must be equal to the given size value from the rules p
 // Validate that an uploaded file is only equal to exactly 1024 kilobytes
 'image' => ['File', 'size:1024'],
 ```
+
+#### String
+---
+
+The field being validated must be a valid string. Remember to use the `Optional` rule if you want the string to be null also.
