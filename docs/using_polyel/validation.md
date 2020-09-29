@@ -418,6 +418,10 @@ A list of the provided validation rules you can use and their meaning:
 [PasswordAuth](#passwordauth),
 [RequiredIf](#requiredif),
 [RequiredUnless](#requiredunless),
+[RequiredWithAny](#requiredwithany),
+[RequiredWithAll](#requiredwithall),
+[RequiredWithoutAny](#requiredwithoutany),
+[RequiredWithoutAll](#requiredwithoutall),
 
 #### Accepted
 ---
@@ -924,3 +928,31 @@ You may list as many parameters as you like as long as the first parameter is th
 The field being validated must be present and not empty unless the other field is equal to any of the given values from the parameters.
 
 You may list as many parameters as you like as long as the first parameter is the name of the other field.
+
+#### RequiredWithAny
+---
+
+`RequiredWithAny:field1,field2,...`
+
+The field being validated must be present and not empty only if any the other given fields are present, the ones defined in the rules parameters.
+
+#### RequiredWithAll
+---
+
+`RequiredWithAll:field1,field2,...`
+
+The field being validated must be present and not empty only if all of the other given fields are present, the ones defined in the rules parameters.
+
+#### RequiredWithoutAny
+---
+
+`RequiredWithoutAny:field1,field2,...`
+
+The field being validated must be present and not empty only when any of the other given fields are not present, the ones defined in the rules parameters.
+
+#### RequiredWithoutAll
+---
+
+`RequiredWithoutAllfield1,field2,...`
+
+The field being validated must be present and not empty only when all of the other given fields are not present, the ones defined in the rules parameters.
