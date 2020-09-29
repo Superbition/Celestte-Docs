@@ -424,6 +424,7 @@ A list of the provided validation rules you can use and their meaning:
 [RequiredWithoutAll](#requiredwithoutall),
 [Size](#size),
 [String](#string),
+[ValidTimezone](#validtimezone),
 
 #### Accepted
 ---
@@ -984,3 +985,8 @@ The field being validated must be equal to the given size value from the rules p
 ---
 
 The field being validated must be a valid string. Remember to use the `Optional` rule if you want the string to be null also.
+
+#### ValidTimezone
+---
+
+The field being validated must be a valid timezone identifier according to the list returned by the `timezone_identifiers_list` PHP function.
