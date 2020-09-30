@@ -1022,3 +1022,57 @@ The field being validated must be a valid URL. This rule supports a wide range o
 The field being validated must be a valid RFC 4122 universally unique identifier (UUID).
 
 This rule supports checking the validity of all versions 1, 3, 4 and 5. For more information please see the RFC [here.](https://tools.ietf.org/html/rfc4122)
+
+## Custom Validation Error Messages
+
+The Validator by default uses the error messages provided to you by default, each rule has its own default error message. Sometimes these default error messages don’t always fit within different contexts and thus, you will want to use a custom error message to fit your application better. Polyel allows you to use custom error messages on a per field, per rule basis. So you may choose which field and rules use a custom message or which just use the default provided error message.
+
+To set custom error messages, you may pass an array as the 2rd parameter when validating data:
+
+```
+$customErrorMessages = [
+	'name' => [
+		'Max' => 'Your name cannot be longer than 32 characters',
+	],
+	'email' => [
+		'Email' => 'Please Enter a valid email address'
+	],
+];
+
+$data = $request->validate([
+	'name' => ['Required', 'Max:32'],
+	'email' => ['Required', 'Email'],
+], $customErrorMessages);
+```
+
+If you want to only change a rules error message on a global level you can specify to only do this by not giving the field name:
+
+```
+$customErrorMessages = [
+	'Required' => 'Your {field} is required to register your interest with us',
+	'name' => [
+		'Max' => 'Your name cannot be longer than 32 characters',
+	],
+	'email' => [
+		'Email' => 'Please Enter a valid email address'
+	],
+];
+```
+
+You can see from the example above that the `Required` rule will now use its own custom error message and you don’t need to set this again for any field. However, if you choose to enter a custom error message for the `Required` rule but only for the `email` field, then the custom `Required` error message from the `email` array will be used, custom error messages at the field level are prioritised first.
+
+You have may noticed as well, that you can use all of the available placeholders that each rule presents you with. These placeholders are different for each rule, depending on what parameters a rule requires. The most basic placeholder is `{field}` where this will be replaced with the actual name of the field.
+
+Here are some examples of using placeholders in custom error messages:
+
+```
+$customErrorMessages = [
+	'BeforeOrEqual' => '{field} must be a date before or equal to {date}',
+	'Match' => '{field} must be the same as {other}',
+	'Digits' => '{field} must be exactly {digits} digits',
+	'StartsWith' => '{field} must start with one of the following: {values}',
+	'RequiredIf' => '{field} is required when {other} is equal to: {values}',
+];
+```
+
+The placeholders for each rule follow the same order as the rules parameters.
