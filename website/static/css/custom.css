@@ -19,6 +19,29 @@
 	border-left: 8px solid #549edb;
 }
 
+#validationLinkContainer
+{
+	display: flex;
+}
+
+.validationLinkGroup
+{
+	display: inline-flex;
+	flex-grow: 1;
+}
+
+.validationLinkGroup p a
+{
+	display: flex;
+	margin-top: 3px;
+	margin-bottom: 3px;
+}
+
+.validationLinkGroup p a:hover
+{
+	text-decoration: underline;
+}
+
 #social_links
 {
 	text-align: center;

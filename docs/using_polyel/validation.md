@@ -362,71 +362,89 @@ If you use a group, remember `@old` will require you to define the group name as
 
 A list of the provided validation rules you can use and their meaning:
 
-[Accepted](#accepted),
-[ActiveURL](#activeurl),
-[After](#after),
-[AfterOrEqual](#afterorequal),
-[Alpha](#alpha),
-[Alpha Dash](#alpha-dash),
-[Alpha Numeric Dash](#alpha-numeric-dash),
-[Alpha Numeric](#alpha-numeric),
-[Array](#array),
-[Break](#break),
-[Before](#before),
-[BeforeOrEqual](#beforeorequal),
-[Between](#between),
-[Bool](#bool),
-[Confirmed](#confirmed),
-[Match](#match),
-[Date](#date),
-[DateFormat](#dateformat),
-[DateEquals](#dateequals),
-[DistinctFrom](#distinctfrom),
-[Digits](#digits),
-[DigitsBetween](#digitsbetween),
-[Dimensions](#dimensions),
-[UniqueArray](#uniquearray),
-[StartsWith](#startswith),
-[EndsWith](#endswith),
-[RemoveIf](#removeif),
-[RemoveUnless](#removeunless),
-[Exists](#exists),
-[Unique](#unique),
-[File](#file),
-[Populated](#populated),
-[GreaterThan](#greaterthan),
-[GreaterThanOrEqual](#greaterthanorequal),
-[LessThan](#lessthan),
-[LessThanOrEqual](#lessthanorequal),
-[Image](#image),
-[Within](#within),
-[WithinArray](#withinarray),
-[Integer](#integer),
-[IP](#ip),
-[IPv4](#ipv4),
-[IPv6](#ipv6),
-[IPNotPriv](#ipnotpriv),
-[IPNotRes](#ipnotres),
-[JSON](#json),
-[Max](#max),
-[MimesAllowed](#mimesallowed),
-[Min](#min),
-[NotWithin](#notwithin),
-[Regex](#regex),
-[RegexNot](#regexnot),
-[Optional](#optional),
-[PasswordAuth](#passwordauth),
-[RequiredIf](#requiredif),
-[RequiredUnless](#requiredunless),
-[RequiredWithAny](#requiredwithany),
-[RequiredWithAll](#requiredwithall),
-[RequiredWithoutAny](#requiredwithoutany),
-[RequiredWithoutAll](#requiredwithoutall),
-[Size](#size),
-[String](#string),
-[ValidTimezone](#validtimezone),
-[ValidURL](#validurl),
+<div id="validationLinkContainer">
+
+<div class="validationLinkGroup">
+
+[Accepted](#accepted)
+[ActiveURL](#activeurl)
+[After](#after)
+[AfterOrEqual](#afterorequal)
+[Alpha](#alpha)
+[Alpha Dash](#alpha-dash)
+[Alpha Numeric Dash](#alpha-numeric-dash)
+[Alpha Numeric](#alpha-numeric)
+[Array](#array)
+[Break](#break)
+[Before](#before)
+[BeforeOrEqual](#beforeorequal)
+[Between](#between)
+[Bool](#bool)
+[Confirmed](#confirmed)
+[Match](#match)
+[Date](#date)
+[DateFormat](#dateformat)
+[Image](#image)
+[Within](#within)
+[WithinArray](#withinarray)
+[Integer](#integer)
+
+</div>
+
+<div class="validationLinkGroup">
+
+[IP](#ip)
+[IPv4](#ipv4)
+[IPv6](#ipv6)
+[DateEquals](#dateequals)
+[DistinctFrom](#distinctfrom)
+[Digits](#digits)
+[DigitsBetween](#digitsbetween)
+[Dimensions](#dimensions)
+[UniqueArray](#uniquearray)
+[StartsWith](#startswith)
+[EndsWith](#endswith)
+[RemoveIf](#removeif)
+[RemoveUnless](#removeunless)
+[Exists](#exists)
+[Unique](#unique)
+[File](#file)
+[Populated](#populated)
+[GreaterThan](#greaterthan)
+[GreaterThanOrEqual](#greaterthanorequal)
+[LessThan](#lessthan)
+[LessThanOrEqual](#lessthanorequal)
+[IPNotPriv](#ipnotpriv)
+
+</div>
+
+<div class="validationLinkGroup">
+
+[IPNotRes](#ipnotres)
+[JSON](#json)
+[Max](#max)
+[MimesAllowed](#mimesallowed)
+[Min](#min)
+[NotWithin](#notwithin)
+[Regex](#regex)
+[RegexNot](#regexnot)
+[Optional](#optional)
+[PasswordAuth](#passwordauth)
+[RequiredIf](#requiredif)
+[RequiredUnless](#requiredunless)
+[RequiredWithAny](#requiredwithany)
+[RequiredWithAll](#requiredwithall)
+[RequiredWithoutAny](#requiredwithoutany)
+[RequiredWithoutAll](#requiredwithoutall)
+[Size](#size)
+[String](#string)
+[ValidTimezone](#validtimezone)
+[ValidURL](#validurl)
 [ValidUUID](#validuuid)
+
+</div>
+
+</div>
 
 #### Accepted
 ---
