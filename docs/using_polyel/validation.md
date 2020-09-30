@@ -101,14 +101,14 @@ $request->validate([
 
 ## Using Validation Groups
 
-If you have a page which contains multiple forms on it, you will want to define a validation group for it, so that you don’t run into issues when displaying errors, which we discuss later on. To define a validation group for a specific form, we pass in our name as the second argument:
+If you have a page which contains multiple forms on it, you will want to define a validation group for it, so that you don’t run into issues when displaying errors, which we discuss later on. To define a validation group for a specific form, we can use the `validateAsGroup` method:
 
 ```
 // Validation using a defined group for a specific form
-$request->validate([
+$request->validateAsGroup('newPost', [
 		'heading' => ['Break', 'Required', 'Max:64'],
 		'content' => ['Required', 'Between:100, 2500'],
-	], 'newPost');
+	]);
 ```
 
 By doing this it tells Polyel that if any rules fail during validation, the error messages will be stored within a group called `newPost` so we can differentiate them later on when displaying them on a view.
