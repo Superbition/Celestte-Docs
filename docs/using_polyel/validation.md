@@ -425,6 +425,8 @@ A list of the provided validation rules you can use and their meaning:
 [Size](#size),
 [String](#string),
 [ValidTimezone](#validtimezone),
+[ValidURL](#validurl),
+[ValidUUID](#validuuid)
 
 #### Accepted
 ---
@@ -990,3 +992,15 @@ The field being validated must be a valid string. Remember to use the `Optional`
 ---
 
 The field being validated must be a valid timezone identifier according to the list returned by the `timezone_identifiers_list` PHP function.
+
+#### ValidURL
+---
+
+The field being validated must be a valid URL. This rule supports a wide range of URL protocols and many different formats of how a URL is formed, not just a basic `http` web address.
+
+#### ValidUUID
+---
+
+The field being validated must be a valid RFC 4122 universally unique identifier (UUID).
+
+This rule supports checking the validity of all versions 1, 3, 4 and 5. For more information please see the RFC [here.](https://tools.ietf.org/html/rfc4122)
