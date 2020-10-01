@@ -1076,3 +1076,18 @@ $customErrorMessages = [
 ```
 
 The placeholders for each rule follow the same order as the rules parameters.
+
+You are also free to set custom error messages when using arrays or wildcards:
+
+```
+$customErrorMessages = [
+            'users.name.*.id' => [
+                'Required' => 'An ID is Required for each name you give',
+            ],
+            'users.email' => [
+                'Email' => 'Enter a valid email address'
+            ],
+        ];
+```
+
+From the example above, because the custom error message for `name.*.id` is static and does not include any dynamic placeholders, this error message will only be shown/stored once as there is no point showing a duplicate error.
