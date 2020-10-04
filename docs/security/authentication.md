@@ -90,7 +90,7 @@ Polyel also provides you with a set of starting views for each authentication ro
 
 The provided `RegisterController` is used to route all new user registrations to your application, you can use this controller to manage these requests. By default it uses a trait called `AuthRegister` to provide the core functionality of user registration and a method called `create` to let you handle what happens when a new user is created, you may use this method to alter this process; the `create` method calls the `User` model which is already created by default, the idea is that this method is used for creating new users in the database.
 
-If you require different or more fields other than a username, email and password for creating a new user, please alter this controller to suite your needs and update the `validation` method which will make sure your request data is the correct format before being entered into the database.
+If you require different or more fields other than a username, email and password for creating a new user, please alter this controller to suit your needs and update the `validation` method which will make sure your request data is the correct format before being entered into the database.
 
 ## Protecting a Route
 
