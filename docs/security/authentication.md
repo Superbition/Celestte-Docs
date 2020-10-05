@@ -171,6 +171,8 @@ Now if a user has not recently logged in and tries to access the billing page, t
 
 When the user successfully confirms their password, they are redirected to the intended URL they tried to access. Checkout the provided Middleware at ` app\Middleware\ConfirmPassword.php` to see the two methods that you can use when password confirmation is triggered and when it is not required.
 
+You may change the `ConfirmsPassword` view and controller however you like as Polyel provides you with a default view and controller for password confirmation. The controller can be found at ` app\Controllers\Auth\ConfirmPasswordController.php` and the view at ` app\resources\views\auth\confirmPassword.view.html`. Inside the controller you can setup the validation for the password input, a default is set for you but you may change this however you wish.
+
 ## Logging Out
 
 Polyel also handles logging out users for you as well, the defined route for performing a log out is `/logout` and uses the `LoginController` to perform this action. If you look inside ` app\Controllers\Auth\LoginController.php` you will see a method called ` loggedOff` which you can use to decide what happens when a logout happens, by default the user is redirected to the index route.
