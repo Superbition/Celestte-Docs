@@ -11,6 +11,8 @@ When building a web application it is good practice to provide a way for your us
 
 By default you should find `Route::addAuthRoutes()` inside your web routes file, by calling this method it will include all of the required password reset routes for you.
 
+## Reset Controller
+
 All of the reset routes will be directed to either the `ForgotPasswordController` or `ResetPasswordController` which are provided with Polyel, they handled all the logic which implements the password reset functionality. You can find them at `app\Controllers\Auth`. You will notice they use a trait, one called `AuthForgotPassword` and another `AuthResetPassword` and this is how they gain their logic to perform the actions needed to reset a user’s password, these traits are part of Polyel.
 
 ## Configuration
