@@ -384,15 +384,16 @@ A list of the provided validation rules you can use and their meaning:
 [Match](#match)
 [Date](#date)
 [DateFormat](#dateformat)
+[Email](#email)
 [Image](#image)
 [Within](#within)
 [WithinArray](#withinarray)
-[Integer](#integer)
 
 </div>
 
 <div class="validationLinkGroup">
 
+[Integer](#integer)
 [IP](#ip)
 [IPv4](#ipv4)
 [IPv6](#ipv6)
@@ -414,12 +415,12 @@ A list of the provided validation rules you can use and their meaning:
 [GreaterThanOrEqual](#greaterthanorequal)
 [LessThan](#lessthan)
 [LessThanOrEqual](#lessthanorequal)
-[IPNotPriv](#ipnotpriv)
 
 </div>
 
 <div class="validationLinkGroup">
 
+[IPNotPriv](#ipnotpriv)
 [IPNotRes](#ipnotres)
 [JSON](#json)
 [Max](#max)
@@ -573,6 +574,17 @@ The field being validated must be a valid date which is not relative (no timesta
 `DateFormat:format`
 
 The field being validated must match the given format, this rule uses the PHP `DateTime` class to parse formats and validate them, so you may use any date format supported by the `DateTime` class. You should either use this rule or `date` when validating dates, not both at the same time.
+
+#### Email
+---
+
+`Email:dns,spoof`
+
+The field validated must be a valid email address. By default you are not required to give parameters, this rule will check if the input is an actual email address but if you want, you may use the following parameters:
+
+`dns`: Checks to see if the domain actually resoles to an IP address and if the MX record is set.
+
+`spoof`: Uses SoofChecker to see if the email is suspicious or not.
 
 #### DateEquals
 ---
