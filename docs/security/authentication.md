@@ -69,7 +69,7 @@ private function success(Request $request, $user)
 
 private function failed(Request $request)
 {
-	
+	// ...
 }
 
 public function loggedOff(Request $request)
