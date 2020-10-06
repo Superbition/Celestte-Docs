@@ -57,3 +57,7 @@ It all starts with a user navigating to `/password/reset` which will display the
 Upon opening this reset link they will be directed to `/password/reset/{token}` where they will need a valid token to perform a password reset. If the token is valid and not expired they will be able to enter a new password for their account.
 
 After submitting the new password, the token is validated and if correct, the password will be changed, a new hash will be stored in the database and the user will be redirected to the login page where they can login using the new password that they set. Any errors will be displayed on either the forgotten password view or the reset password view.
+
+## Customisation
+
+Pretty much all of the core functionality for password resets is provided to you within the core of Polyel, most of the customisation is done by configuring settings within the `auth.php` file but you can also change how input data is validated from the `ResetPasswordController` but a default setup for data validation is provided.
