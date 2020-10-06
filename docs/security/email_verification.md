@@ -49,12 +49,12 @@ When a user tries to access the `/admin` page they will need to have verified th
 For more control you can utilise the User Verification Middleware outcomes:
 
 ```
-public function additionalVerification(Request $request)
+public function verificationFailed(Request $request)
 {
 	// ...
 }
 
-public function verificationFailed(Request $request)
+public function additionalVerification(Request $request)
 {
 	// ...
 }
