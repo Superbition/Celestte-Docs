@@ -46,21 +46,16 @@ Route::get("/admin", "Admin@showDashboard")->middleware(['IsVerified']);
 
 When a user tries to access the `/admin` page they will need to have verified their email before they can gain access. If they have not verified their email, they will be redirected to a page which displays an error message about email verification.
 
-For more control you can utilise the User Verification Middleware outcomes:
+For more control you can utilise the User Verification Middleware to perform additional tasks or return a custom response:
 
 ```
 public function verificationFailed(Request $request)
 {
 	// ...
 }
-
-public function additionalVerification(Request $request)
-{
-	// ...
-}
 ```
 
-These methods are provided to you during the verification process, the first allows you to perform additional verification after email verification is complete, and you could check if a user has done something else for verification to be complete for example. The final method is called when verification fails and allows you to perform any actions if this happens, you can return a custom response if you like.
+The `verificationFailed` method is called when the user has not verified their email address yet and allows you to perform any actions if this happens, you can return a custom response if you like or leave empty and use the default Polyel response.
 
 ## Verification Views
 
