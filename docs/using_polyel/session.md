@@ -21,7 +21,6 @@ The default session driver is file based storage and a session is created no mat
 
 Let's review some of the session options in `/config/session.php`:
 
-- `active`: Turn the session system on or off, by default the session system is not active
 - `driver`: The session system storage being used, default is file based
 - `lifetime`: The cookie and session lifetime, session is removed if this lifetime is expired
 - `cookieName`: The name of the session cookie sent to the client
@@ -32,8 +31,6 @@ Let's review some of the session options in `/config/session.php`:
 - `httpOnly`: If the cookie should only be accessible via HTTP
 
 More details are in the actual configuration file for the session.
-
-<div class="noteMsg">By default the session system is not active, change the <code>active</code> option to enable it</div>
 
 ## Interacting with a Session
 
