@@ -230,6 +230,16 @@ $session->clear();
 
 Clears out only the session data and sets it to `null`.
 
+## Flashing Data
+
+At some point you may want to only store data in the session for the next request and then have that data removed on the next HTTP request after that. For example, this gives you the ability to store a status message for the next request. Flashing data is best used for short lived messages.
+
+```
+$session->flash('info', 'You have 5 days left to request a new order');
+```
+
+Ideally you only want to flash a single message to the session when using `flash` as you don’t want to overwhelm a page with messages but you may flash more than one message if you need to. 
+
 ## Regenerating the session
 
 Default behavior is Polyel will handle creating and managing the session cookie and data, a session is created no matter what, even if you are not authenticated. But you should regenerate the session at certain stages, so Polyel gives you the ability to regenerate the session ID but still keep the data from the old session.
