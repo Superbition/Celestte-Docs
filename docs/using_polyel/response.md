@@ -187,6 +187,12 @@ return redirect("/profile/dashboard/main", 301);
 return redirect("https://google.co.uk", 301);
 ```
 
+You can also send a redirect and flash data to the session in one line:
+
+```
+return redirect('/')->withFlash('type', 'message');
+```
+
 ## Sending a File
 
 To send a file using Polyel to the browser, you can use the `sendFile()` method which is a part of the response builder class.
