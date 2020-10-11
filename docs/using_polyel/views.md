@@ -134,6 +134,18 @@ The view helper accepts a second argument for passing data that will in the end 
 
 So when we set `{{ name }}` in our HTML view, that tells Polyel that we should replace that tag with the name `Luke!` when rendering that template. You may have any number of these `{{ }}` tags in your views, just make sure you pass data to them.
 
+## Flash Messages
+
+If you have flashed data to the session and want to render a flash message within your view, you may use the `@flash` directive. For example:
+
+```
+{{ @flash(success) }}
+```
+
+This would render a flash message where the data in the session is using a key called `success` and where the file name of the flash message template is also named `success.flash.html` and they must be stored within `app\resources\flashes`.
+
+You may use dot syntax to store flash message templates in nested directives within `app\resources\flashes`.
+
 ## Extending a view
 
 When designing a web application it’s very common to have a master template or a common layout, for example you may reuse a certain header or footer style but you won’t want to write these elements every time you create a new view. So that’s why Polyel allows you to extend a view.
