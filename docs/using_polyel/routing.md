@@ -69,6 +69,28 @@ Route::patch($url, $controller);
 Route::delete($url, $controller);
 ```
 
+## Spoofing HTTP Methods
+
+Because HTML forms can only send `GET` or `POST` requests, you can use a special hidden `http_method` input to spoof the type of request you want to send from a HTML form. So whenever you want to send a `PUT`, `PATCH` or `DELETE` request inside a HTML form, you must spoof the method using `http_method` from a hidden field:
+
+```
+<form action="/profile/update" method="POST">
+    <input type="hidden" name="http_method" value="DELETE">
+    {{ @csrfToken }}
+</form>
+```
+
+The form above will send a `POST` request but it will be converted and be treated just like a `DELETE` request because it is sending the `http_method` field.
+
+To make things easier, you can use the `@method` view directive to include the `http_method` field for you:
+
+```
+<form action="/profile/update" method="POST">
+    {{ @method(DELETE) }}
+    {{ @csrfToken }}
+</form>
+```
+
 ## CSRF Protection
 
 When making `POST`, `PUT`, `PATCH`and `DELETE` routes where you intend to use HTML forms or AJAX requests to interact with your server, you need to include the CSRF token to protect your application from CSRF attacks, please visit the [CSRF documentation](/docs/using_polyel/csrf_protection) for more details.

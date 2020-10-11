@@ -313,6 +313,19 @@ Finally, you will also need to include the `@JS` tag to let Polyel know where yo
 </html>
 ```
 
+### method
+
+As HTML forms cannot send `PUT`, `PATCH` or `DELETE` requests, you must add a special hidden field called `http_method` with the intended HTTP verb. Polyel provides you with the `@method` view directive to make this easy and quick:
+
+```
+<form action="/profile/update" method="POST">
+    {{ @method(DELETE) }}
+    {{ @csrfToken }}
+</form>
+```
+
+This would generate ` <input type="hidden" name="http_method" value="DELETE">` for you.
+
 ## Dynamic Content
 
 Polyel works a bit differently compared to some frameworks which use control structures and logic that are mixed in with HTML templates, by design Polyel does not allow any logic or control structures inside a HTML template, we believe all your logic should stay within your PHP code and templates should be kept as `.html` files. 
