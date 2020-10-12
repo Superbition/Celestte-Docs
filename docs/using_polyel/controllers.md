@@ -37,7 +37,7 @@ When that route is defined and your application recevies a request that matches 
 
 <div class="noteMsg">Note how the Controller is extending the base Controller class. All your Controllers should extend the base Controller but it is not required.</div>
 
-## Controler Location and Namespaces
+## Controller Location and Namespaces
 
 You may have noticed when we defined a Controller as a Route action, we only defined its name and not the full namespace. All Controllers should be defined in `/app/Controllers` but if you wish, you can nest your Controllers deeper, just be sure to pass the rest of the namespace when using them as a Route action, relative to `/app/Controllers`.
 
