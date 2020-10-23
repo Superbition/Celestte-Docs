@@ -11,6 +11,8 @@ A good example is you might create a Middleware to check that a user has permiss
 
 Middleware can be used for more than just authentication though, you might create a Middleware to store logs of user actions or add additional HTTP headers to your responses.
 
+Polyel provides you with some default Middleware out of the box, such as CSRF protection or a Middleware to redirect users if trying to access a page only intended for guest users. All this Middleware can be found within the ` app\Http\Middleware` directory.
+
 ## Creating Middleware
 
 To create a new Middleware, you can use the Polyel command `middleware`:
