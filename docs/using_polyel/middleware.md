@@ -25,6 +25,10 @@ You can use `middleware create` to define a new Middleware and this command will
 
 All Middleware is located in `app\Http\Middleware`.
 
+When trying to mentally understand how Middleware works, think of it as “layers” your application has to pass through in order for the request to continue deeper into your application. With each layer that the HTTP request goes through, the more that request is closure to the core action and with each layer, the request can be altered and rejected early on.
+
+<div class="noteMsg">When Middleware is executed during a request it is all resolved through the dependency injection container from the HTTP Kernel, meaning you can type-hint any extra dependencies you may need within your middleware’s class constructor to access other services.</div>
+
 ## Before and After Middleware
 
 ### Before
