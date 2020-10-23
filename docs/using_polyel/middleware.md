@@ -21,7 +21,9 @@ To create a new Middleware, you can use the Polyel command `middleware`:
 php polyel middleware:create LogRequestMiddleware
 ```
 
-You can use `middleware create` to define a new Middleware and this command will create a new class for you and place it in the appropriate directory for you, created from the default Middleware definition. All Middleware is stored in `/app/Middleware/`.
+You can use `middleware create` to define a new Middleware and this command will create a new class for you and place it in the appropriate directory for you, created from the default Middleware definition.
+
+All Middleware is located in `app\Http\Middleware`.
 
 ## Before and After Middleware
 
