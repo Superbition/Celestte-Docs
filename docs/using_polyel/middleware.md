@@ -3,6 +3,8 @@ id: middleware
 title: Middleware
 ---
 
+## Introduction
+
 In Polyel there is a Middleware mechanism that allows you to filter incoming HTTP requests and act upon those requests during two stages in your application; the two stages being before and after.
 
 A good example is you might create a Middleware to check that a user has permission to view a certain page and if not, you redirect them to the login screen or display an error message.
