@@ -21,14 +21,14 @@ class Footer extends React.Component {
 
         <div id="social_links">
 
-          <a href="https://twitter.com/PolyelPHP" target="__blank"><img src="/img/twitter-logo.png"/></a>
-          <a href="https://github.com/Superbition/Polyel" target="__blank"><img src="/img/github-logo.png"/></a>
+          <a href="https://twitter.com/PolyelPHP" target="__blank"><img src="/docs/img/twitter-logo.png"/></a>
+          <a href="https://github.com/Superbition/Polyel" target="__blank"><img src="/docs/img/github-logo.png"/></a>
 
         </div>
 
         <section className="copyright">{this.props.config.copyright}</section>
 
-        <div id="end_logo"><img src="/img/logo.png"/></div>
+        <div id="end_logo"><img src="/docs/img/logo.png"/></div>
 
       </footer>
     );
