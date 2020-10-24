@@ -16,7 +16,7 @@ const users = [
 const siteConfig = {
   title: 'Polyel PHP Framework', // Title for your website.
   tagline: 'A full stack asynchronous PHP framework',
-  url: 'https://polyel.io/docs/', // Your website URL
+  url: 'https://polyel.io/', // Your website URL
   baseUrl: '/docs/', // Base URL for your project */
   // For github.io type URLs, you would set the url and baseUrl like:
   //   url: 'https://polyel.github.io',
@@ -44,9 +44,9 @@ const siteConfig = {
   users,
 
   /* path to images for header/footer */
-  headerIcon: 'docs/img/logo.png',
-  footerIcon: 'docs/img/logo.png',
-  favicon: 'docs/img/favicon.ico',
+  headerIcon: 'img/logo.png',
+  footerIcon: 'img/logo.png',
+  favicon: 'img/favicon.ico',
 
   /* Colors for website */
   colors: {
