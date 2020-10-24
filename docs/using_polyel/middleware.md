@@ -79,7 +79,24 @@ class AfterMiddleware
 
 When you want to perform operations after the application has handled the request, you have to get that response by calling `$nextMiddleware()` which will return either a response from another Middleware if it has returned early or it will be the response from the core action. By performing any operations after the call to `$nextMiddleware` we are operating after the request has been handled by your application.
 
-## Attaching Middleware to a Route
+## Registering Middleware
+
+Before you can attach Middleware to a specified route you must assign a Middleware alias inside the HTTP Kernel class which will be located at `app\Http\Kernel.php`, for example the route aliases could look like:
+
+```
+protected array $routeMiddlewareAliases = [
+
+    'RedirectIfAuthenticated' => \App\Http\Middleware\RedirectIfAuthenticatedMiddleware::class,
+    'Auth' => \App\Http\Middleware\AuthenticateMiddleware::class,
+    'IsVerified' => \App\Http\Middleware\UserVerificationMiddleware::class,
+    'ConfirmPassword' => \App\Http\Middleware\ConfirmPasswordMiddleware::class,
+
+];
+```
+
+<div class="noteMsg">All Middleware that you create within your application are preloaded and defined during the server boot process, making them available straight away, and speeding up requests.</div>
+
+### Attaching Middleware to a Route
 
 Once you have defined your Middleware you will want to attach them to a Route request. This can be easily done by defining a route using `middleware()`:
 
