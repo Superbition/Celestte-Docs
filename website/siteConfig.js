@@ -16,8 +16,8 @@ const users = [
 const siteConfig = {
   title: 'Polyel PHP Framework', // Title for your website.
   tagline: 'A full stack asynchronous PHP framework',
-  url: 'https://polyel.io/docs', // Your website URL
-  baseUrl: '/docs', // Base URL for your project */
+  url: 'https://polyel.io/docs/', // Your website URL
+  baseUrl: '/docs/', // Base URL for your project */
   // For github.io type URLs, you would set the url and baseUrl like:
   //   url: 'https://polyel.github.io',
   //   baseUrl: '/test-site/',
