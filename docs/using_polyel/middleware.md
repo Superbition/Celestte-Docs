@@ -31,48 +31,53 @@ When trying to mentally understand how Middleware works, think of it as “layer
 
 ## Before and After Middleware
 
+There are two types of Middleware that you can create, the first being a “before” and "after" Middleware and it depends on how you structure the Middleware class in order to define a “before” or "after" Middleware. 
+
 ### Before
+
+Taking a look at the example below, Polyel will execute the `process()` function before an application request takes place, allowing you to perform actions before a request is processed further.
+
+When calling `$nextMiddleware()` this will pass the `$request` object onto the next Middleware in the stack, if there is none left and no early response has been returned, the core action will be executed.
+
 ```php
-namespace App\Middleware;
+namespace App\Http\Middleware;
 
-use Polyel\Middleware\Middleware;
+use Closure;
 
-class BeforeExampleMiddleware extends Middleware
+class BeforeMiddleware
 {
-    public $middlewareType = "before";
-
-    public function process($request)
+    public function process($request, Closure $nextMiddleware)
     {
+        // Perform any actions before a request has its core action executed...
 
+        return $nextMiddleware($request);
     }
 }
 ```
-
-Above is what a standard before Middleware class looks like, Polyel will execute the `process()` function before an application request takes place, allowing you to perform actions before a request is processed further.
-
-You define a Middleware as “before” by setting the class property ` $middlewareType` to “before” and by doing this it tells Polyel that this Middleware should be executed before a HTTP request. A before middleware only gets passed the `$request` service because the application has not yet processed the request.
 
 ### After
 
-To define a Middleware which executes after a request has been processed, you simply define the property ` $middlewareType` to equal “after”, the class definition is the same though:
+To define a Middleware which executes after a request has been processed, you get the response from the core action first, checkout the example below to see how this is done:
 
 ```php
-namespace App\Middleware;
+namespace App\Http\Middleware;
 
-use Polyel\Middleware\Middleware;
+use Closure;
 
-class AfterExampleMiddleware extends Middleware
+class AfterMiddleware
 {
-    public $middlewareType = "after";
-
-    public function process($request, $response)
+    public function process($request, Closure $nextMiddleware)
     {
+        $response = $nextMiddleware($request);
 
+        // Perform any actions after the core action has formed a response...
+
+        return $response;
     }
 }
 ```
 
-After Middleware gets access to both the `$request` and `$response` services as the framework has already handled the request from the client and will be ready to send the response but this gives you the chance to edit the response before it's sent off.
+When you want to perform operations after the application has handled the request, you have to get that response by calling `$nextMiddleware()` which will return either a response from another Middleware if it has returned early or it will be the response from the core action. By performing any operations after the call to `$nextMiddleware` we are operating after the request has been handled by your application.
 
 ## Attaching Middleware to a Route
 
