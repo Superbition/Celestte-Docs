@@ -125,6 +125,22 @@ Route::post("/", "Index@home")
 
 You can pass in as many as you like but take note that each Middleware will be executed by the framework in the order they sit from the array that is passed in. If you want a Middleware to be executed in a different order, just rearrange the order of the array.
 
+### Global Middleware
+
+Global Middleware is registered inside the HTTP Kernel which is located within your application at: `app\Http\Kernel.php`. Inside the Kernel you may specify any global Middleware you wish to run before or after a request.
+
+For example, your global Middleware stack may look like:
+
+```php
+protected array $globalMiddlewareStack = [
+
+    \App\Http\Middleware\ValidateCsrfTokenMiddleware::class,
+
+];
+```
+
+<div class="warnMsg">Global Middleware will be executed first before any manually configurated Middleware</div>
+
 ## Returning a Response from Middleware
 
 If you need to return a response early within a middleware, both through before and after middleware types, you can easily by performing a normal return just like you would do inside a Controller. For example:
@@ -260,50 +276,3 @@ Route::get('active/check', function () {
     // ...
 })->middleware('CheckLastActiveMiddleware:ios,android,pc');
 ```
-
-## Middleware Configuration
-
-When you create new Middleware, you are setting a key to be used, this is because Polyel works by matching this key to a fully qualified class name. During the boot process of the Polyel server, all Middleware is preloaded to save time and have them ready for requests straight away. It is also easier and quicker to attach Middleware to a route using a key instead of a fully qualified class name.
-
-Middleware has its own configuration inside ` /config/middleware.php` and the first thing you will see is where all the keys are set:
-
-```php
-/*
-* Used to shorten Middleware class names for use when
-* attaching a Middleware to a Route.
-*/
-"keys" =>
-[
-	"BeforeMiddlewareExample" => \App\Middleware\BeforeExampleMiddleware::class,
-
-	"AfterMiddlewareExample" => \App\Middleware\AfterExampleMiddleware::class,
-]
-```
-
-<div class="warnMsg">You will need to make sure your Middleware has its own key and full class name here, otherwise Polyel won't know which class to use when the time comes.</div>
-
-### Global Middleware
-
-You can configure global Middleware to run on every request either before or after, meaning you don’t need to attach this kind of Middleware to each route, you just configure it inside of `middleware.php` like so:
-
-```php
-/*
-* Middleware which runs globally either before or after a request.
-* The order of execution is respected from this configuration on both before
-* and after lists below.
-*/
-"global" =>
-[
-	"before" => [
-		"BeforeMiddlewareExample",
-	],
-
-	"after" => [
-		"AfterMiddlewareExample",
-	],
-]
-```
-
-Polyel will execute any Middleware keys which are configured here on each request on every route.
-
-<div class="warnMsg">Global Middleware will be executed first before any manually configurated Middleware</div>
