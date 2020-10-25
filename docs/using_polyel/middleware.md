@@ -143,54 +143,83 @@ protected array $globalMiddlewareStack = [
 
 ## Returning a Response from Middleware
 
-If you need to return a response early within a middleware, both through before and after middleware types, you can easily by performing a normal return just like you would do inside a Controller. For example:
+### Returning a response before
+
+If you need to return a response early within a middleware, both through before or after middleware types, you can do by performing a normal return just like you would do inside a Controller.
+
+For example:
 
 ```php
-class BeforeExampleMiddleware extends Middleware
-{
-    public $middlewareType = "before";
+namespace App\Http\Middleware;
 
-    public function process($request)
+use Closure;
+
+class BeforeMiddleware
+{
+    public function process($request, Closure $nextMiddleware)
     {
-        // Halts further execution early
-        return "Early Response";
+        if(...)
+        {
+            // Return an early response because our condition was met
+            return redirect('/');
+        }
+
+        return $nextMiddleware($request);
     }
 }
 ```
 
-This will return a response early and send the string back to the client, meaning execution for any other Middleware will not happen, nor will the Controller be executed. You can still use all the same response types inside Middleware as well:
+This will return a response early, execution for any other Middleware will not happen, nor will the Controller be executed.
+
+### Returning a response after
 
 ```php
-class AfterExampleMiddleware extends Middleware
+namespace App\Http\Middleware;
+
+use Closure;
+
+class AfterMiddleware
 {
-    public $middlewareType = "after";
-
-    public function process($request, $response)
+    public function process($request, Closure $nextMiddleware)
     {
-        $json = ["user"=>"joe", "age" => 33, "location" => "uk"];
+        $response = $nextMiddleware($request);
 
-        return Response($json);
+        if(...)
+        {
+            // Return a response after the request was handled because our condition was met
+            return redirect('/');
+        }
+
+        return $response;
     }
 }
 ```
 
-Here just like in a Controller Response, a JSON object will be sent back to the client, the PHP array will automatically be converted to JSON and the JSON header content type included.
+In the example above, the Middleware allows the application to handle the response first but if the condition is met, then a different response is returned.
 
-If you don’t want a Middleware to halt execution early, don’t send back a return and the application will continue to execute further. But if you want to just add something to the Response like a header, you can do this:
+### Queuing Headers
+
+If you want to just add something to the Response like a header, you can do this (best to use a global Middleware if it happens for every request):
 
 ```php
-class AfterExampleMiddleware extends Middleware
-{
-    public $middlewareType = "after";
+namespace App\Http\Middleware;
 
-    public function process($request, $response)
+use Closure;
+
+class QueueHeadersMiddleware
+{
+    public function process($request, Closure $nextMiddleware)
     {
-        $response->queueHeader("key", "value");
+        $response = $nextMiddleware($request);
+
+        $response->queueHeader('key', 'value');
+
+        return $response;
     }
 }
 ```
 
-Here this middleware will queue a header to be added to the Response and the final Response won't be affected because nothing was returned by the middleware
+Here this middleware will queue a header to be added to the Response and the final Response won't be affected, just altered.
 
 For more documentation on sending back a Response, checkout the [Response Documentation](/docs/using_polyel/response)
 
@@ -218,14 +247,21 @@ class AfterExampleMiddleware extends Middleware
 It is possible to return a view from your middleware, for example:
 
 ```php
-class BeforeExampleMiddleware extends Middleware
-{
-    public $middlewareType = "before";
+namespace App\Http\Middleware;
 
-    public function process($request)
+use Closure;
+
+class BeforeMiddleware
+{
+    public function process($request, Closure $nextMiddleware)
     {
-        // Halts further execution early and returns a rendered view
-        return response(view('InvalidRequest:error'));
+        if(...)
+        {
+            // Halts further execution early and returns a rendered view
+            return response(view('InvalidRequest:error'));
+        }
+
+        return $nextMiddleware($request);
     }
 }
 ```
