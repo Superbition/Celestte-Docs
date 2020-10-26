@@ -272,25 +272,31 @@ This is a very simple example and there is much more to the view system, visit i
 
 Your Middleware can also accept optional parameters, making it easy to adjust what the Middleware can respond to. For example, you might have a Middleware which checks if the user was active on a certain device but want to keep all the functionality in the same place, take a look at this example:
 
-```
-<?php
+```php
+namespace App\Http\Middleware;
 
-namespace App\Middleware;
+use Closure;
 
-use Polyel\Middleware\Middleware;
-
-class CheckLastActiveMiddleware extends Middleware
+class BeforeMiddleware
 {
-    public $middlewareType = "before";
-
-    public function process($request, $device)
+    public function process($request, Closure $nextMiddleware, $device)
     {
-        if($device === 'ios)
+        if($device === 'ios')
         {
             // ...
         }
 
-        // ...
+        if($device === 'android')
+        {
+            // ...
+        }
+
+        if($device === 'pc')
+        {
+            // ...
+        }
+
+        return $nextMiddleware($request);
     }
 }
 ```
