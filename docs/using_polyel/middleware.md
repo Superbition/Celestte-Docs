@@ -270,7 +270,9 @@ This is a very simple example and there is much more to the view system, visit i
 
 ## Middleware Parameters
 
-Your Middleware can also accept optional parameters, making it easy to adjust what the Middleware can respond to. For example, you might have a Middleware which checks if the user was active on a certain device but want to keep all the functionality in the same place, take a look at this example:
+Your Middleware can also accept optional parameters, making it easy to adjust what the Middleware can respond to.
+
+For example, you might have a Middleware which checks if the user was active on a certain device but want to keep all the functionality in the same place, take a look at this example:
 
 ```php
 namespace App\Http\Middleware;
