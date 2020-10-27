@@ -1,6 +1,6 @@
 
 
-name: CI
+name: Polyel Docs CI
 
 on:
   workflow_dispatch:
