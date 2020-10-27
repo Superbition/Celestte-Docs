@@ -227,17 +227,26 @@ For more documentation on sending back a Response, checkout the [Response Docume
 
 ### Setting the HTTP status code
 
-You may want to use a middleware to specifically set the HTTP status code but not want to force an early response, you can do this by using an after middleware and using the response service.
+You may want to use a middleware to specifically set the HTTP status code and return your own response if certain conditions are met. This has to be done after your application has handled the response first:
 
 ```php
-class AfterExampleMiddleware extends Middleware
-{
-    public $middlewareType = "after";
+namespace App\Http\Middleware;
 
-    public function process($request, $response)
+use Closure;
+
+class AfterMiddleware
+{
+    public function process($request, Closure $nextMiddleware)
     {
-        // Server Error
-        $response->setStatusCode(500);
+        $response = $nextMiddleware($request);
+
+        if(...)
+        {
+            // Set a custom HTTP status code for the response
+            $response->setStatusCode(500);
+        }
+
+        return $response;
     }
 }
 ```
