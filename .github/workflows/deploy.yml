@@ -8,14 +8,14 @@ on:
     branches: [ master ]
 
 jobs:
-  build:
-    name: Dispatch to `other-repo`
+  deploy:
+    name: Trigger Polyel Docs update & deploy
     runs-on: ubuntu-latest
     steps:
-      - name: Emit repository_dispatch
+      - name: Trigger the Polyel Docs Ci process
         uses: mvasigh/dispatch-action@main
         with:
           token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
           repo: Polyel-Docs-Ci
           owner: Superbition
-          event_type: sample_push
+          event_type: deploy_push
