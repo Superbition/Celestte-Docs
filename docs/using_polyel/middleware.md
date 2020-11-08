@@ -94,7 +94,7 @@ protected array $routeMiddlewareAliases = [
 ];
 ```
 
-<div class="noteMsg">All Middleware that you create within your application are preloaded and defined during the server boot process, making them available straight away, and speeding up requests.</div>
+<div class="noteMsg">All Middleware that you create within your application are preloaded and defined during the server boot process, making them available straight away, and speeding up requests. Middleware which is defined inside your HTTP Kernel is also pre-processed during server boot time and automatically optimised and cached, meaning sorting and conversions don’t happen during the request cycle.</div>
 
 ### Attaching Middleware to a Route
 
