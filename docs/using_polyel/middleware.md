@@ -140,6 +140,8 @@ protected array $globalMiddlewareStack = [
 ```
 
 <div class="warnMsg">Global Middleware will be executed first before any manually configurated Middleware</div>
+<br>
+<div class="noteMsg">You can use middleware class aliases or group names within the global middleware stack and they will be converted/optimized during server boot.</div>
 
 ## Returning a Response from Middleware
 
