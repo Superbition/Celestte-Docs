@@ -143,6 +143,44 @@ protected array $globalMiddlewareStack = [
 <br>
 <div class="noteMsg">You can use middleware class aliases or group names within the global middleware stack and they will be converted/optimized during server boot.</div>
 
+### Middleware Groups
+
+If you have loads of middleware classes, it may be easier for you to group certain middleware together as part of a group, which you can then assign to specific routes, making it easier to bulk assign middleware, by default Polyel already defines two main groups, these groups are the `web` group for web requests only and is assigned to every web route automatically, and an `api` group which is also assigned to API routes automatically.
+
+```php
+protected array $middlewareGroups = [
+
+    'web' => [
+
+        \App\Http\Middleware\ValidateCsrfTokenMiddleware::class,
+
+    ],
+
+    'api' => [
+
+        // ...
+
+    ],
+
+];
+```
+
+As stated before, you can then use these groups to attach on a route or within a route group:
+
+```php
+Route::get('/', function() 
+{
+    // ...
+})->middleware('web');
+
+Route::group(['prefix' => '/api', 'middleware' => 'api'], function()
+{
+    // ...
+});
+```
+
+<div class="noteMsg">Remember that by default the web middleware group is assigned to every web route and the API middleware group is assigned to every API route.</div>
+
 ## Returning a Response from Middleware
 
 ### Returning a response before
