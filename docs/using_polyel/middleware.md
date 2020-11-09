@@ -129,7 +129,7 @@ You can pass in as many as you like but take note that each Middleware will be e
 
 Global Middleware is registered inside the HTTP Kernel which is located within your application at: `app\Http\Kernel.php`. Inside the Kernel you may specify any global Middleware you wish to run before or after a request.
 
-For example, your global Middleware stack may look like:
+If you need to run certain middleware for every HTTP request that enters your application, you can define global middleware inside your HTTP Kernel, for example:
 
 ```php
 protected array $globalMiddlewareStack = [
