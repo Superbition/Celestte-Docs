@@ -9,12 +9,12 @@ Elements are Polyel’s answer to control structures not being allowed inside a 
 
 ## Element Templates
 
-Elements are rendered from templates, basically small views used to render different sections of a web page like a sidebar, profile list or search result for example. The first thing to know about elements is that you define all your templates inside `/app/resources/elements`. This is your storage area for all your elements you make, you are free to organise elements in directories as well.
+Elements are rendered from templates, basically small views used to render different sections of a web page like a sidebar, profile list or search result for example. The first thing to know about elements is that you define all your templates inside `/resources/elements`. This is your storage area for all your elements you make, you are free to organise elements in directories as well.
 
 An example of an element used to render a list:
 
 ```html
-<!-- From /app/resources/elements/list.html -->
+<!-- From /resources/elements/list.html -->
 <div class="list dark-ui">
 	<p>{{ listTitle }}</p>
 	<ul>
@@ -33,7 +33,7 @@ namespace App\View\Elements;
 // Each Element should extend the base Element
 class ExampleElement extends Element
 {
-    // Set the element template relative to /app/resources/elements/
+    // Set the element template relative to /resources/elements/
     public $element = 'list';
 
 	// Use the constructor to pass in any Polyel services
@@ -63,7 +63,7 @@ class ExampleElement extends Element
 
 All your logic for building up an element happens in the `build()` function, this gets called when you include elements in your HTML views.
 
-The list example uses the element template called `list` set with `$element`, that file would be located at ` /app/resources/elements/list.html`.
+The list example uses the element template called `list` set with `$element`, that file would be located at ` /resources/elements/list.html`.
 
 When the `build()` function is called, the first thing that happens is the `listTitle` data tag is set, then there are 3 appends that add list items with 3 different names. Finally, this all gets rendered by returning `$this->renderElement()`; in the list element template you may have noticed the `{{ @elementContent }}` which is used to let Polyel know where to place all the appended names, the element content.
 
@@ -104,10 +104,10 @@ Polyel offers single dynamic elements as the default way of rendering a single e
 
 ### Defining a multi element template
 
-First, you will need to create a new element template at `/app/resources/elements`, for this example we will create a `profile_box.html` file. That file looks like this:
+First, you will need to create a new element template at `/resources/elements`, for this example we will create a `profile_box.html` file. That file looks like this:
 
 ```html
-<!-- /app/resources/elements/profile_box.html -->
+<!-- /resources/elements/profile_box.html -->
 <div class="profileBox">
     <p>{{ profileName }}</p>
     <img src="{{ profileImg }}">
@@ -126,7 +126,7 @@ namespace App\View\Elements;
 
 class ProfileBoxElement extends Element
 {
-    // Set the element template relative to /app/resources/elements/
+    // Set the element template relative to /resources/elements/
     public $element = 'profile_box';
 
     public function __construct()

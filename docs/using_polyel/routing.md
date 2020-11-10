@@ -5,7 +5,7 @@ title: Routing
 
 ## Creating New Routes
 
-A request to your application is filtered through using routes that you define. A basic route can be defined by using the route files located in `/app/routing/web.php`:
+A request to your application is filtered through using routes that you define. A basic route can be defined by using the route files located in `routing/web.php`:
 
 ```
 Route::get("/", function() {

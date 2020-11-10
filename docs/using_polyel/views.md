@@ -15,14 +15,14 @@ However, Polyel does provide you with different directives and services which wi
 
 A View is where you define your HTML that you use to structure your application, a View is what is served to the browser. The idea is to separate your application logic away from your HTML presentation.
 
-All normal Views are stored within `/app/resources/views`, where you store a normal HTML page or HTML section: a sidebar or a footer for example.
+All normal Views are stored within `/resources/views`, where you store a normal HTML page or HTML section: a sidebar or a footer for example.
 
-We also have errors, they are stored within `/app/resources/errors`, where you can store any error pages for a 404 or 500 HTTP response but you can also use the errors directory to store any error pages, messages or sections you may build; the idea is to split up a normal view away from errors.
+We also have errors, they are stored within `/resources/errors`, where you can store any error pages for a 404 or 500 HTTP response but you can also use the errors directory to store any error pages, messages or sections you may build; the idea is to split up a normal view away from errors.
 
 Let's take a look at what a normal View may look like:
 
 ```html
-<!-- /app/resources/views/welcome.view.html -->
+<!-- /resources/views/welcome.view.html -->
 <html>
 
     <body>
@@ -39,7 +39,7 @@ Let's take a look at what a normal View may look like:
 And an error view could look something like:
 
 ```html
-<!-- /app/resources/errors/warning.view.html -->
+<!-- /resources/errors/warning.view.html -->
 <div class="errorMsg">
 
 	<img src="/images/error/warn-icon.png">
@@ -77,9 +77,9 @@ The `view()` helper will return an instance of `Polyel\View\ViewBuilder` which i
 return response(view('warning:error'));
 ```
 
-Changing the resource type to an error (`:error`) will tell the View service to use the error templates stored in `/app/resources/errors`.
+Changing the resource type to an error (`:error`) will tell the View service to use the error templates stored in `/resources/errors`.
 
-A good example is the included 404 error response page, which you can find at `/app/resources/errors/404.error.html`. The 404 error page is returned whever Polyel cannot find a route, so you are free to edit the default error page to your liking.
+A good example is the included 404 error response page, which you can find at `/resources/errors/404.error.html`. The 404 error page is returned whever Polyel cannot find a route, so you are free to edit the default error page to your liking.
 
 ## Checking if a view exists
 
@@ -89,7 +89,7 @@ use Polyel\View\Facade\View;
 View::exists("common.sidebar:view")
 ```
 
-Above, will return true when the `sidebar.view.html` file is found within `/app/resources/views/common/sidebar.view.html`. This example uses dot notation to access nested views. The same can be done for errors.
+Above, will return true when the `sidebar.view.html` file is found within `/resources/views/common/sidebar.view.html`. This example uses dot notation to access nested views. The same can be done for errors.
 
 ## Checking if a view is valid
 
@@ -197,7 +197,7 @@ The mini view above uses the `!` to declare that any data passed to this tag sho
 
 ## Nested Views
 
-You may have already noticed that some views are defined using dot notation, this allows you to access nested views in multiple directories, so `common.sidebar.view.html` is actually leading to `/app/resources/views/common/sidebar.view.html`. This is automatically converted by Polyel.
+You may have already noticed that some views are defined using dot notation, this allows you to access nested views in multiple directories, so `common.sidebar.view.html` is actually leading to `/resources/views/common/sidebar.view.html`. This is automatically converted by Polyel.
 
 ## View Directives
 

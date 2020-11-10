@@ -84,7 +84,7 @@ Each method is designed to be very self-explanatory, so please check out the oth
 
 ## Views
 
-Polyel also provides you with a set of starting views for each authentication route, like the login and registration pages etc. You can find these inside ` app/resources/views/auth`. You may customize each view to your liking, be sure to check out how each view is constructed, each view is a starting point and comes with basic structure and styling.
+Polyel also provides you with a set of starting views for each authentication route, like the login and registration pages etc. You can find these inside ` resources/views/auth`. You may customize each view to your liking, be sure to check out how each view is constructed, each view is a starting point and comes with basic structure and styling.
 
 ## User Registration
 
