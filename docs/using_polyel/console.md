@@ -256,3 +256,23 @@ The above would give the array:
 ```
 
 If you don’t specific that an option accepts an array, you will be given an error when the command is run. You are allowed to set `=*` on required options as it’s a wildcard.
+
+##### Command Input Descriptions
+
+To aid with the auto help text generation whenever you run the help command or a command using the `-h or --help` option, you can include descriptions for each argument and option within the command definition. Take a look at the example below, you are free to space out your descriptions as much as you like, as long as you split each component up with the correct separator.
+
+```php
+Console::command('user:create
+                          {username            : The username of the user you want to create.}
+                          {email               : The email of the new user.}
+                          {?group=student      : The default group to place the user in.}'
+);
+```
+
+You should keep your argument and option input descriptions short and concise, they only need to describe what the input is for when you use auto help text generation.
+
+Because of how option descriptions are processed, each option that has a default value loses all of its right hand whitespace, if this whitespace is important and you don’t want it to be trimmed, then define your default value between `" "` like so:
+
+```text
+{--desc="Hello, my name is " : A default starting description}
+```
