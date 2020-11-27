@@ -398,3 +398,49 @@ $this->title('Database');
 ```
 
 A section is used to define a larger block of text, like a main heading and a title is used to define a sub-heading within a section to help split sections up. However, you may use these methods wherever you like, in any order.
+
+### Command Verbostity
+
+Polyel also provides you with a special console output method called `debug()` which allows you to output information to the console at different verboseness by using verbosity levels.
+
+For example to output at verbosity level 1:
+
+```php
+$this->debug("Debug 1111");
+```
+
+By default the verbosity is set to level 1 but you may increase up to how many levels you wish. However, it is usually best to only ever go up to level 3.
+
+To set a higher verbosity level, pass the number as an integer to the `debug()` method:
+
+```php
+// Verbostity level 2
+$this->debug('...', 2);
+
+// Verbostity level 3
+$this->debug('...', 3);
+```
+
+Each verbosity level is only output is its verbosity level is reached when it is set from the command line.
+
+For example, to run a command at different verbosity levels:
+
+```text
+// Level 1
+php polyel user:create luke 23 --group=admin -v
+
+// Level 2
+php polyel user:create luke 23 --group=admin -vv
+
+// Level 3
+php polyel user:create luke 23 --group=admin -vvv
+
+// Level 1 using the long option format
+php polyel user:create luke 23 --group=admin --verbostity=1
+
+// Level 2 using the long option format
+php polyel user:create luke 23 --group=admin --verbostity=2
+
+// Level 3 using the long option format
+php polyel user:create luke 23 --group=admin --verbostity=3
+```
