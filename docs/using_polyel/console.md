@@ -444,3 +444,13 @@ php polyel user:create luke 23 --group=admin --verbostity=2
 // Level 3 using the long option format
 php polyel user:create luke 23 --group=admin --verbostity=3
 ```
+
+Lastly, if you want to run your command in quiet mode where output is limited and only fatal errors are shown, use `-q` or `--quiet`:
+
+```text
+// Short option
+php polyel user:create luke 23 --group=admin -q
+
+// Long option
+php polyel user:create luke 23 --group=admin --quiet
+```
