@@ -9,7 +9,7 @@ Polyel comes with a command-line interface built-in which allows you to use a ra
 
 Let's run our first command:
 
-```text
+```bash
 php polyel welcome <your-name>
 ```
 
