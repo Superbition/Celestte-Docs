@@ -7,6 +7,14 @@ title: Console
 
 Polyel comes with a command-line interface built-in which allows you to use a range of included commands to make development easier and enable you to manage your application from the command line. You can even write your own commands and perform actions in a similar manner to how you write controllers or middleware.
 
+Let's run our first command:
+
+```text
+php polyel welcome <your-name>
+```
+
+The `welcome` command will greet you and welcome you to the Polyel console and show you a range of useful links surrounding the project.
+
 A good way to start is to see which commands are available to run:
 
 ```
