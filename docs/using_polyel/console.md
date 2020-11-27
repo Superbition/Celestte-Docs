@@ -276,3 +276,125 @@ Because of how option descriptions are processed, each option that has a default
 ```text
 {--desc="Hello, my name is " : A default starting description}
 ```
+
+## Command IO
+
+### Accessing Command Input
+
+When your command is executed you can then gain access to all the arguments and options passed to your command, for example, to access a specific argument:
+
+```php
+$this->argument('user');
+```
+
+And to get all the arguments at once:
+
+```php
+$this->arguments();
+```
+
+The same goes for command options:
+
+```php
+$this->option('-o');
+```
+
+And to access all the given options:
+
+```php
+$this->options();
+```
+
+### Prompting for User Input
+
+#### Normal Input
+
+To make it easy to accept user input from the command line, you can use the `ask()` method:
+
+```php
+$input = $this->ask('How old are you?: ');
+```
+
+Once the user enters their age and hits enter, the result will be stored inside of `$input`.
+
+#### Secret Input
+
+Sometimes you may want to accept sensitive input such as a password and that is where you can use the `secret()` method to automatically hide what is typed:
+
+```php
+$secret = $this->askSecret('Your password?: ');
+```
+
+### Writing Console Output
+
+When you are building your command, you will want to at some point output text to the console, Polyel provides you with a range of method to handle this output for you. Polyel will handle sending output to the right stream depending on the method you use, such as `STDOUT` or `STRERR`, also verbosity will be respected if it is set as well. Each method used to output text has its own colour and style depending on what it is supposed to be used for.
+
+Let’s explore each method used for consoles output...
+
+To output text to the console with no newline at the end:
+
+```php
+$this->writeLine('A line with no newline at the end');
+```
+
+And to output text with a newline at the end:
+
+```php
+$this->writeNewLine('A line with a newline at the end');
+```
+
+You can also control the amount of newlines:
+
+```php
+$this->writeNewLine('A line with a newline at the end', 2);
+```
+
+The above would output two newlines, you may increase it if you like.
+
+#### Specific Output Methods
+
+The following methods have their own style and colour to represent different information:
+
+```php
+$this->info('The user account key was used');
+```
+
+The `info` method can be used to output general information that may be helpful to the user.
+
+```php
+$this->notice('You can add multiple keys');
+```
+
+The `notice` method can be used to show information that may be of importance but nothing critical.
+
+```php
+$this->warning('This key will expire in 15 days');
+```
+
+The `warning` method can be used to alert a user about something during a command, this should not be an error but more of an alert about something.
+
+```php
+$this->error('You have to be a user for 2 weeks');
+```
+
+The `error` method can be used to show a message about something that failed but will not exit the command, execution will continue.
+
+```php
+$this->fatal('This library does not work with version 2 and above, please update!');
+```
+
+The `fatal` method can be used to output an error message which will exit the console application and not continue execution after a fatal error is shown.
+
+#### Output Structuring
+
+If you are writing a lot of text to the console, it may be beneficial to define sections and titles to help split up your output and make it easier for a user to figure out what information is being shown, Polyel provides you with two method to help you:
+
+```php
+$this->section('Configuration');
+```
+
+```php
+$this->title('Database');
+```
+
+A section is used to define a larger block of text, like a main heading and a title is used to define a sub-heading within a section to help split sections up. However, you may use these methods wherever you like, in any order.
