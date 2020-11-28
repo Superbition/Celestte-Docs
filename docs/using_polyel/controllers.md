@@ -36,6 +36,13 @@ Route::get("/welcome/{name}", "WelcomeController@welcome");
 When that route is defined and your application recevies a request that matches the route URL, the controller will process the request using the `welcome()` method, passing in the name from the URL, it will be the main entry point your that URL.
 
 <div class="noteMsg">Note how the Controller is extending the base Controller class. All your Controllers should extend the base Controller but it is not required.</div>
+<br/>
+
+You can use the `create:controller` command to quickly generate a new controller with an action:
+
+```text
+php polyel create:controller TestController --action=show
+```
 
 ## Controller Location and Namespaces
 
