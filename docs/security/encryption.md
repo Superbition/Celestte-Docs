@@ -16,6 +16,8 @@ Current supported encryption ciphers are:
 
 Support for `libsodium` is coming.
 
+<div class="warnMsg">You should make sure you have generated an encryption key by running the <code>php polyel key:generate</code> command, a backup of the current key is created but please keep all encryption keys safe.</div>
+
 ## Configuration
 
 You can find the configuration for encryption inside `/config/main.php` where you should make sure you have a secure encryption key generated, which respects the required cipher key length depending on which cipher you are using. You can use `php polyel key:gen` to build an encryption key for you which uses PHP's secure `random_bytes()` method.
