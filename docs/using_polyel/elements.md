@@ -7,6 +7,16 @@ title: Elements
 
 Elements are Polyel’s answer to control structures not being allowed inside a view as we believe that logic should stay inside your code. But with Polyel elements, it makes it easy to include and render multiple elements on different views, you prepare your data in plain PHP and then use the provided Polyel element functions to build and render your elements, no need for mixing HTML and control structures together.
 
+## Creating Elements
+
+To quickly generate a new element, you can use the provided command ‘create:element’ which will generate a new element logic class and element template for you if you specific it.
+
+```bash
+php polyel create:element <element-class-name> --element-template=<element-name>
+```
+
+You can omit the `--element-template` option and only the logic class will be created.
+
 ## Element Templates
 
 Elements are rendered from templates, basically small views used to render different sections of a web page like a sidebar, profile list or search result for example. The first thing to know about elements is that you define all your templates inside `/resources/elements`. This is your storage area for all your elements you make, you are free to organise elements in directories as well.
