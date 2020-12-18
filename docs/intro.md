@@ -4,7 +4,7 @@ title: Introduction
 ---
 
 ## What is Polyel?
-Polyel is a full-stack web framework for PHP, based on the Swoole networking library provided as a PHP extension. Polyel follows a coroutine based async model to achieve higher performance in server requests, it is very different from the traditional PHP stateless request lifecycle but still allows you to write synchronous or asynchronous code with the freedom of coroutines.
+Polyel is a full-stack web framework for PHP designed to be highly opinionated and follow a lot of established conventions, based on the Swoole networking library provided as a PHP extension. Polyel follows a coroutine based async model to achieve higher performance in server requests, it is very different from the traditional PHP stateless request lifecycle but still allows you to write synchronous or asynchronous code with the freedom of coroutines.
 
 ## What can Polyel be used for?
 Just like any other web framework, you can use Polyel to create a fully featured website or backend API service. However, Polyel has its own built-in HTTP server that runs from the command line, all based on the Swoole HTTP Server, everything runs directly from PHP, no Apache mod or PHP-FPM.
