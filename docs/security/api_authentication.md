@@ -5,7 +5,7 @@ title: API Authentication
 
 ## Introduction
 
-Along with user authentication for the browser, Polyel also provides you with API Authentication and implements this in a very simple secure manner. As user authentication uses the `SessionProtector`, Polyel uses the `TokenProtector` for API authentication.
+Along with user authentication for the browser, Polyel also provides you with API Authentication and implements this in a very simple and secure manner. As user authentication uses the `SessionProtector`, Polyel uses the `TokenProtector` for API authentication.
 
 The token driver is responsible for inspecting the API token sent with a request to a protected API route and will validate the request and allow further execution if the API token is deemed valid and has not expired, it will match this data within the database against a user.
 
@@ -52,7 +52,7 @@ public function authorized()
 }
 ```
 
-With the `unauthorized` method you can use this to perform actions when an API request is deemed invalid because either the client ID is wrong or the API token is invalid. By default a 401 Unauthorized response is sent back with a JSON body, giving an error code and message.
+Using the unauthorized method, you can perform actions when an API request is deemed invalid due to either the client ID or API token being incorrect. By default a 401 Unauthorized response is sent back with a JSON body, giving an error code and message.
 
 The second method, `authorized`, allows you to perform actions when a user is deemed valid and their client ID and API token has passed authentication, most of the time you probably don’t need to do anything here, so the default is to do nothing but you are free to use this method how you like.
 
