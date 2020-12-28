@@ -33,7 +33,7 @@ The `Auth` Middleware is defined for you already inside `config\middleware.php` 
 
 ### API Authentication Outcomes
 
-After you have assigned the `Auth:api` Middleware to one of your API endpoints, you can perform certain actions based on when a user is unauthorized or authorized by using the App level Middleware located at: `app\Middleware\Authenticate.php`, which contains two methods for interacting with API authentication:
+After you have assigned the `Auth:api` Middleware to one of your API endpoints, you can perform certain actions based on when a user is unauthorized or authorized by using the App level Middleware located at: `app/Http/Middleware/AuthenticateMiddleware.php`, which contains two methods for interacting with API authentication:
 
 ```
 public function unauthorized()
