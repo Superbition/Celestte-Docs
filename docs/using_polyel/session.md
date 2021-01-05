@@ -255,3 +255,7 @@ Does not require any parameters, just call the function and the session will be 
 ## Session Garbage Collection
 
 Polyel automatically runs a session garbage collection process every 30 minutes to remove old sessions, this happens asynchronously and does not affect server performance with requests, the process runs in the background in a non-blocking manner. You can set the session lifetime in the config at `/config/session.php`.
+
+## Flush all session data
+
+If you need to delete all active sessions based on the selected session driver set within the session configuration file, you may run `php polyel flush:sessions`. This will delete all sessions using the selected driver.
