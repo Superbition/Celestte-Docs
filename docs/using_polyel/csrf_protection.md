@@ -61,6 +61,16 @@ class ValidateCsrfToken extends CsrfTokenVerifier
 
 ## CSRF Header & JavaScript
 
+### CSRF Cookie Token
+
+For every request a cookie named `XSRF-TOKEN` is added to the response allowing you to use the value of this cookie to add the CSRF token as a header when using JavaScript to send a request and make a request valid.
+
+You can find more information about this cookie inside the `session.php` config file under the name `xsrfCookieName`, you can change the name of the cookie if you like, however, the default is a good standard.
+
+Remember, the Polyel framework does not validate CSRF tokens through cookies, the cookie is only there so that a developer can use the value to validate a request. This value is meant to be set as a header so that when a request takes place, Polyel can validate the vale from the header named: `X-CSRF-TOKEN`.
+
+### HTML Meta Tag
+
 You may have realised that HTML forms are protected from CSRF attacks but what about JavaScript AJAX requests if you are building a JavaScript driven application? – Polyel recommends you either get the token from a valid HTML form or store the CSRF token inside a HTML `meta` tag:
 
 ```

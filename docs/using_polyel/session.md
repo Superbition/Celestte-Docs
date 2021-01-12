@@ -29,6 +29,7 @@ Let's review some of the session options in `/config/session.php`:
 - `domain`: Cookie option for the domain
 - `secure`: If the cookie should only be allowed on HTTPS connections
 - `httpOnly`: If the cookie should only be accessible via HTTP
+- `xsrfCookieName`: Used to store the CSRF token and to be used with JavaScript HTTP requests
 
 More details are in the actual configuration file for the session.
 
