@@ -31,7 +31,8 @@
       "using_polyel/session",
       "using_polyel/validation",
       "using_polyel/storage",
-      "using_polyel/console"
+      "using_polyel/console",
+      "using_polyel/services"
     ],
 
     "Database": [
