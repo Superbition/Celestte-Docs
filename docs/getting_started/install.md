@@ -13,6 +13,12 @@ composer create-project superbition/polyel
 
 Please make sure you have Swoole installed before trying to make a new Polyel project.
 
+To update Polyel when a new version is released, you can run:
+
+```bash
+composer update
+```
+
 After creating a new Polyel project, you will want to generate a encryption key:
 
 ```bash
