@@ -16,7 +16,8 @@
     ],
 
     "Architectural Design": [
-      "architectural_design/lifecycle"
+      "architectural_design/lifecycle",
+      "architectural_design/third-party-packages"
     ],
 
     "Using Polyel": [
