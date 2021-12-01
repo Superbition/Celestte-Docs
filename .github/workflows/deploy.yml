@@ -1,6 +1,6 @@
 
 
-name: Polyel Docs CI
+name: Voltis Docs CI
 
 on:
   workflow_dispatch:
@@ -9,13 +9,13 @@ on:
 
 jobs:
   deploy:
-    name: Trigger Polyel Docs update & deploy
+    name: Trigger Voltis Docs update & deploy
     runs-on: ubuntu-latest
     steps:
-      - name: Trigger the Polyel Docs Ci process
+      - name: Trigger the Voltis Docs CI process
         uses: mvasigh/dispatch-action@main
         with:
           token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-          repo: Polyel-Docs-Ci
+          repo: Voltis-Docs-Ci
           owner: Superbition
           event_type: deploy_push
