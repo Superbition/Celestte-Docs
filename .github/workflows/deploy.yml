@@ -16,6 +16,6 @@ jobs:
         uses: mvasigh/dispatch-action@main
         with:
           token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-          repo: Voltis-Docs-Ci
+          repo: Voltis-Docs-CI
           owner: Superbition
           event_type: deploy_push
