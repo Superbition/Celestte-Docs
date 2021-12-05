@@ -15,6 +15,7 @@ const users = [
 
 const siteConfig = {
   title: 'Voltis PHP Framework', // Title for your website.
+  tagline: 'A full stack asynchronous, non-blocking PHP framework',
   url: 'https://voltis.io/', // Your website URL
   baseUrl: '/docs/', // Base URL for your project */
   // For github.io type URLs, you would set the url and baseUrl like:
