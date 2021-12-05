@@ -14,16 +14,15 @@ const users = [
 ];
 
 const siteConfig = {
-  title: 'Polyel PHP Framework', // Title for your website.
-  tagline: 'A full stack asynchronous PHP framework',
-  url: 'https://polyel.io/', // Your website URL
+  title: 'Voltis PHP Framework', // Title for your website.
+  url: 'https://voltis.io/', // Your website URL
   baseUrl: '/docs/', // Base URL for your project */
   // For github.io type URLs, you would set the url and baseUrl like:
   //   url: 'https://polyel.github.io',
   //   baseUrl: '/test-site/',
 
   // Used for publishing and more
-  projectName: 'Polyel',
+  projectName: 'Voltis',
   organizationName: 'Superbition',
   // For top-level user or org sites, the organization is still the same.
   // e.g., for the https://JoelMarcey.github.io site, it would be set like...
@@ -36,7 +35,7 @@ const siteConfig = {
     //{doc: 'doc4', label: 'API'},
     //{page: 'help', label: 'Help'},
     //{blog: true, label: 'Blog'},
-    {href: 'https://polyel.io', label: 'Polyel.io'},
+    {href: 'https://voltis.io', label: 'Voltis.io'},
     {href: 'https://phpnexus.io', label: 'Community'}
   ],
 
@@ -69,7 +68,7 @@ const siteConfig = {
   */
 
   // This copyright info is used in /core/Footer.js and blog RSS/Atom feeds.
-  copyright: `Copyright © ${new Date().getFullYear()} Superbition & Polyel`,
+  copyright: `Copyright © ${new Date().getFullYear()} Superbition & Voltis`,
 
   highlight: {
     // Highlight.js theme to use for syntax highlighting in code blocks.
