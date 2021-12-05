@@ -1,7 +1,7 @@
 {
   "docs": {
 
-    "Polyel": [
+    "Voltis": [
       "intro",
       "requirements",
       "release_process"
@@ -20,7 +20,7 @@
       "architectural_design/third-party-packages"
     ],
 
-    "Using Polyel": [
+    "Using Voltis": [
       "using_polyel/routing",
       "using_polyel/controllers",
       "using_polyel/middleware",
