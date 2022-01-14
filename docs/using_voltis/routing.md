@@ -25,7 +25,7 @@ By defining a web route, you can use a browser to access the route and see your 
 
 ## Routing Parameters
 
-We’ve only gone through how to define static routes but eventually you might want to accept parameters and process them from the URL. Polyel has the ability to accept route parameters which let you take in data from the request and URL. They are defined by using `{ }`:
+We’ve only gone through how to define static routes but eventually you might want to accept parameters and process them from the URL. Voltis has the ability to accept route parameters which let you take in data from the request and URL. They are defined by using `{ }`:
 
 ```
 Route::get("/user/profile/{id}", function ($id) {
@@ -55,11 +55,11 @@ Route::get("/user/{name}/age/{age}", function($name, $age) {
 
 ### Parameter Tag Configuration
 
-By default route parameters are detected by Polyel using the `{ }` tag. This can be changed if you wish but it is not recommended to use other characters. However, this can be changed by altering the config inside `/config/router.php` and changing ` routeParameterTag`.
+By default route parameters are detected by Voltis using the `{ }` tag. This can be changed if you wish but it is not recommended to use other characters. However, this can be changed by altering the config inside `/config/router.php` and changing ` routeParameterTag`.
 
 ## Routing HTTP Methods
 
-Polyel allows you to register routes based on the HTTP method and makes the following available to you:
+Voltis allows you to register routes based on the HTTP method and makes the following available to you:
 
 ```
 Route::get($url, $controller);
@@ -93,7 +93,7 @@ To make things easier, you can use the `@method` view directive to include the `
 
 ## CSRF Protection
 
-When making `POST`, `PUT`, `PATCH`and `DELETE` routes where you intend to use HTML forms or AJAX requests to interact with your server, you need to include the CSRF token to protect your application from CSRF attacks, please visit the [CSRF documentation](/docs/using_polyel/csrf_protection) for more details.
+When making `POST`, `PUT`, `PATCH`and `DELETE` routes where you intend to use HTML forms or AJAX requests to interact with your server, you need to include the CSRF token to protect your application from CSRF attacks, please visit the [CSRF documentation](/docs/using_voltis/csrf_protection) for more details.
 
 ```
 <form method="POST" action="/update/profile">
@@ -172,7 +172,7 @@ Route::group(['prefix' => '/api'], function()
 });
 ```
 
-The example above demonstrates a range of functionality by the Polyel Router, you can nest Routing Groups with different attributes. Each route being defined will always use the attributes from the parent first, so the `/api` prefix gets applied first and then the `/data` prefix for routes within that group.
+The example above demonstrates a range of functionality by the Voltis Router, you can nest Routing Groups with different attributes. Each route being defined will always use the attributes from the parent first, so the `/api` prefix gets applied first and then the `/data` prefix for routes within that group.
 
 As you have seen, we can apply prefixes to our routing groups but we can also apply middleware as well. This is useful for when you want multiple routes to share the same middleware but don’t want to define that middleware manually for every route, so we can set it as an attribute:
 

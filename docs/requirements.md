@@ -3,7 +3,7 @@ id: requirements
 title: Requirements
 ---
 
-To use and run Polyel you need to have the following software versions:
+To use and run Voltis you need to have the following software versions:
 
 ## Core
 

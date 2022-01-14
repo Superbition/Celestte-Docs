@@ -5,11 +5,11 @@ title: Views
 
 ## Introduction
 
-Polyel comes with its own View system which you can use to manage rendering a resource back to the user. The View system can help you combine HTML and CSS together to create a presentation suitable for a user/client.
+Voltis comes with its own View system which you can use to manage rendering a resource back to the user. The View system can help you combine HTML and CSS together to create a presentation suitable for a user/client.
 
-Polyel's View layer does work a little differently compared to other frameworks, the main difference being, Polyel expects you to have your data ready before you pass data to a View. Polyel completely separates your logic away from your presentation layer. Meaning you will have to get your data ready and in the right state before passing it to a View.
+Voltis's View layer does work a little differently compared to other frameworks, the main difference being, Voltis expects you to have your data ready before you pass data to a View. Voltis completely separates your logic away from your presentation layer. Meaning you will have to get your data ready and in the right state before passing it to a View.
 
-However, Polyel does provide you with different directives and services which will help you follow this structure, the main thing to keep in mind is that PHP code (logic) and presentation (HTML or CSS) are separated apart, strictly following the MVC design pattern.
+However, Voltis does provide you with different directives and services which will help you follow this structure, the main thing to keep in mind is that PHP code (logic) and presentation (HTML or CSS) are separated apart, strictly following the MVC design pattern.
 
 ## What is a View?
 
@@ -27,7 +27,7 @@ Let's take a look at what a normal View may look like:
 
     <body>
         
-        <h1>Hello, welcome to Polyel</h1>
+        <h1>Hello, welcome to Voltis</h1>
     
         <h2>This is a normal HTML View</h2>
     
@@ -79,7 +79,7 @@ return response(view('warning:error'));
 
 Changing the resource type to an error (`:error`) will tell the View service to use the error templates stored in `/resources/errors`.
 
-A good example is the included 404 error response page, which you can find at `/resources/errors/404.error.html`. The 404 error page is returned whever Polyel cannot find a route, so you are free to edit the default error page to your liking.
+A good example is the included 404 error response page, which you can find at `/resources/errors/404.error.html`. The 404 error page is returned whever Voltis cannot find a route, so you are free to edit the default error page to your liking.
 
 ## Checking if a view exists
 
@@ -106,14 +106,14 @@ If you want to, you can check if a view file is valid by doing what is shown abo
 
 ## Passing data to a view
 
-You may be wondering how can I pass data to my HTML view? Well, Polyel allows you to simply pass over a key value array which gets injected into the view.
+You may be wondering how can I pass data to my HTML view? Well, Voltis allows you to simply pass over a key value array which gets injected into the view.
 
 Consider the following view:
 
 ```html
 <html>
     <body>
-        <p>Hello, welcome to Polyel, {{ name }}</p>
+        <p>Hello, welcome to Voltis, {{ name }}</p>
     </body>
 </html>
 ```
@@ -130,9 +130,9 @@ class WelcomeController extends Controller
 }
 ```
 
-The view helper accepts a second argument for passing data that will in the end be injected into a view based on key value pairs. Polyel uses the `{{ }}` syntax to define a tag, a tag is used to interact with the view system, anything between `{{ }}` is processed by Polyel.
+The view helper accepts a second argument for passing data that will in the end be injected into a view based on key value pairs. Voltis uses the `{{ }}` syntax to define a tag, a tag is used to interact with the view system, anything between `{{ }}` is processed by Voltis.
 
-So when we set `{{ name }}` in our HTML view, that tells Polyel that we should replace that tag with the name `Luke!` when rendering that template. You may have any number of these `{{ }}` tags in your views, just make sure you pass data to them.
+So when we set `{{ name }}` in our HTML view, that tells Voltis that we should replace that tag with the name `Luke!` when rendering that template. You may have any number of these `{{ }}` tags in your views, just make sure you pass data to them.
 
 ## Flash Messages
 
@@ -148,7 +148,7 @@ You may use dot syntax to store flash message templates in nested directives wit
 
 ## Extending a view
 
-When designing a web application it’s very common to have a master template or a common layout, for example you may reuse a certain header or footer style but you won’t want to write these elements every time you create a new view. So that’s why Polyel allows you to extend a view.
+When designing a web application it’s very common to have a master template or a common layout, for example you may reuse a certain header or footer style but you won’t want to write these elements every time you create a new view. So that’s why Voltis allows you to extend a view.
 
 ```php
 return response(
@@ -176,16 +176,16 @@ And the welcome view looks like:
 <h1>Welcome, {{ name }}</h1>
 ```
 
-First, the welcome view is rendered and its data is injected, in this case the name. Then Polyel realises you want to extend a view called master, so this view is then rendered with its data, in this case we set the page title and then the main welcome view content is injected into the master view, using the `{{ @content }}` tag.
+First, the welcome view is rendered and its data is injected, in this case the name. Then Voltis realises you want to extend a view called master, so this view is then rendered with its data, in this case we set the page title and then the main welcome view content is injected into the master view, using the `{{ @content }}` tag.
 
-<div class="warnMsg">When extending views, you must make sure you include the <code>{{ @content }}</code> tag so that Polyel knows where to place the main rendered view.</div>
+<div class="warnMsg">When extending views, you must make sure you include the <code>{{ @content }}</code> tag so that Voltis knows where to place the main rendered view.</div>
 
 <br/>
 So if your application uses a common layout or style, you can extend a view so you don’t have to repeat yourself all the time. Then you only have to pass in your requested page content like our welcome view example.
 
 ## Cross-site scripting prevention
 
-Cross-site scripting, also known as XSS is an attack that allows someone to execute code by saving data to your application and then having that data displayed without being filtered, allowing them to run JavaScript code for example. To prevent this attack, Polyel automatically filters any data supplied to views by default and encodes data so that nothing is executed on the client side.
+Cross-site scripting, also known as XSS is an attack that allows someone to execute code by saving data to your application and then having that data displayed without being filtered, allowing them to run JavaScript code for example. To prevent this attack, Voltis automatically filters any data supplied to views by default and encodes data so that nothing is executed on the client side.
 
 However, sometimes you may want JavaScript ot HTML to actually be rendered on the client side if you trust the data supplied. If you wish to display data without it being filtered for XSS attacks, you can do so by defining your data tags like `{{ !name! }}`.
 
@@ -197,7 +197,7 @@ The mini view above uses the `!` to declare that any data passed to this tag sho
 
 ## Nested Views
 
-You may have already noticed that some views are defined using dot notation, this allows you to access nested views in multiple directories, so `common.sidebar.view.html` is actually leading to `/resources/views/common/sidebar.view.html`. This is automatically converted by Polyel.
+You may have already noticed that some views are defined using dot notation, this allows you to access nested views in multiple directories, so `common.sidebar.view.html` is actually leading to `/resources/views/common/sidebar.view.html`. This is automatically converted by Voltis.
 
 ## View Directives
 
@@ -205,7 +205,7 @@ View directives allow you to manipulate the view layer even more and give you th
 
 ### include
 
-Before data is injected into the main view, Polyel gives you the ability to include other sub-views, meaning you can include another view and then add any data to the included data tags as well.
+Before data is injected into the main view, Voltis gives you the ability to include other sub-views, meaning you can include another view and then add any data to the included data tags as well.
 
 ```html
 <div id="profile">
@@ -241,7 +241,7 @@ Another example of using includes is for including common HTML sections like a h
 
 ### includeCSS
 
-Most of the time you will just end up putting all your CSS links into your head element in your master view, but sometimes you may have a certain page which requires a lot of extra styling with CSS, it’s best to only include certain CSS files for different pages, that’s why Polyel allows you to use `@includeCSS` to require certain CSS files on different views.
+Most of the time you will just end up putting all your CSS links into your head element in your master view, but sometimes you may have a certain page which requires a lot of extra styling with CSS, it’s best to only include certain CSS files for different pages, that’s why Voltis allows you to use `@includeCSS` to require certain CSS files on different views.
 
 ```html
 {{ @includeCSS(profile.common) }}
@@ -254,14 +254,14 @@ Most of the time you will just end up putting all your CSS links into your head 
 </div>
 ```
 
-In the example above, we have two CSS includes, each will tell Polyel we want to link the following files inside the HTML head:
+In the example above, we have two CSS includes, each will tell Voltis we want to link the following files inside the HTML head:
 
 - `/public/css/profile/common.css`
 - `/public/css/buttons.css`
 
-You will notice the includes are relative to the servers public folder, this is where your CSS files should be stored so Polyel can allow the client to retrieve them. The `.css` file extension is added automatically. If you like you can change the CSS folder relative to the public directory by visiting `/config/view.php`.
+You will notice the includes are relative to the servers public folder, this is where your CSS files should be stored so Voltis can allow the client to retrieve them. The `.css` file extension is added automatically. If you like you can change the CSS folder relative to the public directory by visiting `/config/view.php`.
 
-Finally, to get Polyel to insert these CSS links into the HTML head, you must use the `{{ @CSS }}` tag, which should be inside your master view like so:
+Finally, to get Voltis to insert these CSS links into the HTML head, you must use the `{{ @CSS }}` tag, which should be inside your master view like so:
 
 ```html
 <html>
@@ -279,7 +279,7 @@ Finally, to get Polyel to insert these CSS links into the HTML head, you must us
 
 ### includeJS
 
-When building web applications you will end up having different Java Script files for different logic and pages, but you won’t want to load Java Script files on pages where they won’t get used. So Polyel allows you to also `@includeJS` files dynamically between different views or elements.
+When building web applications you will end up having different Java Script files for different logic and pages, but you won’t want to load Java Script files on pages where they won’t get used. So Voltis allows you to also `@includeJS` files dynamically between different views or elements.
 
 ```html
 {{ @includeJS(profile.profile) }}
@@ -299,7 +299,7 @@ By rendering the above view, two Java Script files will be included inside your 
 
 By default all Java Script includes are relative to the servers public directory and `.js` is added automatically. If you would like, you can change the default JS directory by visiting `/config/view.php`.
 
-Finally, you will also need to include the `@JS` tag to let Polyel know where you want all your JS includes to be placed, for example:
+Finally, you will also need to include the `@JS` tag to let Voltis know where you want all your JS includes to be placed, for example:
 
 ```html
 <html>
@@ -315,7 +315,7 @@ Finally, you will also need to include the `@JS` tag to let Polyel know where yo
 
 ### method
 
-As HTML forms cannot send `PUT`, `PATCH` or `DELETE` requests, you must add a special hidden field called `http_method` with the intended HTTP verb. Polyel provides you with the `@method` view directive to make this easy and quick:
+As HTML forms cannot send `PUT`, `PATCH` or `DELETE` requests, you must add a special hidden field called `http_method` with the intended HTTP verb. Voltis provides you with the `@method` view directive to make this easy and quick:
 
 ```
 <form action="/profile/update" method="POST">
@@ -328,10 +328,10 @@ This would generate ` <input type="hidden" name="http_method" value="DELETE">` f
 
 ## Dynamic Content
 
-Polyel works a bit differently compared to some frameworks which use control structures and logic that are mixed in with HTML templates, by design Polyel does not allow any logic or control structures inside a HTML template, we believe all your logic should stay within your PHP code and templates should be kept as `.html` files. 
+Voltis works a bit differently compared to some frameworks which use control structures and logic that are mixed in with HTML templates, by design Voltis does not allow any logic or control structures inside a HTML template, we believe all your logic should stay within your PHP code and templates should be kept as `.html` files. 
 
-So if Polyel does not allow logic inside a template, how does Polyel handle dynamic content? – Simply put, we use what we call Elements that have a template `.html` file and an Element class where all the logic will go, where you can perform all your if, for, switch and loop statements, just like you would in a normal PHP script.
+So if Voltis does not allow logic inside a template, how does Voltis handle dynamic content? – Simply put, we use what we call Elements that have a template `.html` file and an Element class where all the logic will go, where you can perform all your if, for, switch and loop statements, just like you would in a normal PHP script.
 
 The idea is simple, we are just removing logic from our templates and performing it inside a PHP class instead, keeping the HTML templates clean!
 
-To see the documentation for Elements, visit the specific page for [Polyel Elements]( /docs/using_polyel/elements).
+To see the documentation for Elements, visit the specific page for [Voltis Elements]( /docs/using_voltis/elements).

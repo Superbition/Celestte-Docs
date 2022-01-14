@@ -5,11 +5,11 @@ title: Hashing
 
 ## Introduction
 
-In Polyel you are provided with a hashing Facade called `Hash` which gives you access to hashing functions for storing user passwords, based on the PHP native functions and algorithms supported by PHP. Polyel works with three major hashing algorithms: Bcrypt, Argon2i and Argon2id.
+In Voltis you are provided with a hashing Facade called `Hash` which gives you access to hashing functions for storing user passwords, based on the PHP native functions and algorithms supported by PHP. Voltis works with three major hashing algorithms: Bcrypt, Argon2i and Argon2id.
 
-The Polyel registration and authentication system will by default use ` argon2id` as the hashing algorithm to handle passwords, ` argon2id` is also the default set within the hashing configuration file.
+The Voltis registration and authentication system will by default use ` argon2id` as the hashing algorithm to handle passwords, ` argon2id` is also the default set within the hashing configuration file.
 
-<div class="warnMsg">Polyel by default will use the Argon2id hashing algorithm, meaning PHP 7.3.0+ is required</div>
+<div class="warnMsg">Voltis by default will use the Argon2id hashing algorithm, meaning PHP 7.3.0+ is required</div>
 
 ## Configuration
 

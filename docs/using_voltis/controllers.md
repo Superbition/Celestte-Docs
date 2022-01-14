@@ -56,7 +56,7 @@ Route::get('/admin/permissions', 'Admin\PermissionController@method');
 
 ## Dependency Injection & Controllers
 
-The Polyel Dependency Injection Container used to resolve services can be used to resolve dependencies for your Controllers, making it easy to use services across the framework and not have to worry about how they are defined. This works by type-hinting the dependency you want inside the Controllers constructor or via the route action method.
+The Voltis Dependency Injection Container used to resolve services can be used to resolve dependencies for your Controllers, making it easy to use services across the framework and not have to worry about how they are defined. This works by type-hinting the dependency you want inside the Controllers constructor or via the route action method.
 
 ### Controller Constructor Injection
 
@@ -76,7 +76,7 @@ class WelcomeController extends Controller
 }
 ```
 
-The Session system instance used to access the session data for the request will be injected into the Controller constructor for you, you don't need to worry about how you access it, just type-hint it and Polyel will resolve it for you from the service container.
+The Session system instance used to access the session data for the request will be injected into the Controller constructor for you, you don't need to worry about how you access it, just type-hint it and Voltis will resolve it for you from the service container.
 
 ### Controller Method Injection
 
@@ -126,4 +126,4 @@ class CarController extends Controller
 
 ## Controller & Closure Caching
 
-Both type of route actions can be cached; Controllers and Closure based actions are automatically cached because Polyel runs the Router service persistently in memory, so there is no need to worry about running any commands to cache routes.
+Both type of route actions can be cached; Controllers and Closure based actions are automatically cached because Voltis runs the Router service persistently in memory, so there is no need to worry about running any commands to cache routes.

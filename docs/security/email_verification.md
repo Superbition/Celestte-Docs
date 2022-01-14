@@ -5,7 +5,7 @@ title: Email Verification
 
 ## Introduction
 
-When building web applications it is good practice to make sure a user verifies their email address before being able to access certain pages or perform certain actions, this helps reduce spam and makes sure your users have a valid email address. Polyel provides you with a built in solution so you don’t have to implement this logic for each project you build.
+When building web applications it is good practice to make sure a user verifies their email address before being able to access certain pages or perform certain actions, this helps reduce spam and makes sure your users have a valid email address. Voltis provides you with a built in solution so you don’t have to implement this logic for each project you build.
 
 ## Verification Routes
 
@@ -13,7 +13,7 @@ By default you should find ` Route::addAuthRoutes()` inside your `web` routes fi
 
 ## Model Considerations
 
-By default Polyel already provides you with a starting User Model for you and it should already implement an interface to provide a few email verification features, it should look similar to this:
+By default Voltis already provides you with a starting User Model for you and it should already implement an interface to provide a few email verification features, it should look similar to this:
 
 ```
 namespace App\Models;
@@ -28,15 +28,15 @@ class User extends Model implements EmailVerification
 }
 ```
 
-The User Model is special because it extends a different core Model to any other, it uses the core Polyel User Model, which provides different features for interacting with users but for the scope of email verification, you can see we extend the `Polyel\Model\User` Model as ‘User’.
+The User Model is special because it extends a different core Model to any other, it uses the core Voltis User Model, which provides different features for interacting with users but for the scope of email verification, you can see we extend the `Polyel\Model\User` Model as ‘User’.
 
 ## Database Considerations
 
-For verifying emails, Polyel doesn’t use any additional database tables, just one column within your users table called `email_verified_at’ to store the date and time when a user confirmed their email, making them a verified user. Make sure this column can store a `datetime`.
+For verifying emails, Voltis doesn’t use any additional database tables, just one column within your users table called `email_verified_at’ to store the date and time when a user confirmed their email, making them a verified user. Make sure this column can store a `datetime`.
 
 ## Protecting Routes
 
-To protect a route that requires a user to have their email verified before accessing a page, Polyel provides you with a Middleware called `IsVerified` which is registered and defined as ` \App\Middleware\UserVerification::class` inside your Middleware configuration.
+To protect a route that requires a user to have their email verified before accessing a page, Voltis provides you with a Middleware called `IsVerified` which is registered and defined as ` \App\Middleware\UserVerification::class` inside your Middleware configuration.
 
 All you need to do is add this as a Middleware to your desired route:
 
@@ -55,11 +55,11 @@ public function verificationFailed(Request $request)
 }
 ```
 
-The `verificationFailed` method is called when the user has not verified their email address yet and allows you to perform any actions if this happens, you can return a custom response if you like or leave empty and use the default Polyel response.
+The `verificationFailed` method is called when the user has not verified their email address yet and allows you to perform any actions if this happens, you can return a custom response if you like or leave empty and use the default Voltis response.
 
 ## Verification Views
 
-Polyel provides you with a starting view for displaying email verification errors and messages, you can find this view at ` app\resources\views\auth\verification.view.html`, you may edit this to your liking.
+Voltis provides you with a starting view for displaying email verification errors and messages, you can find this view at ` app\resources\views\auth\verification.view.html`, you may edit this to your liking.
 
 ## Verification Process
 

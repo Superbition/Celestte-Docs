@@ -1,7 +1,7 @@
 {
   "docs": {
 
-    "Polyel": [
+    "Voltis": [
       "intro",
       "requirements",
       "release_process"
@@ -20,20 +20,20 @@
       "architectural_design/third-party-packages"
     ],
 
-    "Using Polyel": [
-      "using_polyel/routing",
-      "using_polyel/controllers",
-      "using_polyel/middleware",
-      "using_polyel/request",
-      "using_polyel/response",
-      "using_polyel/csrf_protection",
-      "using_polyel/views",
-      "using_polyel/elements",
-      "using_polyel/session",
-      "using_polyel/validation",
-      "using_polyel/storage",
-      "using_polyel/console",
-      "using_polyel/services"
+    "Using Voltis": [
+      "using_voltis/routing",
+      "using_voltis/controllers",
+      "using_voltis/middleware",
+      "using_voltis/request",
+      "using_voltis/response",
+      "using_voltis/csrf_protection",
+      "using_voltis/views",
+      "using_voltis/elements",
+      "using_voltis/session",
+      "using_voltis/validation",
+      "using_voltis/storage",
+      "using_voltis/console",
+      "using_voltis/services"
     ],
 
     "Database": [

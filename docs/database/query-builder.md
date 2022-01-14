@@ -5,9 +5,9 @@ title: Query Builder
 
 ## Getting Started
 
-The Polyel Query Builder offers you a convenient, expressive interface to interacting with your databases. It provides you with most of the functionality that nearly all queries require, making it easy and rapid to write SQL statements in your application. It also provides you with piece of mind as all data inputs are bound to the query using PHP PDO prepared statements, so you are protected against SQL injection attacks.
+The Voltis Query Builder offers you a convenient, expressive interface to interacting with your databases. It provides you with most of the functionality that nearly all queries require, making it easy and rapid to write SQL statements in your application. It also provides you with piece of mind as all data inputs are bound to the query using PHP PDO prepared statements, so you are protected against SQL injection attacks.
 
-When using the Query Builder, Polyel will handle getting the correct type of connection for you automatically, read and write connections are retrieved from the connection pool for you as well, you don’t need to worry about database connections and their pools.
+When using the Query Builder, Voltis will handle getting the correct type of connection for you automatically, read and write connections are retrieved from the connection pool for you as well, you don’t need to worry about database connections and their pools.
 
 <div class="warnMsg">Even though the Query Builder will automatically handle data binding for you with PHP PDO Prepared statements, protecting you from SQL injection attacks, column names are not protected by this, so it is down to you as the developer to use a whitelist to manage which columns are used in database queries. Never allow the user input to select columns, always use a whitelist to validate against.</div>
 
@@ -141,7 +141,7 @@ $sum = DB::table('user')->sum('votes');
 
 ## Chunking Results
 
-Sometimes you may need to process thousands of database records and selecting all of them at once would be cumbersome and put strain on your applications performance, Polyel offers you a range of different chunking methods to handle things situations.
+Sometimes you may need to process thousands of database records and selecting all of them at once would be cumbersome and put strain on your applications performance, Voltis offers you a range of different chunking methods to handle things situations.
 
 Each chunking method takes a closure which gets fed a small amount of records each time until all of the results are processed, reducing the amount of overhead of retrieving large amounts of rows at once.
 
@@ -185,7 +185,7 @@ DB::table('user')->orderBy('id')->deferAndChunk(100, function($users) {
 
 ### Chunk By ID
 
-When you chunk results and update at the same time it could affect the results as the data is being changed at the same time, so Polyel provides you with `chunkById` instead. This method chunks by using the primary key to order and process rows.
+When you chunk results and update at the same time it could affect the results as the data is being changed at the same time, so Voltis provides you with `chunkById` instead. This method chunks by using the primary key to order and process rows.
 
 ```
 DB::table('user')->where('age', '>', 55)->chunkById(100, function($users) {
@@ -535,7 +535,7 @@ You can change the operator to what you need.
 
 ### Advanced Where Grouping
 
-When writing SQL sometimes you may need to group or nest clauses with parenthesis, you can do that with the Polyel Query Builder by passing in a Closure as the first argument to a `where` clause:
+When writing SQL sometimes you may need to group or nest clauses with parenthesis, you can do that with the Voltis Query Builder by passing in a Closure as the first argument to a `where` clause:
 
 ```
 $results = DB::table('users')
@@ -553,7 +553,7 @@ Which would produce the following SQL:
 
 ### Where Exists
 
-A where exists is used to test for the existence of any record in a subquery, if the subquery exists record exists it will return true. You can build these types of queries in Polyel:
+A where exists is used to test for the existence of any record in a subquery, if the subquery exists record exists it will return true. You can build these types of queries in Voltis:
 
 ```
 $results = DB::table("user")
@@ -627,7 +627,7 @@ Which would perform the query:
 
 ### Where JSON
 
-For databases that support JSON column types Polyel allows you to use these inside a where clause.
+For databases that support JSON column types Voltis allows you to use these inside a where clause.
 
 Currently supported databases for use of JSON columns and the query builder: MySQL 5.7+
 
@@ -797,7 +797,7 @@ And you can add on where clauses to constraint your update query.
 
 ### Update or Insert
 
-You may come across a situation where you want to update a record but if it does not exist then insert it, Polyel provides you with `updateOrInsert` to achieve this. This method 1st expects a condition to be passed in as a way to see if the record exists first, then the 2nd argument is the key value pairs to update the row with.
+You may come across a situation where you want to update a record but if it does not exist then insert it, Voltis provides you with `updateOrInsert` to achieve this. This method 1st expects a condition to be passed in as a way to see if the record exists first, then the 2nd argument is the key value pairs to update the row with.
 
 ```
 $updateOrInsert = $results = DB::table('user')

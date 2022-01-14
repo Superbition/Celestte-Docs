@@ -5,11 +5,11 @@ title: Validation
 
 ## Introduction
 
-When building an application with Polyel, you will at some point accept data from client requests, it is good practice to make sure this data coming from requests is in the correct format your application expects. That’s why Polyel provides you with a simple validate service that is included with the request class. Giving you a wide range of validation rules and flexibility to validate incoming data.
+When building an application with Voltis, you will at some point accept data from client requests, it is good practice to make sure this data coming from requests is in the correct format your application expects. That’s why Voltis provides you with a simple validate service that is included with the request class. Giving you a wide range of validation rules and flexibility to validate incoming data.
 
 ## Validation Walkthrough
 
-The best way to explain and teach you about the validation system Polyel uses is to walk you through a full example, from setting up the route to getting the controller implemented and directly showing the use of validation in an example. Along the way we will also go over key points and hints to help you better understand how Polyel validates request data.
+The best way to explain and teach you about the validation system Voltis uses is to walk you through a full example, from setting up the route to getting the controller implemented and directly showing the use of validation in an example. Along the way we will also go over key points and hints to help you better understand how Voltis validates request data.
 
 ### Setting up routes
 
@@ -51,11 +51,11 @@ class PostController extends Controller
 }
 ```
 
-And that’s mostly it, Polyel will use the `create` method to store a new blog post but will run the validation rules against the data from the request, if validation passes, execution will continue but if validation fails, Polyel will automatically redirect back to the previous URL and store the errors inside the session for you to display in your view.
+And that’s mostly it, Voltis will use the `create` method to store a new blog post but will run the validation rules against the data from the request, if validation passes, execution will continue but if validation fails, Voltis will automatically redirect back to the previous URL and store the errors inside the session for you to display in your view.
 
 ### Validation Logic & Process
 
-From setting up a quick and simple example, you can see the workflow from how the validation process works in Polyel. All your validation is done within your different Controllers, where you use the ‘Request` service to access the validator and get back an instance which will automatically run the validation rules against the request data for you.
+From setting up a quick and simple example, you can see the workflow from how the validation process works in Voltis. All your validation is done within your different Controllers, where you use the ‘Request` service to access the validator and get back an instance which will automatically run the validation rules against the request data for you.
 
 ```
 public function create(Request $request)
@@ -69,7 +69,7 @@ public function create(Request $request)
 }
 ```
 
-When validation is executed like in the example above, if all validation rules pass, your code will continue to execute, but if any rules fail validation then, your code will stop executing because a validation exception will be thrown and control will be given to Polyel, where an automatic response will be created for you. That automatic response will detect a normal browser based HTTP request and redirect back to the previous page, with the proper error messages stored in the session, allowing you to inject these errors to be displayed. But if a Ajax request was sent over, Polyel will just return a JSON response with the error messages and nothing will be placed into the session.
+When validation is executed like in the example above, if all validation rules pass, your code will continue to execute, but if any rules fail validation then, your code will stop executing because a validation exception will be thrown and control will be given to Voltis, where an automatic response will be created for you. That automatic response will detect a normal browser based HTTP request and redirect back to the previous page, with the proper error messages stored in the session, allowing you to inject these errors to be displayed. But if a Ajax request was sent over, Voltis will just return a JSON response with the error messages and nothing will be placed into the session.
 
 From the example above, you can see the argument passed in is an array of request data names and their rules in a list array. The Validator expects the names from your forms or API requests and then a list all of the rules for each element of data.
 
@@ -111,13 +111,13 @@ $request->validateAsGroup('newPost', [
 	]);
 ```
 
-By doing this it tells Polyel that if any rules fail during validation, the error messages will be stored within a group called `newPost` so we can differentiate them later on when displaying them on a view.
+By doing this it tells Voltis that if any rules fail during validation, the error messages will be stored within a group called `newPost` so we can differentiate them later on when displaying them on a view.
 
 ## Showing Validation Error Messages
 
 ### Displaying all errors
 
-Now, you should have your validation rules setup for incoming request data but how can we show failed rules and their error messages back to the user? Polyel again will automatically collect error messages from failed rules and store them into the user’s session and generate the appropriate response back to the previously page, all you have to do to display errors is place the error directives into your views. You have a number of error directives to help you easily show errors in a view. The first and most common one we should discuss is `@errors`:
+Now, you should have your validation rules setup for incoming request data but how can we show failed rules and their error messages back to the user? Voltis again will automatically collect error messages from failed rules and store them into the user’s session and generate the appropriate response back to the previously page, all you have to do to display errors is place the error directives into your views. You have a number of error directives to help you easily show errors in a view. The first and most common one we should discuss is `@errors`:
 
 ```
 <form action="/blog/post/create" method="POST" enctype="multipart/form-data">
@@ -129,7 +129,7 @@ Now, you should have your validation rules setup for incoming request data but h
 </form>
 ```
 
-From our example above that is all we have to do inside our views in order to get errors to display when they exist, no condition statements are needed, just a directive used to display errors, Polyel will handle the rest for you, you can think of this directive more of a placeholder if any errors exist, if no errors exist then the whole `@errors` tag is removed for you automatically.
+From our example above that is all we have to do inside our views in order to get errors to display when they exist, no condition statements are needed, just a directive used to display errors, Voltis will handle the rest for you, you can think of this directive more of a placeholder if any errors exist, if no errors exist then the whole `@errors` tag is removed for you automatically.
 
 <br/>
 
@@ -137,7 +137,7 @@ From our example above that is all we have to do inside our views in order to ge
 
 <br/>
 
-You may have noticed the `list` argument above, what is that you ask? It will display all errors from the session and use the error template called `list` to display the error messages. So, the parameter you are passing into `@errors` is a template used to format and structure your error messages, saving you having to do this every time you want to display errors on a view. This `list` template is provided by Polyel as an example for you and can be found at `app\resources\errors\list.error.html`, let’s have a look at it to see what it does:
+You may have noticed the `list` argument above, what is that you ask? It will display all errors from the session and use the error template called `list` to display the error messages. So, the parameter you are passing into `@errors` is a template used to format and structure your error messages, saving you having to do this every time you want to display errors on a view. This `list` template is provided by Voltis as an example for you and can be found at `app\resources\errors\list.error.html`, let’s have a look at it to see what it does:
 
 ```
 <div class="listError">
@@ -151,7 +151,7 @@ You may have noticed the `list` argument above, what is that you ask? It will di
 </div>
 ```
 
-If errors exist in the session you don’t need to worry about checking if they are there, Polyel will automatically do this for you, as long as the `@errors` directive is set inside your view, Polyel will grab the name of the template you have passed, like our `list` template above and inject all the errors using the error replacement line. In our example above you can see this is `{{ @error(<li>@message</li>) }}`, if we have 5 errors to display, each error will be replaced using this line and the error is replaced where `@message` is, so they will all come out as a `<li>` list. You don’t need to worry about any if statements or conditional loops, Polyel does this all for you and if you need to make a change to the way errors are displayed, you only need to make one change inside your error templates. It is best to store different types of error templates used for this purpose inside ` app\resources\errors`.
+If errors exist in the session you don’t need to worry about checking if they are there, Voltis will automatically do this for you, as long as the `@errors` directive is set inside your view, Voltis will grab the name of the template you have passed, like our `list` template above and inject all the errors using the error replacement line. In our example above you can see this is `{{ @error(<li>@message</li>) }}`, if we have 5 errors to display, each error will be replaced using this line and the error is replaced where `@message` is, so they will all come out as a `<li>` list. You don’t need to worry about any if statements or conditional loops, Voltis does this all for you and if you need to make a change to the way errors are displayed, you only need to make one change inside your error templates. It is best to store different types of error templates used for this purpose inside ` app\resources\errors`.
 
 If you have multiple forms on a single page and want to use `@errors` for a certain form, you may pass a second argument for the group name (which should match the group set when validating the data at the Controller level):
 
@@ -183,7 +183,7 @@ And with a wildcard when wanting to display all error messages from nested eleme
 
 ### Displaying only certain errors
 
-Sometimes you may want to have more control over which errors you show, this is useful for when you only want to display a certain error or a certain error in a specific place on your view. Polyel provides you with another directive for just that, let’s take a look at an example:
+Sometimes you may want to have more control over which errors you show, this is useful for when you only want to display a certain error or a certain error in a specific place on your view. Voltis provides you with another directive for just that, let’s take a look at an example:
 
 ```
 <div id='error'>
@@ -205,7 +205,7 @@ What if you don’t want to display an error message for one specific field but 
 </div>
 ```
 
-So now whenever any errors exist for the `title` field Polyel will output the string `invalid-field`, which in this case relates to a CSS class, used to make an error more visible by applying an error style to a HTML element.
+So now whenever any errors exist for the `title` field Voltis will output the string `invalid-field`, which in this case relates to a CSS class, used to make an error more visible by applying an error style to a HTML element.
 
 You are free to also include any HTML along with this second argument as well, for example:
 
@@ -275,7 +275,7 @@ If no errors are found then 0 will be shown.
 
 ## Showing Old Request Data
 
-When validating data from the request, if errors exist, Polyel redirects to the previous URL and the errors are supposed to be displayed there but, what if you want to make it easier for your users to change invalid data without having to completely reenter it again? – Polyel offers you a view directive called `@old` which is used to display old/previous data from a request, stored in the session, whenever the validator fails and redirects to display errors.
+When validating data from the request, if errors exist, Voltis redirects to the previous URL and the errors are supposed to be displayed there but, what if you want to make it easier for your users to change invalid data without having to completely reenter it again? – Voltis offers you a view directive called `@old` which is used to display old/previous data from a request, stored in the session, whenever the validator fails and redirects to display errors.
 
 ```
 <form action="/" method="POST" enctype="multipart/form-data">
@@ -288,7 +288,7 @@ When validating data from the request, if errors exist, Polyel redirects to the 
 </form>
 ```
 
-Each time data is found with the request, Polyel will store this in the session so you can inject it back into the view using `@old` when redirecting back and so data does not have to be reentered again after failing validation.
+Each time data is found with the request, Voltis will store this in the session so you can inject it back into the view using `@old` when redirecting back and so data does not have to be reentered again after failing validation.
 
 If your data is part of a group or nested you may use dot syntax to access the data. For example:
 
@@ -336,7 +336,7 @@ You can also validate array elements at the start or end as well, like `*.user.e
 
 ## Redirecting with Errors
 
-Sometimes your data may pass validation and be completely correct in the format your applications expects, but there may be a time where you need to perform more complex checks and actions once your data is valid. So, that is why Polyel allows you to redirect with errors which in the end you can treat them the same as if they were errors coming from the validator.
+Sometimes your data may pass validation and be completely correct in the format your applications expects, but there may be a time where you need to perform more complex checks and actions once your data is valid. So, that is why Voltis allows you to redirect with errors which in the end you can treat them the same as if they were errors coming from the validator.
 
 ```
 return redirect('/payment/trading')->withErrors([
@@ -344,7 +344,7 @@ return redirect('/payment/trading')->withErrors([
 	]);
 ```
 
-From the Controller level you can return this type of redirect and Polyel will include this error into the session or as a JSON response if that is what the request expects. These redirect errors will work normally with the way you display errors from the validator as well.
+From the Controller level you can return this type of redirect and Voltis will include this error into the session or as a JSON response if that is what the request expects. These redirect errors will work normally with the way you display errors from the validator as well.
 
 If you want to attach these redirect errors into a group because you have multiple forms on a page, pass in a second argument:
 
@@ -778,7 +778,7 @@ The field under validation must be found within the list of values set within th
 
 `WithinArray:anotherFieldArray.*`
 
-The field being validated must exist within the other array defined in the rules parameters. If you only include the array name like `Within:names` and no wildcard, Polyel will assume you mean `names.*` for you.
+The field being validated must exist within the other array defined in the rules parameters. If you only include the array name like `Within:names` and no wildcard, Voltis will assume you mean `names.*` for you.
 
 #### Integer
 ---
@@ -1037,7 +1037,7 @@ This rule supports checking the validity of all versions 1, 3, 4 and 5. For more
 
 ## Custom Validation Error Messages
 
-The Validator by default uses the error messages provided to you by default, each rule has its own default error message. Sometimes these default error messages don’t always fit within different contexts and thus, you will want to use a custom error message to fit your application better. Polyel allows you to use custom error messages on a per field, per rule basis. So you may choose which field and rules use a custom message or which just use the default provided error message.
+The Validator by default uses the error messages provided to you by default, each rule has its own default error message. Sometimes these default error messages don’t always fit within different contexts and thus, you will want to use a custom error message to fit your application better. Voltis allows you to use custom error messages on a per field, per rule basis. So you may choose which field and rules use a custom message or which just use the default provided error message.
 
 To set custom error messages, you may pass an array as the 2rd parameter when validating data:
 

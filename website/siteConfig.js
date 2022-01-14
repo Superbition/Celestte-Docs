@@ -4,26 +4,26 @@
 // List of projects/orgs using your project for the users page.
 const users = [
   {
-    caption: 'User1',
+    caption: 'Bakup',
     // You will need to prepend the image path with your baseUrl
     // if it is not '/', like: '/test-site/img/image.jpg'.
-    image: '/img/undraw_open_source.svg',
-    infoLink: 'https://www.example.com',
+    image: 'img/bakup-logo.svg',
+    infoLink: 'https://bakup.io',
     pinned: true,
   },
 ];
 
 const siteConfig = {
-  title: 'Polyel PHP Framework', // Title for your website.
+  title: 'Voltis PHP Framework', // Title for your website.
   tagline: 'A full stack asynchronous PHP framework',
-  url: 'https://polyel.io/', // Your website URL
+  url: 'https://voltis.io', // Your website URL
   baseUrl: '/docs/', // Base URL for your project */
   // For github.io type URLs, you would set the url and baseUrl like:
   //   url: 'https://polyel.github.io',
   //   baseUrl: '/test-site/',
 
   // Used for publishing and more
-  projectName: 'Polyel',
+  projectName: 'Voltis',
   organizationName: 'Superbition',
   // For top-level user or org sites, the organization is still the same.
   // e.g., for the https://JoelMarcey.github.io site, it would be set like...
@@ -36,7 +36,7 @@ const siteConfig = {
     //{doc: 'doc4', label: 'API'},
     //{page: 'help', label: 'Help'},
     //{blog: true, label: 'Blog'},
-    {href: 'https://polyel.io', label: 'Polyel.io'},
+    {href: 'https://voltis.io', label: 'Voltis.io'},
     {href: 'https://phpnexus.io', label: 'Community'}
   ],
 
@@ -44,8 +44,8 @@ const siteConfig = {
   users,
 
   /* path to images for header/footer */
-  headerIcon: 'img/logo.png',
-  footerIcon: 'img/logo.png',
+  headerIcon: 'img/logo.svg',
+  footerIcon: 'img/logo.svg',
   favicon: 'img/favicon.ico',
 
   /* Colors for website */
@@ -69,7 +69,7 @@ const siteConfig = {
   */
 
   // This copyright info is used in /core/Footer.js and blog RSS/Atom feeds.
-  copyright: `Copyright © ${new Date().getFullYear()} Superbition & Polyel`,
+  copyright: `Copyright © ${new Date().getFullYear()} Superbition & Voltis`,
 
   highlight: {
     // Highlight.js theme to use for syntax highlighting in code blocks.
@@ -89,8 +89,8 @@ const siteConfig = {
   scrollToTop: true,
 
   // Open Graph and Twitter card images.
-  ogImage: 'img/undraw_online.svg',
-  twitterImage: 'img/undraw_tweetstorm.svg',
+  ogImage: 'img/logo.svg',
+  twitterImage: 'img/logo.svg',
 
   // For sites with a sizable amount of content, set collapsible to true.
   // Expand/collapse the links and subcategories under categories.
@@ -104,7 +104,7 @@ const siteConfig = {
 
   // You may provide arbitrary config keys to be used as needed by your
   // template. For example, if you need your repo's URL...
-  //   repoUrl: 'https://github.com/example/test-site',
+  repoUrl: 'https://github.com/Superbition/Voltis-Docs',
 };
 
 module.exports = siteConfig;

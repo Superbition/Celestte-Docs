@@ -5,7 +5,7 @@ title: Storage
 
 ## Introduction
 
-Polyel provides you with a Storage service which gives you the ability to interact with a filesystem in order to work with files and directories. Right now only a local storage driver is supported but it is planned to support filesystems such as S3, FTP and external storage like Dropbox and Google drive.
+Voltis provides you with a Storage service which gives you the ability to interact with a filesystem in order to work with files and directories. Right now only a local storage driver is supported but it is planned to support filesystems such as S3, FTP and external storage like Dropbox and Google drive.
 
 ## Accessing the Storage service
 
