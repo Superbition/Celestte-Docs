@@ -5,7 +5,7 @@ title: Console
 
 ## Introduction
 
-Polyel comes with a command-line interface built-in which allows you to use a range of included commands to make development easier and enable you to manage your application from the command line. You can even write your own commands and perform actions in a similar manner to how you write controllers or middleware.
+Voltis comes with a command-line interface built-in which allows you to use a range of included commands to make development easier and enable you to manage your application from the command line. You can even write your own commands and perform actions in a similar manner to how you write controllers or middleware.
 
 Let's run our first command:
 
@@ -13,7 +13,7 @@ Let's run our first command:
 php polyel welcome <your-name>
 ```
 
-The `welcome` command will greet you and welcome you to the Polyel console and show you a range of useful links surrounding the project.
+The `welcome` command will greet you and welcome you to the Voltis console and show you a range of useful links surrounding the project.
 
 A good way to start is to see which commands are available to run:
 
@@ -33,7 +33,7 @@ php polyel create:middleware --help
 
 ## Creating Commands
 
-Polyel comes with a range of built in commands for you to use but what if you want to create your own command for your application? Well, it is possible to write your own commands by running `php polyel create:command CheckStatusCommand`. This will generate and setup a new command for you, the first argument will be the name of the command, you are free to name it as you wish but the standard is to usually follow `<Category:Command-Name>Command`. This will create a new command in `app\Console\Commands`.
+Voltis comes with a range of built in commands for you to use but what if you want to create your own command for your application? Well, it is possible to write your own commands by running `php polyel create:command CheckStatusCommand`. This will generate and setup a new command for you, the first argument will be the name of the command, you are free to name it as you wish but the standard is to usually follow `<Category:Command-Name>Command`. This will create a new command in `app\Console\Commands`.
 
 Where you use the colon to form a namespace of commands, for example, `create:command` is part of the `create` namespace but it is its own command class. You are not required to use command namespaces in your names, it just helps when listing them with the `list` command.
 
@@ -65,7 +65,7 @@ The first thing you will want to do is set your commands description, briefly st
 
 ### Command Dependencies
 
-When writing commands, it is best to keep them light and let the heavy work be carried out by other services and Models which you can access through dependency injection from the Polyel IoC Container. Either the constructor can be used for dependency injection or method injection for dependencies are supported for the `execute()` method, for example:
+When writing commands, it is best to keep them light and let the heavy work be carried out by other services and Models which you can access through dependency injection from the Voltis IoC Container. Either the constructor can be used for dependency injection or method injection for dependencies are supported for the `execute()` method, for example:
 
 ```
 public function execute(Encryption $crypt, User $user)
@@ -74,7 +74,7 @@ public function execute(Encryption $crypt, User $user)
 }
 ```
 
-This allows you to access services from Polyel that are available to you or services that you have created, which are pulled from the IoC Container.
+This allows you to access services from Voltis that are available to you or services that you have created, which are pulled from the IoC Container.
 
 ### Command Definition
 
@@ -88,7 +88,7 @@ Console::command('CheckStatus');
 
 The first part of the definition string is always the command name, so if you want to define a command like ` CheckStatus` where it doesn’t require any arguments or options, you can just enter the actual command name and nothing else.
 
-You then need to define the command inside your console kernel, this file is located at `app/Console/Kernel.php`. We define our command in here to let Polyel know the action of the command and which class it should use, for example:
+You then need to define the command inside your console kernel, this file is located at `app/Console/Kernel.php`. We define our command in here to let Voltis know the action of the command and which class it should use, for example:
 
 ```
 namespace App\Console;
@@ -335,7 +335,7 @@ $secret = $this->askSecret('Your password?: ');
 
 ### Writing Console Output
 
-When you are building your command, you will want to at some point output text to the console, Polyel provides you with a range of method to handle this output for you. Polyel will handle sending output to the right stream depending on the method you use, such as `STDOUT` or `STRERR`, also verbosity will be respected if it is set as well. Each method used to output text has its own colour and style depending on what it is supposed to be used for.
+When you are building your command, you will want to at some point output text to the console, Voltis provides you with a range of method to handle this output for you. Voltis will handle sending output to the right stream depending on the method you use, such as `STDOUT` or `STRERR`, also verbosity will be respected if it is set as well. Each method used to output text has its own colour and style depending on what it is supposed to be used for.
 
 Let’s explore each method used for consoles output...
 
@@ -395,7 +395,7 @@ The `fatal` method can be used to output an error message which will exit the co
 
 #### Output Structuring
 
-If you are writing a lot of text to the console, it may be beneficial to define sections and titles to help split up your output and make it easier for a user to figure out what information is being shown, Polyel provides you with two method to help you:
+If you are writing a lot of text to the console, it may be beneficial to define sections and titles to help split up your output and make it easier for a user to figure out what information is being shown, Voltis provides you with two method to help you:
 
 ```php
 $this->section('Configuration');
@@ -409,7 +409,7 @@ A section is used to define a larger block of text, like a main heading and a ti
 
 ### Command Verbostity
 
-Polyel also provides you with a special console output method called `debug()` which allows you to output information to the console at different verboseness by using verbosity levels.
+Voltis also provides you with a special console output method called `debug()` which allows you to output information to the console at different verboseness by using verbosity levels.
 
 For example to output at verbosity level 1:
 

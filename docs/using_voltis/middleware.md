@@ -5,17 +5,17 @@ title: Middleware
 
 ## Introduction
 
-In Polyel there is a Middleware mechanism that allows you to filter incoming HTTP requests and act upon those requests during two stages in your application; the two stages being before and after.
+In Voltis there is a Middleware mechanism that allows you to filter incoming HTTP requests and act upon those requests during two stages in your application; the two stages being before and after.
 
 A good example is you might create a Middleware to check that a user has permission to view a certain page and if not, you redirect them to the login screen or display an error message.
 
 Middleware can be used for more than just authentication though, you might create a Middleware to store logs of user actions or add additional HTTP headers to your responses.
 
-Polyel provides you with some default Middleware out of the box, such as CSRF protection or a Middleware to redirect users if trying to access a page only intended for guest users. All this Middleware can be found within the ` app\Http\Middleware` directory.
+Voltis provides you with some default Middleware out of the box, such as CSRF protection or a Middleware to redirect users if trying to access a page only intended for guest users. All this Middleware can be found within the ` app\Http\Middleware` directory.
 
 ## Creating Middleware
 
-To create a new Middleware, you can use the Polyel command `middleware`:
+To create a new Middleware, you can use the Voltis command `middleware`:
 
 ```text
 php polyel middleware:create LogRequestMiddleware
@@ -35,7 +35,7 @@ There are two types of Middleware that you can create, the first being a “befo
 
 ### Before
 
-Taking a look at the example below, Polyel will execute the `process()` function before an application request takes place, allowing you to perform actions before a request is processed further.
+Taking a look at the example below, Voltis will execute the `process()` function before an application request takes place, allowing you to perform actions before a request is processed further.
 
 When calling `$nextMiddleware()` this will pass the `$request` object onto the next Middleware in the stack, if there is none left and no early response has been returned, the core action will be executed.
 
@@ -145,7 +145,7 @@ protected array $globalMiddlewareStack = [
 
 ### Middleware Groups
 
-If you have loads of middleware classes, it may be easier for you to group certain middleware together as part of a group, which you can then assign to specific routes, making it easier to bulk assign middleware, by default Polyel already defines two main groups, these groups are the `web` group for web requests only and is assigned to every web route automatically, and an `api` group which is also assigned to API routes automatically.
+If you have loads of middleware classes, it may be easier for you to group certain middleware together as part of a group, which you can then assign to specific routes, making it easier to bulk assign middleware, by default Voltis already defines two main groups, these groups are the `web` group for web requests only and is assigned to every web route automatically, and an `api` group which is also assigned to API routes automatically.
 
 ```php
 protected array $middlewareGroups = [
@@ -261,7 +261,7 @@ class QueueHeadersMiddleware
 
 Here this middleware will queue a header to be added to the Response and the final Response won't be affected, just altered.
 
-For more documentation on sending back a Response, checkout the [Response Documentation](/docs/using_polyel/response)
+For more documentation on sending back a Response, checkout the [Response Documentation](/docs/using_voltis/response)
 
 <div class="warnMsg">If you return a response in an after middleware, this return will take priority over the Controller Response, because it means the middleware gives you the ability to change the response just before the final response is sent to the client.</div>
 
@@ -315,7 +315,7 @@ class BeforeMiddleware
 }
 ```
 
-This is a very simple example and there is much more to the view system, visit its full documentation [here.](/docs/using_polyel/views)
+This is a very simple example and there is much more to the view system, visit its full documentation [here.](/docs/using_voltis/views)
 
 ## Middleware Parameters
 

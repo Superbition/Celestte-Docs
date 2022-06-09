@@ -5,7 +5,7 @@ title: Encryption
 
 ## Introduction
 
-Polyel supports a range of different AES encryption ciphers which are using the `openssl` library to perform secure encryption for you. It is recommended you use the Polyel encrypters for data encryption and generate a secure key before you deploy your application.
+Voltis supports a range of different AES encryption ciphers which are using the `openssl` library to perform secure encryption for you. It is recommended you use the Voltis encrypters for data encryption and generate a secure key before you deploy your application.
 
 For encryptions ciphers which are using the `CBC` mode, they are validated using a message authentication code (MAC) to ensure data authenticity and that nothing was changed during decryption. If you are using `GCM` the data authentication is handled automatically and a secure cryptographically strong initialisation vector is generated using `random_bytes()` along with a 16 bit tag value.
 

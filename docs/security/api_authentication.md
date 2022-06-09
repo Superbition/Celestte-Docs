@@ -5,19 +5,19 @@ title: API Authentication
 
 ## Introduction
 
-Along with user authentication for the browser, Polyel also provides you with API Authentication and implements this in a very simple and secure manner. As user authentication uses the `SessionProtector`, Polyel uses the `TokenProtector` for API authentication.
+Along with user authentication for the browser, Voltis also provides you with API Authentication and implements this in a very simple and secure manner. As user authentication uses the `SessionProtector`, Voltis uses the `TokenProtector` for API authentication.
 
 The token driver is responsible for inspecting the API token sent with a request to a protected API route and will validate the request and allow further execution if the API token is deemed valid and has not expired, it will match this data within the database against a user.
 
 ## Defining API Routes
 
-For protected API routes, you must define all your API endpoints inside the `api.php` routes file at `app/routing/api.php`. In there you can define new API only routes and by default a route group is already setup to use the Polyel Authentication System and the API protector. When you send API requests you need to send a valid client ID and API token to pass authentication.
+For protected API routes, you must define all your API endpoints inside the `api.php` routes file at `app/routing/api.php`. In there you can define new API only routes and by default a route group is already setup to use the Voltis Authentication System and the API protector. When you send API requests you need to send a valid client ID and API token to pass authentication.
 
 If your application uses API routes which don’t require authentication, you can just define these routes outside the default provided route group inside `api.php`.
 
 ### Protecting API Routes
 
-As mentioned earlier a routing group is already setup for you and it uses the Polyel authentication service and API tokens to validate API endpoints that you define within the group.
+As mentioned earlier a routing group is already setup for you and it uses the Voltis authentication service and API tokens to validate API endpoints that you define within the group.
 
 ```
 Route::group(['prefix' => '/api', 'middleware' => 'Auth:api'], function()
@@ -75,7 +75,7 @@ All API configuration options can be found within ` config\auth.php`. You can fi
 
 ## Generating Tokens
 
-After you have your `api_tokens` table setup and configured, you are now ready to start using the provided methods to generate API tokens for your users. Polyel provides you with a method called `generateApiToken` which will render an API token along with a client ID. When calling this method, after generating the token and client ID it will by default save this to the database but return the `clientId`, `token` and `hash` as an array so you can process this further if you wish. The token returned is the raw API token but the token stored in `api_tokens` is a `sha512` signed hash, using the encryption key you have in your `env` file.
+After you have your `api_tokens` table setup and configured, you are now ready to start using the provided methods to generate API tokens for your users. Voltis provides you with a method called `generateApiToken` which will render an API token along with a client ID. When calling this method, after generating the token and client ID it will by default save this to the database but return the `clientId`, `token` and `hash` as an array so you can process this further if you wish. The token returned is the raw API token but the token stored in `api_tokens` is a `sha512` signed hash, using the encryption key you have in your `env` file.
 
 If you want to only generate API tokens and not have them automatically stored in `api_tokens` you can pass false to the `generateApiToken` method like so:
 
@@ -85,7 +85,7 @@ use Polyel\Auth\AuthManager;
 $this->auth->generateApiToken($saveToDatabase = true, $userId = null);
 ```
 
-As you can see from the example above we can also pass in a custom user ID to generate a API token for a specific user, by default if the user ID is not defined, Polyel will use the ID from the current authenticated user. The token created is generated using PHPs cryptographically secure method `random_bytes` and the token is returned using `bin2hex` at 160 characters, stored in the database as a hashed `sha512` value.
+As you can see from the example above we can also pass in a custom user ID to generate a API token for a specific user, by default if the user ID is not defined, Voltis will use the ID from the current authenticated user. The token created is generated using PHPs cryptographically secure method `random_bytes` and the token is returned using `bin2hex` at 160 characters, stored in the database as a hashed `sha512` value.
 
 A collision check will be performed to make sure of the unlikely event where a Client ID already exists. When you generate API tokens, the array returned gives you the chance to show the raw API token to your users, you only really want to show this once for security reasons as the stored token is hashed.
 
@@ -103,7 +103,7 @@ If you only want to generate a unique client ID and not create or save an actual
 
 You may also quickly generate API tokens only by calling the `generateApiTokenOnly` method.
 
-<div class="noteMsg">Polyel gives you the easy ability to generate secure API tokens and as they are stored as a hashed value, you will need to use the provided methods to generate tokens but also implement an API token management interface for your users and web frontend for your application. When tokens are created you should store the hashed value and show the plain-text token to the user for them to keep and as a one-time display.</div>
+<div class="noteMsg">Voltis gives you the easy ability to generate secure API tokens and as they are stored as a hashed value, you will need to use the provided methods to generate tokens but also implement an API token management interface for your users and web frontend for your application. When tokens are created you should store the hashed value and show the plain-text token to the user for them to keep and as a one-time display.</div>
 
 ## Revoking API Tokens
 
@@ -142,9 +142,9 @@ $this->auth->revokeAllApiTokens($userId = null);
 
 When you generate new API tokens for a user they are assigned a token lifetime, by default this lifetime is 1 year, giving the token a long life, meaning the user does not have to keep creating new tokens frequently. You may change this lifetime by changing `api_token_lifetime` located at `config\auth.php`. Whenever you generate a new token with `generateApiToken` or refresh a token with `refreshApiToken`, they will use the configured token lifetime value to create the `token_expires_at` value that gets stored inside `api_tokens`.
 
-Along with the `token_expires_at`, Polyel will automatically update the `token_last_active` every time it successfully authenticates, allowing you to track when API tokens were last used.
+Along with the `token_expires_at`, Voltis will automatically update the `token_last_active` every time it successfully authenticates, allowing you to track when API tokens were last used.
 
-If the token lifetime expires then Polyel will treat any requests sent with an expired lifetime as invalid and not allow the request to process any further. Either a user needs to create a new token, refresh their token or you can extend the expiration using the `extendApiTokenLifetime` method and pass over how much you want to add to the lifetime of the token, for example:
+If the token lifetime expires then Voltis will treat any requests sent with an expired lifetime as invalid and not allow the request to process any further. Either a user needs to create a new token, refresh their token or you can extend the expiration using the `extendApiTokenLifetime` method and pass over how much you want to add to the lifetime of the token, for example:
 
 ```
 use Polyel\Auth\AuthManager;
@@ -154,7 +154,7 @@ $this->auth->extendApiTokenLifetime($clientId, '+1 month');
 
 ## Using the Client ID & API Token
 
-Polyel supports a number of ways that you can attach the client ID and API token to your requests, the client ID allows Polyel to figure out which API token and user to validate against and the API token from your request is validated against the hash stored in the database. Let’s take a look at how we can provide these credentials during a request...
+Voltis supports a number of ways that you can attach the client ID and API token to your requests, the client ID allows Voltis to figure out which API token and user to validate against and the API token from your request is validated against the hash stored in the database. Let’s take a look at how we can provide these credentials during a request...
 
 ### Query Parameters
 
@@ -181,7 +181,7 @@ The request body can be either form parameters or JSON data. Make sure you set t
 
 ### Headers & Bearer Token
 
-A Polyel API application can perform API authentication through the use of Bearer API tokens, all you need to do is pass the client ID and the token using HTTP headers:
+A Voltis API application can perform API authentication through the use of Bearer API tokens, all you need to do is pass the client ID and the token using HTTP headers:
 
 ```
 ClientID: <your-client-id>

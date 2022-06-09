@@ -5,7 +5,7 @@ title: Request
 
 ## Getting access to a request
 
-The quickest way to access the request service is to type-hint it using the Polyel container service which will use dependency injection, by type-hinting inside a controller method you can get access to the current request data as shown above.
+The quickest way to access the request service is to type-hint it using the Voltis container service which will use dependency injection, by type-hinting inside a controller method you can get access to the current request data as shown above.
 However, type-hinted services must come first before any route parameters.
 
 Take this route for example:
@@ -32,11 +32,11 @@ class ProfileController extends Controller
 }
 ```
 
-You can see how the Request service is passed in along with route parameters afterwards, this is because the Polyel dependency injection container passes in services first and then route parameters second.
+You can see how the Request service is passed in along with route parameters afterwards, this is because the Voltis dependency injection container passes in services first and then route parameters second.
 
 ## Request Capture data
 
-Polyel automatically captures data about the request for you, most of the common request data you can access via class properties.
+Voltis automatically captures data about the request for you, most of the common request data you can access via class properties.
 
 Below is a list of all the public properties you can use:
 
@@ -90,7 +90,7 @@ $json = $request->data("web.lang.php");
 
 False is returned if no data is found.
 
-<div class="noteMsg">Please note, Polyel uses json_decode() to convert the JSON object to a PHP array which is what is returned</div>
+<div class="noteMsg">Please note, Voltis uses json_decode() to convert the JSON object to a PHP array which is what is returned</div>
 
 ## Max data size for HTTP requests
 
@@ -268,7 +268,7 @@ Sends back the cookie value. Will return false if no cookie is found.
 
 ## File uploads
 
-To handle file uploads, Polyel using a built in file handler to process uploaded file. We can accept these uploaded files using the request service.
+To handle file uploads, Voltis using a built in file handler to process uploaded file. We can accept these uploaded files using the request service.
 
 ```php
 $profilePicture = $request->file("profilePicUpdate");
@@ -345,11 +345,11 @@ $request->file("image")->save("/images/upload", "local");
 
 Expects the file path to the directory with where to save the new file and the disk you want to use.
 
-Do not pass in a file name here as Polyel will automatically generate a unique file name for you in, for example:
+Do not pass in a file name here as Voltis will automatically generate a unique file name for you in, for example:
 
 `49-5ea05a13c33423-73204971-70` 
 
-You should not (hopefully) run into any collision issues with Polyel automatic name generation, it uses PHP’s ` uniqid()` with more entropy set and generates random integers from `1-100` which get prefixed and suffixed onto the final file name.
+You should not (hopefully) run into any collision issues with Voltis automatic name generation, it uses PHP’s ` uniqid()` with more entropy set and generates random integers from `1-100` which get prefixed and suffixed onto the final file name.
 
 #### Saving with without a unique name
 

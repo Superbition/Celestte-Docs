@@ -5,7 +5,7 @@ title: Session
 
 ## Introduction
 
-HTTP applications and requests are by default stateless, meaning they don’t hold data between requests, as far as the HTTP server is concerned, each request is separate from another. To enable us to store data between requests, we use a session and Polyel provides a session system ready for you to use. By default the session system uses the file system to store sessions as JSON objects, support for other session systems like database or Redis are supported.
+HTTP applications and requests are by default stateless, meaning they don’t hold data between requests, as far as the HTTP server is concerned, each request is separate from another. To enable us to store data between requests, we use a session and Voltis provides a session system ready for you to use. By default the session system uses the file system to store sessions as JSON objects, support for other session systems like database or Redis are supported.
 
 <div class="warnMsg">Routes defined in <code>/app/routing/api.php</code> are stateless, meaning they don't have access to the Session System</div>
 
@@ -141,7 +141,7 @@ if($session->exists('age'))
 
 ### Storing session data
 
-Because sessions are started and handled automatically for us by Polyel, we have access to the session right away, there is no starting session configuration to worry about. So we can store data right away.
+Because sessions are started and handled automatically for us by Voltis, we have access to the session right away, there is no starting session configuration to worry about. So we can store data right away.
 
 A simple data store example:
 
@@ -223,7 +223,7 @@ The second parameter is the default value which is returned if no match is found
 
 ### Clearing the Session
 
-Sometimes you may want to clear the session data without having to totally destroy the session completely, Polyel allows you to use `clear()` in order to just wipe out the session data.
+Sometimes you may want to clear the session data without having to totally destroy the session completely, Voltis allows you to use `clear()` in order to just wipe out the session data.
 
 ```php
 $session->clear();
@@ -243,7 +243,7 @@ Ideally you only want to flash a single message to the session when using `flash
 
 ## Regenerating the session
 
-Default behavior is Polyel will handle creating and managing the session cookie and data, a session is created no matter what, even if you are not authenticated. But you should regenerate the session at certain stages, so Polyel gives you the ability to regenerate the session ID but still keep the data from the old session.
+Default behavior is Voltis will handle creating and managing the session cookie and data, a session is created no matter what, even if you are not authenticated. But you should regenerate the session at certain stages, so Voltis gives you the ability to regenerate the session ID but still keep the data from the old session.
 
 ```php
 $session->regenerate();
@@ -255,7 +255,7 @@ Does not require any parameters, just call the function and the session will be 
 
 ## Session Garbage Collection
 
-Polyel automatically runs a session garbage collection process every 30 minutes to remove old sessions, this happens asynchronously and does not affect server performance with requests, the process runs in the background in a non-blocking manner. You can set the session lifetime in the config at `/config/session.php`.
+Voltis automatically runs a session garbage collection process every 30 minutes to remove old sessions, this happens asynchronously and does not affect server performance with requests, the process runs in the background in a non-blocking manner. You can set the session lifetime in the config at `/config/session.php`.
 
 ## Flush all session data
 

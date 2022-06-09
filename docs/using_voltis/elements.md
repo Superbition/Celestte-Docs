@@ -5,7 +5,7 @@ title: Elements
 
 ## Introduction
 
-Elements are Polyel’s answer to control structures not being allowed inside a view as we believe that logic should stay inside your code. But with Polyel elements, it makes it easy to include and render multiple elements on different views, you prepare your data in plain PHP and then use the provided Polyel element functions to build and render your elements, no need for mixing HTML and control structures together.
+Elements are Voltis’s answer to control structures not being allowed inside a view as we believe that logic should stay inside your code. But with Voltis elements, it makes it easy to include and render multiple elements on different views, you prepare your data in plain PHP and then use the provided Voltis element functions to build and render your elements, no need for mixing HTML and control structures together.
 
 ## Creating Elements
 
@@ -46,7 +46,7 @@ class ExampleElement extends Element
     // Set the element template relative to /resources/elements/
     public $element = 'list';
 
-	// Use the constructor to pass in any Polyel services
+	// Use the constructor to pass in any Voltis services
     public function __construct()
     {
 
@@ -75,7 +75,7 @@ All your logic for building up an element happens in the `build()` function, thi
 
 The list example uses the element template called `list` set with `$element`, that file would be located at ` /resources/elements/list.html`.
 
-When the `build()` function is called, the first thing that happens is the `listTitle` data tag is set, then there are 3 appends that add list items with 3 different names. Finally, this all gets rendered by returning `$this->renderElement()`; in the list element template you may have noticed the `{{ @elementContent }}` which is used to let Polyel know where to place all the appended names, the element content.
+When the `build()` function is called, the first thing that happens is the `listTitle` data tag is set, then there are 3 appends that add list items with 3 different names. Finally, this all gets rendered by returning `$this->renderElement()`; in the list element template you may have noticed the `{{ @elementContent }}` which is used to let Voltis know where to place all the appended names, the element content.
 
 ### Append HTML Blocks
 
@@ -104,13 +104,13 @@ After setting up your element template and logic, you will want to use your new 
 </div>
 ```
 
-That is how you tell Polyel to include your element inside a view, by adding ` {{ @addElement(UserList) }}`, it will let the view system know you want that element to be rendered and injected here, the elements logic class will be resolved from the service container and its `build()` function will be called and its final return will be replaced wherever  `{{ @addElement(UserList) }}` is located.
+That is how you tell Voltis to include your element inside a view, by adding ` {{ @addElement(UserList) }}`, it will let the view system know you want that element to be rendered and injected here, the elements logic class will be resolved from the service container and its `build()` function will be called and its final return will be replaced wherever  `{{ @addElement(UserList) }}` is located.
 
 When including an element, if it is nested inside directories, you only need to pass the class name as all element logic classes are under the namespace ` App\View\Elements` and are automatically loaded from the service container, so you are to organize your directories as you want, relative to `/app/View/Elements`.
 
 ## Multi Elements
 
-Polyel offers single dynamic elements as the default way of rendering a single element and being able to add content to that element. However, what if you need to render multiple elements or sections with different data? Well, Polyel has the ability to render multiple elements from a single template, it just requires a few different function calls.
+Voltis offers single dynamic elements as the default way of rendering a single element and being able to add content to that element. However, what if you need to render multiple elements or sections with different data? Well, Voltis has the ability to render multiple elements from a single template, it just requires a few different function calls.
 
 ### Defining a multi element template
 
@@ -176,7 +176,7 @@ Just like you would with a normal single use element, you only need to include t
 
 ## Not using an Element
 
-Just like in many other frameworks, they use control structures within HTML to decide when to include certain content or not, especially when rendering multiple elements or HTML content. With Polyel, if you decide based on the request that you don’t want to render an element but you still have the ` {{ @addElement(elementName) }}` tag in your views, you can choose to not render this element and Polyel will automatically just remove the tag for you. All you have to do is return `false` inside your element’s `build()` method, this tells Polyel you won’t be rendering this element, so Polyel will remove the element tag for you.
+Just like in many other frameworks, they use control structures within HTML to decide when to include certain content or not, especially when rendering multiple elements or HTML content. With Voltis, if you decide based on the request that you don’t want to render an element but you still have the ` {{ @addElement(elementName) }}` tag in your views, you can choose to not render this element and Voltis will automatically just remove the tag for you. All you have to do is return `false` inside your element’s `build()` method, this tells Voltis you won’t be rendering this element, so Voltis will remove the element tag for you.
 
 ## Resetting Elements
 

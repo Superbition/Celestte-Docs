@@ -17,9 +17,9 @@ class Footer extends React.Component {
   render() {
     return (
 
-      <footer className="nav-footer" id="footer">
+      <footer>
 
-        <div id="social_links">
+        <div id="socialLinks">
 
           <a href="https://twitter.com/voltis_io" target="__blank"><img src="/docs/img/twitter-logo.png"/></a>
           <a href="https://github.com/Superbition/Voltis" target="__blank"><img src="/docs/img/github-logo.png"/></a>
@@ -28,7 +28,7 @@ class Footer extends React.Component {
 
         <section className="copyright">{this.props.config.copyright}</section>
 
-        <div id="end_logo"><img src="/docs/img/logo.png"/></div>
+        <div><img src="/docs/img/logo.png"/></div>
 
       </footer>
     );

@@ -39,11 +39,11 @@ class jsonController extends Controller
 }
 ```
 
-When sending back any PHP array, Polyel will automatically convert the array into a JSON object and attach the  `Content-Type: application/json` header.
+When sending back any PHP array, Voltis will automatically convert the array into a JSON object and attach the  `Content-Type: application/json` header.
 
 ## Object Responses
 
-While sending a simple response back is quick and efficient you will at some point want more control over the response being sent, Polyel provides you with a Response Builder which can be used to form a response to send to the client using an object to create a more complex return.
+While sending a simple response back is quick and efficient you will at some point want more control over the response being sent, Voltis provides you with a Response Builder which can be used to form a response to send to the client using an object to create a more complex return.
 
 ### Using the response object
 
@@ -101,11 +101,11 @@ class WelcomeController extends Controller
 }
 ```
 
-This is a very simple example and there is much more to the view system, visit its full documentation [here.](/docs/using_polyel/views)
+This is a very simple example and there is much more to the view system, visit its full documentation [here.](/docs/using_voltis/views)
 
 ## Global Headers
 
-With Polyel it is possible to set headers using the response object or through using a middleware to attach headers to a response. But if you want a set a header for every request, you can use global headers. These global headers can be set inside of `/config/response.php`, an example of this is:
+With Voltis it is possible to set headers using the response object or through using a middleware to attach headers to a response. But if you want a set a header for every request, you can use global headers. These global headers can be set inside of `/config/response.php`, an example of this is:
 
 ```php
 "headers" => [
@@ -120,7 +120,7 @@ Saving you the extra code being used to setup a middleware for only headers or h
 
 ## Content Types
 
-Most of the time Polyel will set the correct content type for you, like when you return a string or an array but it is best to explicitly define what content you are sending back, to do this, you either set the header yourself or use one of the common provided content types by Polyel.
+Most of the time Voltis will set the correct content type for you, like when you return a string or an array but it is best to explicitly define what content you are sending back, to do this, you either set the header yourself or use one of the common provided content types by Voltis.
 
 ```php
 return response("Hello World!")
@@ -142,7 +142,7 @@ return response("Hello World!")
 			->withCookie("cookie-name", "cookie-value");
 ```
 
-When setting a cookie the only required arguments are the name and value, Polyel uses the following defaults when they are not set using the cookie functions:
+When setting a cookie the only required arguments are the name and value, Voltis uses the following defaults when they are not set using the cookie functions:
 
 - Name: required
 - Value: required
@@ -173,7 +173,7 @@ Just like the Response Builder, sending a redirect also has its own object which
 return redirect("/profile/dashboard/main");
 ```
 
-This will redirect inside the application. If you need to redirect away from a Polyel application, just use a complete URL:
+This will redirect inside the application. If you need to redirect away from a Voltis application, just use a complete URL:
 
 ```php
 return redirect("https://google.co.uk");
@@ -195,7 +195,7 @@ return redirect('/')->withFlash('type', 'message');
 
 ## Sending a File
 
-To send a file using Polyel to the browser, you can use the `sendFile()` method which is a part of the response builder class.
+To send a file using Voltis to the browser, you can use the `sendFile()` method which is a part of the response builder class.
 
 ```php
 return response()
