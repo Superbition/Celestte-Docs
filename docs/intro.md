@@ -15,13 +15,5 @@ Just like any other web framework, you can use Voltis to create a fully featured
 
 The Voltis framework has many built-in components to make web development easier and less stressful, for example, Voltis can handle the authentication processes, frontend rendering, database connection pools and security practices like XSS filtering or CSRF (Cross-site Request Forgery) prevention. Voltis is designed to be easy to install and develop with, focusing on web applications, you can build your next microservice, API, website or real time app with Voltis.
 
-## Why is Voltis namespaced to Polyel?
-Polyel is the previous name for the Voltis framework and comes from the meaning of two words.
-
-The first word being "Poly":
-> A combining form with the meanings “much, many” and, in chemistry, “polymeric,” used in the formation of compound words.
-
-and the second word being "Element":
-> A component or constituent of a whole or one of the parts into which a whole may be resolved by analysis.
-
-Poly-Element creates Polyel because there are many different elements and phases within web development.
+## Voltis was renamed from Polyel
+Polyel is the previous name for the Voltis framework.
