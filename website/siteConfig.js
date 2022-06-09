@@ -44,13 +44,13 @@ const siteConfig = {
   users,
 
   /* path to images for header/footer */
-  headerIcon: 'img/logo.svg',
-  footerIcon: 'img/logo.svg',
+  headerIcon: 'img/logo.png',
+  footerIcon: 'img/logo.png',
   favicon: 'img/favicon.ico',
 
   /* Colors for website */
   colors: {
-    primaryColor: '#424348',
+    primaryColor: '#707cc3',
     secondaryColor: '#7986cd',
   },
 
@@ -89,8 +89,8 @@ const siteConfig = {
   scrollToTop: true,
 
   // Open Graph and Twitter card images.
-  ogImage: 'img/logo.svg',
-  twitterImage: 'img/logo.svg',
+  ogImage: 'img/undraw_online.svg',
+  twitterImage: 'img/undraw_tweetstorm.svg',
 
   // For sites with a sizable amount of content, set collapsible to true.
   // Expand/collapse the links and subcategories under categories.
