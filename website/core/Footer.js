@@ -28,7 +28,7 @@ class Footer extends React.Component {
 
         <section className="copyright">{this.props.config.copyright}</section>
 
-        <img className="logo" src={this.props.config.footerIcon} alt={this.props.config.title} />
+        <div id="end_logo"><img src="/docs/img/logo.png"/></div>
 
       </footer>
     );
