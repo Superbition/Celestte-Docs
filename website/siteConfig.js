@@ -4,11 +4,11 @@
 // List of projects/orgs using your project for the users page.
 const users = [
   {
-    caption: 'Bakup',
+    caption: 'User1',
     // You will need to prepend the image path with your baseUrl
     // if it is not '/', like: '/test-site/img/image.jpg'.
-    image: 'img/bakup-logo.svg',
-    infoLink: 'https://bakup.io',
+    image: '/img/undraw_open_source.svg',
+    infoLink: 'https://www.example.com',
     pinned: true,
   },
 ];
