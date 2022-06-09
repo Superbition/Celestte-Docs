@@ -21,8 +21,8 @@ class Footer extends React.Component {
 
         <div id="social_links">
 
-          <a href="https://twitter.com/Voltis_io" target="__blank"><img src="/docs/img/twitter-logo.png"/></a>
-          <a href="https://github.com/Superbition/Polyel" target="__blank"><img src="/docs/img/github-logo.png"/></a>
+          <a href="https://twitter.com/voltis_io" target="__blank"><img src="/docs/img/twitter-logo.png"/></a>
+          <a href="https://github.com/Superbition/Voltis" target="__blank"><img src="/docs/img/github-logo.png"/></a>
 
         </div>
 

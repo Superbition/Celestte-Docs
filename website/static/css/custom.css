@@ -66,5 +66,6 @@ header > a img.logo,
 
 .nav-footer img.logo
 {
-	margin-top: 15px;
+	height: auto;
+	width: 84px;
 }
