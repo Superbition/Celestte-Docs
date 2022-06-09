@@ -17,7 +17,7 @@ class Footer extends React.Component {
   render() {
     return (
 
-      <footer className="nav-footer" id="footer">
+      <footer>
 
         <div id="socialLinks">
 

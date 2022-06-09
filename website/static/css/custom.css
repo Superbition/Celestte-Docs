@@ -46,18 +46,18 @@
  Hack to fix Voltis logo from being skewed given
  the SVG container isn't a perfect circle.
 */
-header > a img .logo, .nav-footer img .logo
+header > a img .logo, footer img .logo
 {
 	width: 34px;
 	height: auto !important;
 }
 
-.nav-footer
+footer
 {
 	text-align: center;
 }
 
-.nav-footer img.logo
+footer img .logo
 {
 	height: auto;
 	width: 84px;
