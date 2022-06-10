@@ -48,7 +48,7 @@ const config = {
       navbar: {
         title: 'Voltis.io',
         logo: {
-          alt: 'My Site Logo',
+          alt: 'Voltis logo',
           src: 'img/logo.svg',
         },
         items: [
