@@ -58,12 +58,22 @@ const config = {
             position: 'left',
             label: 'Tutorial',
           },
-          {to: '/blog', label: 'Blog', position: 'left'},
+          //{to: '/intro', label: 'Introduction', position: 'left'},
           {
-            href: 'https://github.com/facebook/docusaurus',
-            label: 'GitHub',
+            href: 'https://voltis.io/',
+            label: 'Voltis.io',
             position: 'right',
           },
+          {
+            href: 'https://phpnexus.io/',
+            label: 'Community',
+            position: 'right',
+          },
+          /*{
+            href: '',
+            label: 'GitHub',
+            position: 'right',
+          },*/
         ],
       },
       footer: {
