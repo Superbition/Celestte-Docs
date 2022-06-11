@@ -46,7 +46,7 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       navbar: {
-        title: 'Voltis.io',
+        title: 'Voltis Framework',
         logo: {
           alt: 'Voltis logo',
           src: 'img/logo.svg',
