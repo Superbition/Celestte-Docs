@@ -78,7 +78,8 @@ const config = {
       },
       footer: {
         style: 'dark',
-        links: [
+        // Links commented out because we are using a custom footer
+        /*links: [
           {
             title: 'Docs',
             items: [
@@ -118,8 +119,8 @@ const config = {
               },
             ],
           },
-        ],
-        copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+        ],*/
+        copyright: `Copyright © ${new Date().getFullYear()} Voltis.io & Superbition`,
       },
       prism: {
         theme: lightCodeTheme,
