@@ -1,7 +1,6 @@
 ---
-sidebar_position: 1
-slug: /
 title: Introduction
+slug: /
 ---
 
 **Another framework you ask?** Well, this project originally started as a set of classes to test the features of the Swoole networking library for PHP. Overtime as more services were built which were used to try out the ability of Swoole, the project formed into a fully featured web framework based on a new async/coroutine programming model that has not really been seen before with PHP.
