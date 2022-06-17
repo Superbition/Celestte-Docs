@@ -48,6 +48,29 @@
   background-color: #5b5b5b !important;
 }
 
+#validationLinkContainer
+{
+	display: flex;
+}
+
+.validationLinkGroup
+{
+	display: inline-flex;
+	flex-grow: 1;
+}
+
+.validationLinkGroup p a
+{
+	display: flex;
+	margin-top: 3px;
+	margin-bottom: 3px;
+}
+
+.validationLinkGroup p a:hover
+{
+	text-decoration: underline;
+}
+
 footer
 {
   color: whitesmoke;
