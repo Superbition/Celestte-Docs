@@ -96,7 +96,7 @@ To make things easier, you can use the `@method` view directive to include the `
 
 ## CSRF Protection
 
-When making `POST`, `PUT`, `PATCH`and `DELETE` routes where you intend to use HTML forms or AJAX requests to interact with your server, you need to include the CSRF token to protect your application from CSRF attacks, please visit the [CSRF documentation](/docs/using_voltis/csrf_protection) for more details.
+When making `POST`, `PUT`, `PATCH`and `DELETE` routes where you intend to use HTML forms or AJAX requests to interact with your server, you need to include the CSRF token to protect your application from CSRF attacks, please visit the [CSRF documentation](/using_voltis/csrf_protection) for more details.
 
 ```html
 <form method="POST" action="/update/profile">

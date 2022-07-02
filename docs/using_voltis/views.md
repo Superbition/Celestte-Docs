@@ -336,4 +336,4 @@ So if Voltis does not allow logic inside a template, how does Voltis handle dyna
 
 The idea is simple, we are just removing logic from our templates and performing it inside a PHP class instead, keeping the HTML templates clean!
 
-To see the documentation for Elements, visit the specific page for [Voltis Elements]( /docs/using_voltis/elements).
+To see the documentation for Elements, visit the specific page for [Voltis Elements]( /using_voltis/elements).

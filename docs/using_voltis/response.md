@@ -100,7 +100,7 @@ class WelcomeController extends Controller
 }
 ```
 
-This is a very simple example and there is much more to the view system, visit its full documentation [here.](/docs/using_voltis/views)
+This is a very simple example and there is much more to the view system, visit its full documentation [here.](/using_voltis/views)
 
 ## Global Headers
 

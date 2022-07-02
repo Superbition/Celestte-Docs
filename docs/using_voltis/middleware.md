@@ -268,7 +268,7 @@ class QueueHeadersMiddleware
 
 Here this middleware will queue a header to be added to the Response and the final Response won't be affected, just altered.
 
-For more documentation on sending back a Response, checkout the [Response Documentation](/docs/using_voltis/response)
+For more documentation on sending back a Response, checkout the [Response Documentation](/using_voltis/response)
 
 :::caution
 If you return a response in an after middleware, this return will take priority over the Controller Response, because it means the middleware gives you the ability to change the response just before the final response is sent to the client.
@@ -324,7 +324,7 @@ class BeforeMiddleware
 }
 ```
 
-This is a very simple example and there is much more to the view system, visit its full documentation [here.](/docs/using_voltis/views)
+This is a very simple example and there is much more to the view system, visit its full documentation [here.](/using_voltis/views)
 
 ## Middleware Parameters
 

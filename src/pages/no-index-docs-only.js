@@ -17,7 +17,7 @@ function HomepageHeader() {
         <div className={styles.buttons}>
           <Link
             className="button button--secondary button--lg"
-            to="/docs/intro">
+            to="/"> // Link to the introduction page because there is no index
             Docusaurus Tutorial - 5min ⏱️
           </Link>
         </div>
