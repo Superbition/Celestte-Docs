@@ -9,7 +9,7 @@ const config = {
   title: 'Voltis PHP Framework',
   tagline: 'A full stack asynchronous, non-blocking PHP framework',
   url: 'https://voltis.io/',
-  baseUrl: '/',
+  baseUrl: '/docs/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
