@@ -1,9 +1,6 @@
 ---
-id: middleware
 title: Middleware
 ---
-
-## Introduction
 
 In Voltis there is a Middleware mechanism that allows you to filter incoming HTTP requests and act upon those requests during two stages in your application; the two stages being before and after.
 
@@ -21,13 +18,15 @@ To create a new Middleware, you can use the Voltis command `middleware`:
 php polyel middleware:create LogRequestMiddleware
 ```
 
-You can use `middleware create` to define a new Middleware and this command will create a new class for you and place it in the appropriate directory for you, created from the default Middleware definition.
+You can use `middleware:create` to define a new Middleware and this command will create a new class for you and place it in the appropriate directory for you, created from the default Middleware definition.
 
 All Middleware is located in `app\Http\Middleware`.
 
 When trying to mentally understand how Middleware works, think of it as “layers” your application has to pass through in order for the request to continue deeper into your application. With each layer that the HTTP request goes through, the more that request is closure to the core action and with each layer, the request can be altered and rejected early on.
 
-<div class="noteMsg">When Middleware is executed during a request it is all resolved through the dependency injection container from the HTTP Kernel, meaning you can type-hint any extra dependencies you may need within your middleware’s class constructor to access other services.</div>
+:::info
+When Middleware is executed during a request it is all resolved through the dependency injection container from the HTTP Kernel, meaning you can type-hint any extra dependencies you may need within your middleware’s class constructor to access other services.
+:::
 
 ## Before and After Middleware
 
@@ -83,7 +82,7 @@ When you want to perform operations after the application has handled the reques
 
 Before you can attach Middleware to a specified route you must assign a Middleware alias inside the HTTP Kernel class which will be located at `app\Http\Kernel.php`, for example the route aliases could look like:
 
-```
+```php
 protected array $routeMiddlewareAliases = [
 
     'RedirectIfAuthenticated' => \App\Http\Middleware\RedirectIfAuthenticatedMiddleware::class,
@@ -94,7 +93,9 @@ protected array $routeMiddlewareAliases = [
 ];
 ```
 
-<div class="noteMsg">All Middleware that you create within your application are preloaded and defined during the server boot process, making them available straight away, and speeding up requests. Middleware which is defined inside your HTTP Kernel is also pre-processed during server boot time and automatically optimised and cached, meaning sorting and conversions don’t happen during the request cycle.</div>
+:::info
+All Middleware that you create within your application are preloaded and defined during the server boot process, making them available straight away, and speeding up requests. Middleware which is defined inside your HTTP Kernel is also pre-processed during server boot time and automatically optimised and cached, meaning sorting and conversions don’t happen during the request cycle.
+:::
 
 ### Attaching Middleware to a Route
 
@@ -105,7 +106,7 @@ Route::get("/", "Index@home")
         ->middleware("LogRequestMiddleware");
 ```
 
-This attaches the Middleware called ` LogRequestMiddleware` to the `/` Route and will be executed every time this Route is called. It is best to always add “Middleware” to the end of your class names so that you know it is a Middleware class.
+This attaches the Middleware called `LogRequestMiddleware` to the `/` Route and will be executed every time this Route is called. It is best to always add “Middleware” to the end of your class names so that you know it is a Middleware class.
 
 ### Attaching multiple Middleware
 
@@ -139,9 +140,13 @@ protected array $globalMiddlewareStack = [
 ];
 ```
 
-<div class="warnMsg">Global Middleware will be executed first before any manually configurated Middleware</div>
-<br>
-<div class="noteMsg">You can use middleware class aliases or group names within the global middleware stack and they will be converted/optimized during server boot.</div>
+:::caution
+Global Middleware will be executed first before any manually configured Middleware
+:::
+
+:::info
+You can use middleware class aliases or group names within the global middleware stack and they will be converted/optimized during server boot.
+:::
 
 ### Middleware Groups
 
@@ -179,7 +184,9 @@ Route::group(['prefix' => '/api', 'middleware' => 'api'], function()
 });
 ```
 
-<div class="noteMsg">Remember that by default the web middleware group is assigned to every web route and the API middleware group is assigned to every API route.</div>
+:::note
+Remember that by default the web middleware group is assigned to every web route and the API middleware group is assigned to every API route.
+:::
 
 ## Returning a Response from Middleware
 
@@ -263,7 +270,9 @@ Here this middleware will queue a header to be added to the Response and the fin
 
 For more documentation on sending back a Response, checkout the [Response Documentation](/docs/using_voltis/response)
 
-<div class="warnMsg">If you return a response in an after middleware, this return will take priority over the Controller Response, because it means the middleware gives you the ability to change the response just before the final response is sent to the client.</div>
+:::caution
+If you return a response in an after middleware, this return will take priority over the Controller Response, because it means the middleware gives you the ability to change the response just before the final response is sent to the client.
+:::
 
 ### Setting the HTTP status code
 
@@ -356,7 +365,7 @@ You can use the parameter to alter the way a Middleware response to your request
 
 To define the above Middleware example using parameters you can assign this to a route like so:
 
-```
+```php
 Route::get('active/check', function () {
     // ...
 })->middleware('CheckLastActiveMiddleware:ios');
@@ -364,7 +373,7 @@ Route::get('active/check', function () {
 
 Parameters are set after the `:`, multiple parameters can be passed by using a comma to separate them apart:
 
-```
+```php
 Route::get('active/check', function () {
     // ...
 })->middleware('CheckLastActiveMiddleware:ios,android,pc');

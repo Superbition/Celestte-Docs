@@ -1,5 +1,4 @@
 ---
-id: hashing
 title: Hashing
 ---
 
@@ -7,9 +6,11 @@ title: Hashing
 
 In Voltis you are provided with a hashing Facade called `Hash` which gives you access to hashing functions for storing user passwords, based on the PHP native functions and algorithms supported by PHP. Voltis works with three major hashing algorithms: Bcrypt, Argon2i and Argon2id.
 
-The Voltis registration and authentication system will by default use ` argon2id` as the hashing algorithm to handle passwords, ` argon2id` is also the default set within the hashing configuration file.
+The Voltis registration and authentication system will by default use `argon2id` as the hashing algorithm to handle passwords, `argon2id` is also the default set within the hashing configuration file.
 
-<div class="warnMsg">Voltis by default will use the Argon2id hashing algorithm, meaning PHP 7.3.0+ is required</div>
+:::caution
+Voltis by default will use the Argon2id hashing algorithm, meaning PHP 7.3.0+ is required
+:::
 
 ## Configuration
 
@@ -17,11 +18,11 @@ All the configuration and default settings for hashing is stored in `/config/has
 
 ## Using the Hash functions
 
-First you will want to make sure you include the Hash Facade: `Polyel\Hashing\Facade\Hash`
+First you will want to make sure you include the Hash Facade: `Voltis\Hashing\Facade\Hash`
 
 ### Creating a Password Hash
 
-```
+```php
 $hashedPassword = Hash::create('secure_password');
 ```
 
@@ -31,13 +32,13 @@ This will return your hashed password, something like:
 
 ### Checking Hash Info
 
-```
+```php
 $info = Hash::info($hash);
 ```
 
 Will output something like:
 
-```
+```php
 array(3) {
   ["algo"]=>
   string(8) "argon2id"
@@ -51,26 +52,27 @@ array(3) {
     int(2)
     ["threads"]=>
     int(2)
-  
+  }
+}
 ```
 
 ### Adding hash create options
 
 If you need to adjust the options on the fly in place of the default values from your config you can:
 
-```
+```php
 $hashedPassword = Hash::create('secure_password', ['time' => 2, 'memory' => 1024, 'threads' => 2]);
 ```
 
 Same goes for Bcrypt if you have it enabled:
 
-```
+```php
 $hashedPassword = Hash::create('secure_password', ['rounds' => 15]);
 ```
 
 ### Verifying a Password Hash
 
-```
+```php
 if(Hash::check('secure_password', $hash))
 {
 	echo "Passwords match!";
@@ -81,7 +83,7 @@ When creating a password hash you can use the `check` method to validate that th
 
 ### Rehash Checking
 
-```
+```php
 if(Hash::needsRehash($hash))
 {
 	$newHash = Hash::create('secure_password');

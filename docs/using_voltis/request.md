@@ -1,16 +1,14 @@
 ---
-id: request
 title: Request
 ---
 
 ## Getting access to a request
 
-The quickest way to access the request service is to type-hint it using the Voltis container service which will use dependency injection, by type-hinting inside a controller method you can get access to the current request data as shown above.
-However, type-hinted services must come first before any route parameters.
+The quickest way to access the request service is to type-hint it using the Voltis container service which will use dependency injection, by type-hinting inside a controller method you can get access to the current request data as shown above. However, type-hinted services must come first before any route parameters.
 
 Take this route for example:
 
-```
+```php
 Route::get("/user/profile/{id}", "ProfileController@showProfile");
 ```
 
@@ -19,7 +17,7 @@ And it's controller defined like so:
 ```php
 namespace App\Controllers;
 
-use Polyel\Http\Request;
+use Voltis\Http\Request;
 
 class ProfileController extends Controller
 {
@@ -90,7 +88,9 @@ $json = $request->data("web.lang.php");
 
 False is returned if no data is found.
 
-<div class="noteMsg">Please note, Voltis uses json_decode() to convert the JSON object to a PHP array which is what is returned</div>
+:::info
+Please note, Voltis uses json_decode() to convert the JSON object to a PHP array which is what is returned
+:::
 
 ## Max data size for HTTP requests
 
@@ -134,7 +134,7 @@ You must send an array to `hasAny()`.
 
 ## Seeing if an input is filled
 
-```
+```php
 if($request->isFilled("email"))
 {
     // ...
@@ -145,7 +145,7 @@ Returns true when the `email` input is not `null` and not empty.
 
 ## Seeing if an input is missing
 
-```
+```php
 if($request->isMissing("username"))
 {
     // ...
@@ -247,7 +247,7 @@ Everything else will return `false`.
 
 ### expectsJson()
 
-```
+```php
 if($request->expectsJson())
 {
     // ...
@@ -361,7 +361,9 @@ $request->file("image")->saveAs("/images/upload", "profile_img_83937261.png", "l
 
 Expecting the file directory path, the actual file name you want to use and the disk to save to.
 
-<div class="warnMsg">Currently only local storage is supported, cloud storage and other drives are in development</div>
+:::caution
+Currently only local storage is supported, cloud storage and other drives are in development
+:::
 
 ### File Functions
 

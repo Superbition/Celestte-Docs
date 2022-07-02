@@ -1,9 +1,6 @@
 ---
-id: storage
 title: Storage
 ---
-
-## Introduction
 
 Voltis provides you with a Storage service which gives you the ability to interact with a filesystem in order to work with files and directories. Right now only a local storage driver is supported but it is planned to support filesystems such as S3, FTP and external storage like Dropbox and Google drive.
 
@@ -11,8 +8,8 @@ Voltis provides you with a Storage service which gives you the ability to intera
 
 When you need to interact with a file-system, you can use the Storage service Facade:
 
-```
-use Polyel\Storage\Facade\Storage;
+```php
+use Voltis\Storage\Facade\Storage;
 
 Storage::drive("local")->read("/logs/access.log");
 ```
@@ -25,7 +22,7 @@ By calling `Storage::drive("local")` the Storage service will send back an insta
 
 To configure your filesystems, all the options are located in `/config/filesystem.php` and in there you can change your root directory for each of your configured drives.
 
-```
+```php
 "default" => "local",
 
 "drives" => [
@@ -51,21 +48,21 @@ You may add as many "drives" as you need, you may use as many drivers as you nee
 
 By default you would usually access a filesystem via the `drive()` function to select a filesystem to interact with but in your configuration, if you have set the `default` drive, you don’t need to select a drive using the `drive()` function. Just start using like so:
 
-```
+```php
 Storage::read("/logs/error.log");
 ```
 
 ## Reading Files
 
-```
+```php
 Storage::drive("local")->read("/logs/error.log");
 ```
 
-Calling `read()` with the file path will return the contents of the file you wish to read. The enitre file is read and returned with the file handle being closed once done. The read method will obtain a shared reader lock which prevents any processes from writing until all reads are complete.
+Calling `read()` with the file path will return the contents of the file you wish to read. The entire file is read and returned with the file handle being closed once done. The read method will obtain a shared reader lock which prevents any processes from writing until all reads are complete.
 
 ## Writing to Files
 
-```
+```php
 Storage::drive("local")->write("/error/last_error/error.txt", "[10:29 21/04/2020] - ...");
 ```
 
@@ -73,17 +70,19 @@ The file will be created if it does not exist. By default the second parameter i
 
 ### Prepending
 
-```
+```php
 Storage::drive("local")->prepend("/error/last_error/error.txt", "[10:28 21/04/2020] - ...");
 ```
 
 This will prepend the file with the contents passed as the second parameter. The `prepend()` function uses `php:://temp` to make it possible to prepend to a file.
 
-<div class="warnMsg">Be careful when appending, using this function uses memory to achieve a file prepend operation and will use a lot of memory with a large file</div>
+:::caution
+Be careful when appending, using this function uses memory to achieve a file prepend operation and will use a lot of memory with a large file
+:::
 
 ### Appending
 
-```
+```php
 Storage::drive("local")->append("/error/last_error/error.txt", "[10:34 21/04/2020] - ...");
 ```
 
@@ -91,7 +90,7 @@ This will append the contents you want to write to the end of a file using the `
 
 ## Copying
 
-```
+```php
 Storage::drive("local")->copy("/log/error.log", "/backups/logs/error.log.bak");
 ```
 
@@ -99,7 +98,7 @@ The `copy()` function requires a source and destination and will copy the file w
 
 ## Moving a file
 
-```
+```php
 Storage::drive("local")->move("", "");
 ```
 

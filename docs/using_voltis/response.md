@@ -1,5 +1,4 @@
 ---
-id: response
 title: Response
 ---
 
@@ -47,7 +46,7 @@ While sending a simple response back is quick and efficient you will at some poi
 
 ### Using the response object
 
-You can access the Response Builder by calling the `response()` helper which will return a new instance of ` Polyel\Http\ ResponseBuilder` which you can then use to create a new response. The response object expects the first argument as the response content.
+You can access the Response Builder by calling the `response()` helper which will return a new instance of `Voltis\Http\ ResponseBuilder` which you can then use to create a new response. The response object expects the first argument as the response content.
 
 ```php
 return response("Hello World!");
@@ -189,7 +188,7 @@ return redirect("https://google.co.uk", 301);
 
 You can also send a redirect and flash data to the session in one line:
 
-```
+```php
 return redirect('/')->withFlash('type', 'message');
 ```
 
@@ -215,7 +214,9 @@ return response()
 
 It will automatically add the `Content-Disposition` header which will force a download but it is also better to include your file type to help the client better understand what they are downloading.
 
-<div class="warnMsg">When sending a file you must not set any content inside of response(), it must be left blank as the content being sent is the file. If content is passed in, the file will not be sent and the content will be returned instead.</div>
+:::caution
+When sending a file you must not set any content inside of response(), it must be left blank as the content being sent is the file. If content is passed in, the file will not be sent and the content will be returned instead.
+:::
 
 ### Displaying a File
 

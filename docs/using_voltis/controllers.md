@@ -1,13 +1,10 @@
 ---
-id: controllers
-title: Controller
+title: Controllers
 ---
-
-## Introduction
 
 Up and until now if you’ve been following the documentation, you will have seen that it’s useful to define quick actions for routes using PHP Closures, but when things get a little more complicated for your routes and for better organization of your application, we can use a Controller. A Controller is a class which processing the incoming request from your defined routes, it is responsible for routing the request further into the application and returning a response.
 
-### Controller Loading
+## Controller Loading
 
 All Controllers defined in `/app/Controllers` are automatically loaded during server boot time, so they are available and ready to be used in requests.
 
@@ -15,7 +12,7 @@ All Controllers defined in `/app/Controllers` are automatically loaded during se
 
 Application Controllers are stored in `/app/Controllers`. Here is an example of a basic Controlled used to return a welcome view back to the user:
 
-```
+```php
 namespace App\Controllers;
 
 class WelcomeController extends Controller
@@ -29,14 +26,15 @@ class WelcomeController extends Controller
 
 To make use of the Controller above, you would define it inside your web Routes file like so:
 
-```
+```php
 Route::get("/welcome/{name}", "WelcomeController@welcome");
 ```
 
 When that route is defined and your application recevies a request that matches the route URL, the controller will process the request using the `welcome()` method, passing in the name from the URL, it will be the main entry point your that URL.
 
-<div class="noteMsg">Note how the Controller is extending the base Controller class. All your Controllers should extend the base Controller but it is not required.</div>
-<br/>
+:::info
+Note how the Controller is extending the base Controller class. All your Controllers should extend the base Controller but it is not required.
+:::
 
 You can use the `create:controller` command to quickly generate a new controller with an action:
 
@@ -50,7 +48,7 @@ You may have noticed when we defined a Controller as a Route action, we only def
 
 So for example if you have a Controller called `/app/Controllers/Admin/PermissionController`, you register the route as an action by doing:
 
-```
+```php
 Route::get('/admin/permissions', 'Admin\PermissionController@method');
 ```
 
@@ -60,10 +58,10 @@ The Voltis Dependency Injection Container used to resolve services can be used t
 
 ### Controller Constructor Injection
 
-```
+```php
 namespace App\Controllers;
 
-use Polyel\Session\Session;
+use Voltis\Session\Session;
 
 class WelcomeController extends Controller
 {
@@ -80,10 +78,10 @@ The Session system instance used to access the session data for the request will
 
 ### Controller Method Injection
 
-```
+```php
 namespace App\Controllers;
 
-use Polyel\Http\Request;
+use Voltis\Http\Request;
 
 class WelcomeController extends Controller
 {
@@ -104,16 +102,16 @@ If your Controller method is using a type-hinting dependency and route parameter
 
 For example, if you have a route defined like so:
 
-```
+```php
 Route::get('/cars/{category}', 'CarController@showCarCat');
 ```
 
 The Controller would look like:
 
-```
+```php
 namespace App\Controllers;
 
-use Polyel\Http\Request;
+use Voltis\Http\Request;
 
 class CarController extends Controller
 {

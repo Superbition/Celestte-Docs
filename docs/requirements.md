@@ -1,5 +1,4 @@
 ---
-id: requirements
 title: Requirements
 ---
 

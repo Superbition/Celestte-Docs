@@ -1,5 +1,4 @@
 ---
-id: api_authentication
 title: API Authentication
 ---
 
@@ -19,7 +18,7 @@ If your application uses API routes which don’t require authentication, you ca
 
 As mentioned earlier a routing group is already setup for you and it uses the Voltis authentication service and API tokens to validate API endpoints that you define within the group.
 
-```
+```php
 Route::group(['prefix' => '/api', 'middleware' => 'Auth:api'], function()
 {
     // ...
@@ -28,14 +27,14 @@ Route::group(['prefix' => '/api', 'middleware' => 'Auth:api'], function()
 
 A prefix is also defined within the API group as well but you may change this if you like. The authentication middleware is passed the `api` parameter which relates to your configured protectors in `config\auth.php`. By default the `Auth` Middleware does not require a parameter as the default setup is to use the `session` protector but for an API, we need to define that we want to use the `api` protector which uses the `token` driver to authenticate your API requests, you can see this configuration inside `auth.php`.
 
-The `Auth` Middleware is defined for you already inside `config\middleware.php` as `\App\Middleware\Authenticate::class` which extends `Polyel\Auth\Middleware\Authenticate`.
+The `Auth` Middleware is defined for you already inside `config\middleware.php` as `\App\Middleware\Authenticate::class` which extends `Voltis\Auth\Middleware\Authenticate`.
 
 
 ### API Authentication Outcomes
 
 After you have assigned the `Auth:api` Middleware to one of your API endpoints, you can perform certain actions based on when a user is unauthorized or authorized by using the App level Middleware located at: `app/Http/Middleware/AuthenticateMiddleware.php`, which contains two methods for interacting with API authentication:
 
-```
+```php
 public function unauthorized()
 {
 	return response([
@@ -71,7 +70,7 @@ You may change the `api_tokens` table name by altering the configuration for `ap
 
 ## Configuration
 
-All API configuration options can be found within ` config\auth.php`. You can find the options for how the API protector is setup, where the token driver is set and a few API related settings, which all have detailed comments to explain what they do.
+All API configuration options can be found within `config\auth.php`. You can find the options for how the API protector is setup, where the token driver is set and a few API related settings, which all have detailed comments to explain what they do.
 
 ## Generating Tokens
 
@@ -79,8 +78,8 @@ After you have your `api_tokens` table setup and configured, you are now ready t
 
 If you want to only generate API tokens and not have them automatically stored in `api_tokens` you can pass false to the `generateApiToken` method like so:
 
-```
-use Polyel\Auth\AuthManager;
+```php
+use Voltis\Auth\AuthManager;
 
 $this->auth->generateApiToken($saveToDatabase = true, $userId = null);
 ```
@@ -93,8 +92,8 @@ The client ID that gets generated will look something like `d9c73454-f693-ce6b-4
 
 To make it easy to generate API tokens for refreshing them, you can use the `refreshApiToken` method which will return the hashed value of the new token and the plain-text token for you to display to the user as a refreshed token. The new hashed value is updated in the database but the client ID will stay the same, the token expiration time is also updated.
 
-```
-use Polyel\Auth\AuthManager;
+```php
+use Voltis\Auth\AuthManager;
 
 $token = $this->auth->refreshApiToken($clientId);
 ```
@@ -103,16 +102,18 @@ If you only want to generate a unique client ID and not create or save an actual
 
 You may also quickly generate API tokens only by calling the `generateApiTokenOnly` method.
 
-<div class="noteMsg">Voltis gives you the easy ability to generate secure API tokens and as they are stored as a hashed value, you will need to use the provided methods to generate tokens but also implement an API token management interface for your users and web frontend for your application. When tokens are created you should store the hashed value and show the plain-text token to the user for them to keep and as a one-time display.</div>
+:::info
+Voltis gives you the easy ability to generate secure API tokens and as they are stored as a hashed value, you will need to use the provided methods to generate tokens but also implement an API token management interface for your users and web frontend for your application. When tokens are created you should store the hashed value and show the plain-text token to the user for them to keep and as a one-time display.
+:::
 
 ## Revoking API Tokens
 
 #### Removing a token
 
-To revoke an API token using the actual raw unhashed token itself, you may use:
+To revoke an API token using the actual raw un-hashed token itself, you may use:
 
-```
-use Polyel\Auth\AuthManager;
+```php
+use Voltis\Auth\AuthManager;
 
 $this->auth->revokeApiToken($token);
 ```
@@ -121,8 +122,8 @@ $this->auth->revokeApiToken($token);
 
 To revoke an API token by using the client ID, you may use:
 
-```
-use Polyel\Auth\AuthManager;
+```php
+use Voltis\Auth\AuthManager;
 
 $this->auth->revokeApiTokenUsingClientId($clientId);
 ```
@@ -131,10 +132,10 @@ $this->auth->revokeApiTokenUsingClientId($clientId);
 
 To revoke all API tokens for a user, based on the user ID, you may use:
 
-```
-use Polyel\Auth\AuthManager;
+```php
+use Voltis\Auth\AuthManager;
 
-// Use the current authenicated user ID to remove all tokens
+// Use the current authenticated user ID to remove all tokens
 $this->auth->revokeAllApiTokens($userId = null);
 ```
 
@@ -146,8 +147,8 @@ Along with the `token_expires_at`, Voltis will automatically update the `token_l
 
 If the token lifetime expires then Voltis will treat any requests sent with an expired lifetime as invalid and not allow the request to process any further. Either a user needs to create a new token, refresh their token or you can extend the expiration using the `extendApiTokenLifetime` method and pass over how much you want to add to the lifetime of the token, for example:
 
-```
-use Polyel\Auth\AuthManager;
+```php
+use Voltis\Auth\AuthManager;
 
 $this->auth->extendApiTokenLifetime($clientId, '+1 month');
 ```
@@ -160,7 +161,7 @@ Voltis supports a number of ways that you can attach the client ID and API token
 
 When sending a `GET` request to your API you may include the client ID and API token as query strings within your URL:
 
-```
+```php
 $url = "https://example/api/user/books?client_id=$clientId&api_token=$token";
 ```
 
@@ -170,7 +171,7 @@ When dealing with `POST`, `PUT`, `PATCH` or `DELETE` API requests you can use th
 
 JSON Example:
 
-```
+```json
 {
     "client_id": $clientId,
     "api_token": $token

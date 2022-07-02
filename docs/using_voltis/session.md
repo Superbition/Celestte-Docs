@@ -3,11 +3,11 @@ id: session
 title: Session
 ---
 
-## Introduction
-
 HTTP applications and requests are by default stateless, meaning they don’t hold data between requests, as far as the HTTP server is concerned, each request is separate from another. To enable us to store data between requests, we use a session and Voltis provides a session system ready for you to use. By default the session system uses the file system to store sessions as JSON objects, support for other session systems like database or Redis are supported.
 
-<div class="warnMsg">Routes defined in <code>/app/routing/api.php</code> are stateless, meaning they don't have access to the Session System</div>
+:::caution
+Routes defined in `/app/routing/api.php` are stateless, meaning they don't have access to the Session System
+:::
 
 ## Setup
 
@@ -15,7 +15,7 @@ The default session driver is file based storage and a session is created no mat
 
 #### Session System Drivers
 
-- `file`: File based session storage, located in `/storage/polyel/sessions/`
+- `file`: File based session storage, located in `/storage/voltis/sessions/`
 
 > Support for more session drivers are in development, like database and Redis etc.
 
@@ -46,11 +46,9 @@ There are two ways to access the session, either through type hinting the sessio
 To access the session service inside a controller, take this example:
 
 ```php
-<?php
-
 namespace App\Controllers;
 
-use Polyel\Session\Session;
+use Voltis\Session\Session;
 
 class SessionDataController extends Controller
 {
@@ -71,11 +69,9 @@ As controller method action dependencies are automatically resolved by the servi
 To access the session via its Facade, include the namespace and access it like a normal static class:
 
 ```php
-<?php
-
 namespace App\Controllers;
 
-use Polyel\Session\Facade\Session;
+use Voltis\Session\Facade\Session;
 
 class AgeController extends Controller
 {
@@ -179,7 +175,9 @@ $session->push('user.teams', 'team 2');
 $session->push('user.teams', 'team 3');
 ```
 
-<div class="noteMsg">Make sure the key you are pushing to is already an array or else you will lose the original value</div>
+:::note
+Make sure the key you are pushing to is already an array or else you will lose the original value
+:::
 
 ### Deleting session data
 
@@ -235,7 +233,7 @@ Clears out only the session data and sets it to `null`.
 
 At some point you may want to only store data in the session for the next request and then have that data removed on the next HTTP request after that. For example, this gives you the ability to store a status message for the next request. Flashing data is best used for short lived messages.
 
-```
+```php
 $session->flash('info', 'You have 5 days left to request a new order');
 ```
 
@@ -251,7 +249,9 @@ $session->regenerate();
 
 Does not require any parameters, just call the function and the session will be regenerated and the session cookie will be queued.
 
-<div class="warnMsg">Be careful not to regenerate the session too frequently as it may cause unexpected results and multiple sessions may be created if old session IDs are constantly being rechecked. Only regenerate the session at suitable times. </div>
+:::caution
+Be careful not to regenerate the session too frequently as it may cause unexpected results and multiple sessions may be created if old session IDs are constantly being rechecked. Only regenerate the session at suitable times.
+:::
 
 ## Session Garbage Collection
 
@@ -259,4 +259,4 @@ Voltis automatically runs a session garbage collection process every 30 minutes 
 
 ## Flush all session data
 
-If you need to delete all active sessions based on the selected session driver set within the session configuration file, you may run `php polyel flush:sessions`. This will delete all sessions using the selected driver.
+If you need to delete all active sessions based on the selected session driver set within the session configuration file, you may run `php voltis flush:sessions`. This will delete all sessions using the selected driver.

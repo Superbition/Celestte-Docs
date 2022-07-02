@@ -1,5 +1,4 @@
 ---
-id: development
 title: Development
 ---
 

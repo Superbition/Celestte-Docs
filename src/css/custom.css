@@ -1,0 +1,98 @@
+/**
+ * Any CSS included here will be global. The classic template
+ * bundles Infima by default. Infima is a CSS framework designed to
+ * work well for content-centric websites.
+ */
+
+/* You can override the default Infima variables here. */
+:root {
+  --ifm-color-primary: #7e8ed7;
+  --ifm-color-primary-dark: #7e8ed7;
+  --ifm-color-primary-darker: #7e8ed7;
+  --ifm-color-primary-darkest: #7e8ed7;
+  --ifm-color-primary-light: #7e8ed7;
+  --ifm-color-primary-lighter: #7e8ed7;
+  --ifm-color-primary-lightest: #7e8ed7;
+  --ifm-code-font-size: 95%;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+
+  --ifm-navbar-link-color: white;
+}
+
+/* For readability concerns, you should choose a lighter palette in dark mode. */
+[data-theme='dark'] {
+  --ifm-color-primary: #7e8ed7;
+  --ifm-color-primary-dark: #7e8ed7;
+  --ifm-color-primary-darker: #7e8ed7;
+  --ifm-color-primary-darkest: #7e8ed7;
+  --ifm-color-primary-light: #7e8ed7;
+  --ifm-color-primary-lighter: #7e8ed7;
+  --ifm-color-primary-lightest: #7e8ed7;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+}
+
+.navbar
+{
+  background-color: #424348;
+  color: white;
+}
+
+.navbar__brand:hover
+{
+  color: white;
+}
+
+/* Change the hover effect on the light/dark button to suit the dark navbar background */
+.toggleButton_node_modules-\@docusaurus-theme-classic-lib-theme-ColorModeToggle-styles-module:hover
+{
+  background-color: #5b5b5b !important;
+}
+
+#validationLinkContainer
+{
+	display: flex;
+}
+
+.validationLinkGroup
+{
+	display: inline-flex;
+	flex-grow: 1;
+}
+
+.validationLinkGroup p a
+{
+	display: flex;
+	margin-top: 3px;
+	margin-bottom: 3px;
+}
+
+.validationLinkGroup p a:hover
+{
+	text-decoration: underline;
+}
+
+footer
+{
+  color: whitesmoke;
+  background-color: #424348;
+  padding-top: 100px;
+  padding-bottom: 100px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#footerSocialLinks a img
+{
+	height: auto;
+	width: 58px;
+	padding: 10px;
+}
+
+#footerProjectLogo img
+{
+  height: auto;
+	width: 48px;
+}

@@ -1,5 +1,4 @@
 ---
-id: csrf_protection
 title: CSRF Protection
 ---
 
@@ -13,7 +12,7 @@ All this happens using a Voltis Middleware which will execute before the request
 
 The basic requirement for this protection to work is to make sure to include the CSRF token on all HTML forms, Voltis makes this an easy task as you only have to include the CSRF view tag:
 
-```
+```html
 <form method="POST" action="/update/profile">
 
 	<label>First name:</label><br>
@@ -35,12 +34,10 @@ By including the CSRF view tag, the token from the server, which gets the token 
 
 Depending on your purpose, you may want to turn off CSRF protection for certain URIs as some services won’t have access to your CSRF tokens, meaning it would make a request invalid. Voltis allows you to add an array of URIs which will be excluded from CSRF protection in the provided Middleware:
 
-```
-<?php
-
+```php
 namespace App\Middleware;
 
-use Polyel\Middleware\CsrfTokenVerifier;
+use Voltis\Middleware\CsrfTokenVerifier;
 
 class ValidateCsrfToken extends CsrfTokenVerifier
 {
@@ -57,7 +54,9 @@ class ValidateCsrfToken extends CsrfTokenVerifier
 }
 ```
 
-<div class="warnMsg">By default <code>/api/*</code> is added to the exceptions array, you may remove it but API routes should be authenicated with API tokens instead</div>
+:::caution
+By default `/api/*` is added to the exceptions array, you may remove it but API routes should be authenticated with API tokens instead
+:::
 
 ## CSRF Header & JavaScript
 
@@ -73,13 +72,13 @@ Remember, the Voltis framework does not validate CSRF tokens through cookies, th
 
 You may have realised that HTML forms are protected from CSRF attacks but what about JavaScript AJAX requests if you are building a JavaScript driven application? – Voltis recommends you either get the token from a valid HTML form or store the CSRF token inside a HTML `meta` tag:
 
-```
+```html
 <meta name="csrf_token" content="{{ @csrfToken }}">
 ```
 
-By using the CSRF view tag to inject the token into this `meta` tag you can use that to add the valid token into all your JavaScript AJAX requests for example. When using JavaScript to send HTTP requests, you can either include the CSRF token in the POST data or as a HTTP header called ` X-CSRF-TOKEN` as Voltis will check for both locations.
+By using the CSRF view tag to inject the token into this `meta` tag you can use that to add the valid token into all your JavaScript AJAX requests for example. When using JavaScript to send HTTP requests, you can either include the CSRF token in the POST data or as a HTTP header called `X-CSRF-TOKEN` as Voltis will check for both locations.
 
-```
+```javascript
 $.ajaxSetup({
     headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf_token"]').attr('content')

@@ -1,5 +1,4 @@
 ---
-id: encryption
 title: Encryption
 ---
 
@@ -16,11 +15,13 @@ Current supported encryption ciphers are:
 
 Support for `libsodium` is coming.
 
-<div class="warnMsg">You should make sure you have generated an encryption key by running the <code>php polyel key:generate</code> command, a backup of the current key is created but please keep all encryption keys safe.</div>
+:::caution
+You should make sure you have generated an encryption key by running the `php voltis key:generate` command, a backup of the current key is created but please keep all encryption keys safe.
+:::
 
 ## Configuration
 
-You can find the configuration for encryption inside `/config/main.php` where you should make sure you have a secure encryption key generated, which respects the required cipher key length depending on which cipher you are using. You can use `php polyel key:gen` to build an encryption key for you which uses PHP's secure `random_bytes()` method.
+You can find the configuration for encryption inside `/config/main.php` where you should make sure you have a secure encryption key generated, which respects the required cipher key length depending on which cipher you are using. You can use `php voltis key:gen` to build an encryption key for you which uses PHP's secure `random_bytes()` method.
 
 ## Encrypting Data
 
@@ -28,7 +29,7 @@ You can find the configuration for encryption inside `/config/main.php` where yo
 
 You have a few ways to access the encryption service, the quickest being using the encrypt helper:
 
-```
+```php
 $data = "Luke's secret note!";
 
 $encrypted = encrypt($data);
@@ -40,8 +41,8 @@ The `encrypt()` method also allows you to turn off serialization by passing `fal
 
 You can also use the available encryption Facade to access the encrypt method:
 
-```
-use Polyel\Encryption\Facade\Crypt;
+```php
+use Voltis\Encryption\Facade\Crypt;
 
 $data = ['name' => 'Luke Embrey!'];
 
@@ -54,7 +55,7 @@ Again, `encrypt()` also allows you to turn off serialization by passing `false` 
 
 If you just want to encrypt a normal string without serialization, you can use:
 
-```
+```php
 $data = "Luke Embrey!";
 
 $encrypted = Crypt::encryptString($data);
@@ -64,7 +65,7 @@ $encrypted = Crypt::encryptString($data);
 
 ### Decryption Helper
 
-```
+```php
 $decrypted = decrypt($encrypted);
 ```
 
@@ -72,17 +73,19 @@ If you don't want to unserialize your encrypted data, `decrypt()` allows you to 
 
 ### Decryption Facade
 
-```
-use Polyel\Encryption\Facade\Crypt;
+```php
+use Voltis\Encryption\Facade\Crypt;
 
 $decrypted = Crypt::decrypt($encrypted);
 ```
 
-Again, to not unserialize your encrypted data, `decrypt()` allows you to turn this off by passing `false` as the second argument.
+:::note
+If you want to not unserialize your encrypted data, `decrypt()` allows you to turn this off by passing `false` as the second argument.
+:::
 
 ### String Decryption
 
-```
+```php
 $decrypted = Crypt::decryptString($encrypted);
 ```
 
@@ -92,19 +95,25 @@ Decryption without serialization by default.
 
 During encryption and decryption you can wrap your calls inside try-catch blocks to handle any errors during the process. For example, you can handle such Exceptions like when the MAC does not match, JSON payload encode and decode errors or invalid or incorrectly formatted payload data.
 
-```
-use Polyel\Encryption\Exception\EncryptionException;
-use Polyel\Encryption\Exception\DecryptionException;
+```php
+use Voltis\Encryption\Exception\EncryptionException;
+use Voltis\Encryption\Exception\DecryptionException;
 
-try {
+try
+{
     $encrypted = encrypt($plainData);
-} catch (EncryptionException $e) {
+}
+catch (EncryptionException $e)
+{
     //...
 }
 
-try {
+try
+{
     $decrypted = decrypt($encryptedData);
-} catch (DecryptException $e) {
+}
+catch (DecryptException $e)
+{
     //...
 }
 ```
@@ -113,7 +122,7 @@ try {
 
 If you want to get the encryption key that is being used to perform encryption, you can by using the `Crypt` Facade:
 
-```
+```php
 $rawKey = Crypt::getEncryptionKey();
 
 $base64Key = Crypt::getEncryptionKey($decode = false);

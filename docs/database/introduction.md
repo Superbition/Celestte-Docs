@@ -1,5 +1,4 @@
 ---
-id: introduction
 title: Introduction
 ---
 
@@ -27,7 +26,7 @@ The `default` option must be set and is used to decide which database to use by 
 
 The `connections` array is where you list all of your databases that you want to connect to, an example database connection is provided in the configuration file. The default provided is called `default` and contains a connection to a MySQL database. Each connection must have a unique name but you may change the `driver` when connecting to a different database server.
 
-```
+```php
 "connections" => [
 
 	"database1" => [
@@ -55,7 +54,7 @@ That means you need to have a connection pool for both read and write connection
 
 All you need to do is provide the read and write connections and setup the connection pool configuration, which we will talk about soon. For now let’s look at a read and write configuration array.
 
-```
+```php
 "read" => [
 	"hosts" => [
 
@@ -149,13 +148,13 @@ This is important because you can easily thrash the maximum number of connection
 
 ## Using Multiple Connections
 
-```
+```php
 DB::select('select * from user where age >= ?', [22], 'databaseTwo');
 ```
 
 By default Voltis automatically uses the default database connection set in `/config/database.php` but as you could have multiple connections, you can specify to use a specific connection by passing in the name like shown above as the last parameter, this connection name should match one in the database configuration file.
 
-```
+```php
 DB::connection('databaseTwo', 'user')->select('username')->get();
 ```
 
@@ -165,11 +164,11 @@ Above shows you how to use a different connection when using the Voltis Query Bu
 
 To run raw SQL queries against your configured databases, you can use the basic raw methods to quickly run a raw statement. Voltis provides you with `select`, `update`, `insert`, `delete` and `raw` methods to execute raw SQL, each will handle getting a connection from the pool for you.
 
-All these methods use the `Polyel\Database\Facade\DB` Facade.
+All these methods use the `Voltis\Database\Facade\DB` Facade.
 
 ### Select Statements
 
-```
+```php
 $users = DB::select('SELECT * FROM user WHERE age >= ? AND active = ?', [22, 1]);
 ```
 
@@ -179,15 +178,15 @@ The return value is an associative array of each row that was found.
 
 ### Named Bindings
 
-You may also use named paramater bindings instead of the `?` in your queries:
+You may also use named parameter bindings instead of the `?` in your queries:
 
-```
+```php
 $users = DB::select('select * from user where age >= :age', ['age' => 22]);
 ```
 
 ### Insert Statements
 
-```
+```php
 $affected = DB::insert('insert into user (name, age) values (?, ?)', ['Luke', 22]);
 ```
 
@@ -195,7 +194,7 @@ An insert statement takes the query as its first argument and the second are the
 
 ### Update Statements
 
-```
+```php
 $affected = DB::update('update user set active = ? where name = ?', [1, 'Luke']);
 ```
 
@@ -203,7 +202,7 @@ An update statement will return the number of affected rows.
 
 ### Delete Statements
 
-```
+```php
 $deleted = DB::delete('delete from user where age > ?', [30]);
 ```
 
@@ -211,7 +210,7 @@ When running a delete query like this, it will return the number of deleted rows
 
 ### Raw Statements
 
-```
+```php
 $result = DB::raw('drop table user', $data = null, $type = 'write', $database = null);
 ```
 
@@ -219,11 +218,11 @@ Sometimes you may want to just run a direct query and `raw` allows you to do tha
 
 ## Database Transactions
 
-You can use the transaction methods `DB::transaction()` and `DB::manualTransaction()` from the database `Polyel\Database\Facade\DB` Facade.
+You can use the transaction methods `DB::transaction()` and `DB::manualTransaction()` from the database `Voltis\Database\Facade\DB` Facade.
 
 ### Auto Transactions
 
-```
+```php
 $result = DB::transaction(function($query)
 {
     $result = $query->select('select name, age from user where age < ?', [44]);
@@ -244,7 +243,7 @@ In addition, you can pass in the number of attempts you wish to perform if the t
 
 ### Manual Transaction
 
-```
+```php
 $result = DB::manualTransaction(function($query, $transaction)
 {
     $result = null;

@@ -1,16 +1,13 @@
 ---
-id: console
 title: Console
 ---
-
-## Introduction
 
 Voltis comes with a command-line interface built-in which allows you to use a range of included commands to make development easier and enable you to manage your application from the command line. You can even write your own commands and perform actions in a similar manner to how you write controllers or middleware.
 
 Let's run our first command:
 
 ```bash
-php polyel welcome <your-name>
+php voltis welcome <your-name>
 ```
 
 The `welcome` command will greet you and welcome you to the Voltis console and show you a range of useful links surrounding the project.
@@ -18,37 +15,35 @@ The `welcome` command will greet you and welcome you to the Voltis console and s
 A good way to start is to see which commands are available to run:
 
 ```
-php polyel list
+php voltis list
 ```
 
 You may also use the `help` command or options to display information about a particular command, its description and usage:
 
 ```
-php polyel help create:middleware
+php voltis help create:middleware
 
-php polyel create:middleware -h
+php voltis create:middleware -h
 
-php polyel create:middleware --help
+php voltis create:middleware --help
 ```
 
 ## Creating Commands
 
-Voltis comes with a range of built in commands for you to use but what if you want to create your own command for your application? Well, it is possible to write your own commands by running `php polyel create:command CheckStatusCommand`. This will generate and setup a new command for you, the first argument will be the name of the command, you are free to name it as you wish but the standard is to usually follow `<Category:Command-Name>Command`. This will create a new command in `app\Console\Commands`.
+Voltis comes with a range of built in commands for you to use but what if you want to create your own command for your application? Well, it is possible to write your own commands by running `php voltis create:command CheckStatusCommand`. This will generate and setup a new command for you, the first argument will be the name of the command, you are free to name it as you wish but the standard is to usually follow `<Category:Command-Name>Command`. This will create a new command in `app\Console\Commands`.
 
 Where you use the colon to form a namespace of commands, for example, `create:command` is part of the `create` namespace but it is its own command class. You are not required to use command namespaces in your names, it just helps when listing them with the `list` command.
 
 ### Command Architecture
 
-Once a command has been generated with `php polyel create:comman <command-name>` you will see a new command class file inside ` app\Console\Commands` this is where all of your application commands are located.
+Once a command has been generated with `php voltis create:command <command-name>` you will see a new command class file inside ` app\Console\Commands` this is where all of your application commands are located.
 
 Let’s take a look as how a command class is formatted and what you need to change:
 
-```
-<?php
+```php
+namespace Voltis\Console\Commands;
 
-namespace Polyel\Console\Commands;
-
-use Polyel\Console\Command;
+use Voltis\Console\Command;
 
 class CheckStatusCommand extends Command
 {
@@ -67,7 +62,7 @@ The first thing you will want to do is set your commands description, briefly st
 
 When writing commands, it is best to keep them light and let the heavy work be carried out by other services and Models which you can access through dependency injection from the Voltis IoC Container. Either the constructor can be used for dependency injection or method injection for dependencies are supported for the `execute()` method, for example:
 
-```
+```php
 public function execute(Encryption $crypt, User $user)
 {
 	// ...
@@ -82,7 +77,7 @@ After you have generated a command and its class, you must then define the defin
 
 For example, a definition may look like:
 
-```
+```php
 Console::command('CheckStatus');
 ```
 
@@ -90,10 +85,10 @@ The first part of the definition string is always the command name, so if you wa
 
 You then need to define the command inside your console kernel, this file is located at `app/Console/Kernel.php`. We define our command in here to let Voltis know the action of the command and which class it should use, for example:
 
-```
+```php
 namespace App\Console;
 
-use Polyel\Console\Kernel as ConsoleKernel;
+use Voltis\Console\Kernel as ConsoleKernel;
 
 class Kernel extends ConsoleKernel
 {
@@ -115,7 +110,7 @@ All these definitions are defined with your `routing/console.php` file.
 
 As an example, lets say we are still using:
 
-```
+```php
 Console::command('CheckStatus');
 ```
 
@@ -123,20 +118,23 @@ Console::command('CheckStatus');
 
 Arguments are inputs passed to a command that are not prefixed with a hyphen, these can be used to give data to your command, for example if you want to add an argument which allows us to check a status of a job:
 
-```
+```php
 Console::command('CheckStatus {job}');
 ```
+
 The above example means the job argument is required, but to make it optional we can define it like:
-```
+
+```php
 Console::command('CheckStatus {?job}');
 ```
+
 Prefixing the argument name with a `?` will make the argument optional.
 
 #### Argument Default Values
 
 Sometimes you may want to define an argument that can use a default value if it is not passed:
 
-```
+```php
 Console::command('CheckStatus {?job=main}');
 ```
 
@@ -152,26 +150,26 @@ Console::command('CheckAge {user=*}');
 
 The definition `{user=*}` means this argument called `user` expects an array of input. Everything after this argument will be seen as the arguments array input so something like:
 
-```
-php polyel CheckAge user tom harry james luke dan
+```bash
+php voltis CheckAge user tom kai james luke dan
 ```
 
 The output of the above command would make `user` equal:
 
 ```php
-['tom', 'harry', 'james', 'luke', 'dan']
+['tom', 'kai', 'james', 'luke', 'dan']
 ```
 
 Arguments that expect an array of input are best positioned at the end of the argument list, otherwise you will have conflicting argument inputs. For example consider:
 
-```
+```php
 Console::command('CheckAge {user=*} {country}');
 ```
 
 The above command definition would fail and you would never be able to input a country argument as its ambiguous when the array input for users finishes. To combat this problem, when entering such a command you can use the `--` argument separator to indicate that the array input has finished:
 
 ```
-php polyel CheckAge user tom harry james luke dan -- UK
+php voltis CheckAge user tom harry james luke dan -- UK
 ```
 
 This command would then give us:
@@ -185,7 +183,7 @@ This command would then give us:
 
 However, to avoid this requirement of having to use the argument separator, you can define the `user` argument at the end:
 
-```
+```php
 Console::command('CheckAge {country} {user=*}');
 ```
 
@@ -195,7 +193,7 @@ Another form of user input from a command, are options, they allow a user to set
 
 For example, to define a option called “all”:
 
-```
+```php
 Console::command('CheckStatus {job} {--all}');
 ```
 
@@ -205,7 +203,7 @@ The `{--all}` option above doesn’t accept a value, it is used as a Boolean swi
 
 By default all options are considered optional but you may declare an option as required if you wish, just prefix your option with a `!` like so:
 
-```
+```php
 Console::command('CheckStatus {job} {!--type}');
 ```
 
@@ -215,13 +213,13 @@ Required options cannot use default values as they are required and expect a val
 
 You may give an option a default value so that if it’s not given a value from the command line, the default value is used:
 
-```
+```php
 Console::command('CheckStatus {job} {--status=all}');
 ```
 
 You may also not assign a value after the equal sign and the default value will be an empty `string`:
 
-```
+```php
 Console::command('CheckStatus {job} {--status=}');
 ```
 
@@ -252,7 +250,7 @@ For example:
 ```
 CheckStatus {job} {--id=*}
 
-php polyel CheckAge --id=23 --id=43 --id=21
+php voltis CheckAge --id=23 --id=43 --id=21
 ```
 
 The above would give the array:
@@ -435,30 +433,30 @@ For example, to run a command at different verbosity levels:
 
 ```text
 // Level 1
-php polyel user:create luke 23 --group=admin -v
+php voltis user:create luke 23 --group=admin -v
 
 // Level 2
-php polyel user:create luke 23 --group=admin -vv
+php voltis user:create luke 23 --group=admin -vv
 
 // Level 3
-php polyel user:create luke 23 --group=admin -vvv
+php voltis user:create luke 23 --group=admin -vvv
 
 // Level 1 using the long option format
-php polyel user:create luke 23 --group=admin --verbostity=1
+php voltis user:create luke 23 --group=admin --verbostity=1
 
 // Level 2 using the long option format
-php polyel user:create luke 23 --group=admin --verbostity=2
+php voltis user:create luke 23 --group=admin --verbostity=2
 
 // Level 3 using the long option format
-php polyel user:create luke 23 --group=admin --verbostity=3
+php voltis user:create luke 23 --group=admin --verbostity=3
 ```
 
 Lastly, if you want to run your command in quiet mode where output is limited and only fatal errors are shown, use `-q` or `--quiet`:
 
 ```text
 // Short option
-php polyel user:create luke 23 --group=admin -q
+php voltis user:create luke 23 --group=admin -q
 
 // Long option
-php polyel user:create luke 23 --group=admin --quiet
+php voltis user:create luke 23 --group=admin --quiet
 ```

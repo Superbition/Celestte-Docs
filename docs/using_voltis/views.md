@@ -1,9 +1,6 @@
 ---
-id: views
 title: Views
 ---
-
-## Introduction
 
 Voltis comes with its own View system which you can use to manage rendering a resource back to the user. The View system can help you combine HTML and CSS together to create a presentation suitable for a user/client.
 
@@ -69,7 +66,7 @@ class WelcomeController extends Controller
 
 Calling the global helper function `view()`, expecting the resource name and type (`name:type`) and any data you wish to pass to the view.
 
-The `view()` helper will return an instance of `Polyel\View\ViewBuilder` which is then passed to the normal `response()` helper which uses the View Builder instance to form a response to send back to the browser, building and constructing a view.
+The `view()` helper will return an instance of `Voltis\View\ViewBuilder` which is then passed to the normal `response()` helper which uses the View Builder instance to form a response to send back to the browser, building and constructing a view.
 
 ### Returning an error
 
@@ -79,12 +76,12 @@ return response(view('warning:error'));
 
 Changing the resource type to an error (`:error`) will tell the View service to use the error templates stored in `/resources/errors`.
 
-A good example is the included 404 error response page, which you can find at `/resources/errors/404.error.html`. The 404 error page is returned whever Voltis cannot find a route, so you are free to edit the default error page to your liking.
+A good example is the included 404 error response page, which you can find at `/resources/errors/404.error.html`. The 404 error page is returned whenever Voltis cannot find a route, so you are free to edit the default error page to your liking.
 
 ## Checking if a view exists
 
 ```php
-use Polyel\View\Facade\View;
+use Voltis\View\Facade\View;
 
 View::exists("common.sidebar:view")
 ```
@@ -178,9 +175,10 @@ And the welcome view looks like:
 
 First, the welcome view is rendered and its data is injected, in this case the name. Then Voltis realises you want to extend a view called master, so this view is then rendered with its data, in this case we set the page title and then the main welcome view content is injected into the master view, using the `{{ @content }}` tag.
 
-<div class="warnMsg">When extending views, you must make sure you include the <code>{{ @content }}</code> tag so that Voltis knows where to place the main rendered view.</div>
+:::caution
+When extending views, you must make sure you include the `{{ @content }}` tag so that Voltis knows where to place the main rendered view.
+:::
 
-<br/>
 So if your application uses a common layout or style, you can extend a view so you don’t have to repeat yourself all the time. Then you only have to pass in your requested page content like our welcome view example.
 
 ## Cross-site scripting prevention
@@ -216,7 +214,9 @@ Before data is injected into the main view, Voltis gives you the ability to incl
 
 This is a typical use case for includes, it allows you to bring in sub-views and have them rendered inside a main view. Includes allow you to split up your different sections of templates and bring them in when you need them.
 
-<div class="noteMsg">Remember, because includes are processed before the main view is rendered, you can safely pass data as if those data tags are already there in your view.</div>
+:::info
+Remember, because includes are processed before the main view is rendered, you can safely pass data as if those data tags are already there in your view.
+:::
 
 #### Extending view includes
 
@@ -225,15 +225,15 @@ This is a typical use case for includes, it allows you to bring in sub-views and
 	<head>
 		<title>{{ title }}</title>
 	</head>
-<body>
-    {{ @include(header:view) }}
+	<body>
+		{{ @include(header:view) }}
 
-    {{ @include(common.sidebar:view) }}
+		{{ @include(common.sidebar:view) }}
 
-    {{ @content }}
+		{{ @content }}
 
-    {{ @include(footer:view) }}
-</body>
+		{{ @include(footer:view) }}
+	</body>
 </html>
 ```
 
@@ -275,7 +275,9 @@ Finally, to get Voltis to insert these CSS links into the HTML head, you must us
 </html>
 ```
 
-<div class="noteMsg">You can place CSS includes in any view or element, they all get processed at the end before the final render.</div>
+:::info
+You can place CSS includes in any view or element, they all get processed at the end before the final render.
+:::
 
 ### includeJS
 
@@ -317,14 +319,14 @@ Finally, you will also need to include the `@JS` tag to let Voltis know where yo
 
 As HTML forms cannot send `PUT`, `PATCH` or `DELETE` requests, you must add a special hidden field called `http_method` with the intended HTTP verb. Voltis provides you with the `@method` view directive to make this easy and quick:
 
-```
+```html
 <form action="/profile/update" method="POST">
     {{ @method(DELETE) }}
     {{ @csrfToken }}
 </form>
 ```
 
-This would generate ` <input type="hidden" name="http_method" value="DELETE">` for you.
+This would generate `<input type="hidden" name="http_method" value="DELETE">` for you.
 
 ## Dynamic Content
 

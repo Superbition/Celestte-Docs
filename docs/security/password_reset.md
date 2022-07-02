@@ -1,5 +1,4 @@
 ---
-id: password_reset
 title: Password Reset
 ---
 
@@ -21,7 +20,7 @@ You have a configuration for password resets inside your `auth.php` configuratio
 
 Here is what the default configuration looks like:
 
-```
+```php
 'resets' => [
 
 	'passwords' => [

@@ -1,9 +1,6 @@
 ---
-id: validation
 title: Validation
 ---
-
-## Introduction
 
 When building an application with Voltis, you will at some point accept data from client requests, it is good practice to make sure this data coming from requests is in the correct format your application expects. That’s why Voltis provides you with a simple validate service that is included with the request class. Giving you a wide range of validation rules and flexibility to validate incoming data.
 
@@ -13,9 +10,9 @@ The best way to explain and teach you about the validation system Voltis uses is
 
 ### Setting up routes
 
-For our example, we’ll need to setup a few routes inside our ` app\routing\web.php` file. One route to display a page with a form, so we can send data to our application for validation, and another route that will accept the incoming request:
+For our example, we’ll need to setup a few routes inside our `app\routing\web.php` file. One route to display a page with a form, so we can send data to our application for validation, and another route that will accept the incoming request:
 
-```
+```php
 Route::get("/blog/post/new", "PostController@new");
 Route::post("/blog/post/create", "PostController@create");
 ```
@@ -26,12 +23,10 @@ We now have a `GET` route to show a potential user a form which they can use to 
 
 The next step is to build out our controller to handle the incoming requests for our routes we setup:
 
-```
-<?php
-
+```php
 namespace App\Controllers;
 
-use Polyel\Http\Request;
+use Voltis\Http\Request;
 
 class PostController extends Controller
 {
@@ -55,9 +50,9 @@ And that’s mostly it, Voltis will use the `create` method to store a new blog 
 
 ### Validation Logic & Process
 
-From setting up a quick and simple example, you can see the workflow from how the validation process works in Voltis. All your validation is done within your different Controllers, where you use the ‘Request` service to access the validator and get back an instance which will automatically run the validation rules against the request data for you.
+From setting up a quick and simple example, you can see the workflow from how the validation process works in Voltis. All your validation is done within your different Controllers, where you use the `Request` service to access the validator and get back an instance which will automatically run the validation rules against the request data for you.
 
-```
+```php
 public function create(Request $request)
 {
 
@@ -77,7 +72,7 @@ From the example above, you can see the argument passed in is an array of reques
 
 The validator will execute these rules against the data one at a time and keep collecting error messages as each rule if processed, unless you `Break` out of the first failure, which you can do by assigning the `Break` rule to a field: 
 
-```
+```php
 $request->validate([
 		'heading' => ['Break', 'Required', 'Max:64'],
 		'content' => ['Required', 'Between:100, 2500'],
@@ -90,7 +85,7 @@ When breaking out on first rule to fail, it means the rest of the rules for that
 
 When sending requests which contain parameters and field inside arrays, you may access them and assign rules to them using dot syntax:
 
-```
+```php
 $request->validate([
 		'heading' => ['Break', 'Required', 'Max:64'],
 		'content' => ['Required', 'Between:100, 2500'],
@@ -103,7 +98,7 @@ $request->validate([
 
 If you have a page which contains multiple forms on it, you will want to define a validation group for it, so that you don’t run into issues when displaying errors, which we discuss later on. To define a validation group for a specific form, we can use the `validateAsGroup` method:
 
-```
+```php
 // Validation using a defined group for a specific form
 $request->validateAsGroup('newPost', [
 		'heading' => ['Break', 'Required', 'Max:64'],
@@ -119,7 +114,7 @@ By doing this it tells Voltis that if any rules fail during validation, the erro
 
 Now, you should have your validation rules setup for incoming request data but how can we show failed rules and their error messages back to the user? Voltis again will automatically collect error messages from failed rules and store them into the user’s session and generate the appropriate response back to the previously page, all you have to do to display errors is place the error directives into your views. You have a number of error directives to help you easily show errors in a view. The first and most common one we should discuss is `@errors`:
 
-```
+```html
 <form action="/blog/post/create" method="POST" enctype="multipart/form-data">
 	
 	{{ @errors(list) }}
@@ -131,15 +126,13 @@ Now, you should have your validation rules setup for incoming request data but h
 
 From our example above that is all we have to do inside our views in order to get errors to display when they exist, no condition statements are needed, just a directive used to display errors, Voltis will handle the rest for you, you can think of this directive more of a placeholder if any errors exist, if no errors exist then the whole `@errors` tag is removed for you automatically.
 
-<br/>
-
-<div class="noteMsg">Note: You can place this <code>{{ @errors(list) }}</code> directive anywhere in a view, you don’t need to put it inside the actual form itself, you are free to place it where it makes sense for your application.</div>
-
-<br/>
+:::info
+Note: You can place this `{{ @errors(list) }}` directive anywhere in a view, you don’t need to put it inside the actual form itself, you are free to place it where it makes sense for your application.
+:::
 
 You may have noticed the `list` argument above, what is that you ask? It will display all errors from the session and use the error template called `list` to display the error messages. So, the parameter you are passing into `@errors` is a template used to format and structure your error messages, saving you having to do this every time you want to display errors on a view. This `list` template is provided by Voltis as an example for you and can be found at `app\resources\errors\list.error.html`, let’s have a look at it to see what it does:
 
-```
+```html
 <div class="listError">
 
     <ul>
@@ -185,7 +178,7 @@ And with a wildcard when wanting to display all error messages from nested eleme
 
 Sometimes you may want to have more control over which errors you show, this is useful for when you only want to display a certain error or a certain error in a specific place on your view. Voltis provides you with another directive for just that, let’s take a look at an example:
 
-```
+```html
 <div id='error'>
 
 	{{ @error(title) }}
@@ -197,7 +190,7 @@ Above will tell render the first error only for the field from the request data 
 
 What if you don’t want to display an error message for one specific field but output something if errors exist for a specific field, well with the `@error` directive you can pass in a second argument to achieve that functionality:
 
-```
+```html
 <div id='error'>
 
 	<p id='title' class='{{ @error(title, invalid-field) }}'>My Title</p>
@@ -245,13 +238,15 @@ For when you have errors which are part of a group `group:field` or nested array
 {{ @error(login:name.*.email, <h1>@message</h1>) }}
 ```
 
-<div class="noteMsg">Remember <code>@error()</code> will only ever display the first error for the given field, use <code>@errors()</code> to display multiple errors for a field. When using an <code>*</code> wildcard with <code>@error()</code>, it will only display the first error found and not all of them.</div>
+:::info
+Remember `@error()` will only ever display the first error for the given field, use `@errors()` to display multiple errors for a field. When using an `*` wildcard with `@error()`, it will only display the first error found and not all of them.
+:::
 
 ### Displaying the error count
 
 If you wish to display the number of errors a given field has after validation onto a view, you can do this by using `@errorCount`:
 
-```
+```html
 <div id='errors'>{{ @errorCount(email) }}</div>
 ```
 
@@ -277,7 +272,7 @@ If no errors are found then 0 will be shown.
 
 When validating data from the request, if errors exist, Voltis redirects to the previous URL and the errors are supposed to be displayed there but, what if you want to make it easier for your users to change invalid data without having to completely reenter it again? – Voltis offers you a view directive called `@old` which is used to display old/previous data from a request, stored in the session, whenever the validator fails and redirects to display errors.
 
-```
+```html
 <form action="/" method="POST" enctype="multipart/form-data">
 
 	<input type="text" class="{{ @error(name, invalid) }}" name="name" value="{{ @old(name) }}">
@@ -310,13 +305,15 @@ You may also give a default value if no old request data can be found within the
 {{ @old(name, John Doe) }
 ```
 
-<div class="warnMsg">If the field you have given to <code>@old</code> is not a string or a number, it will not be output to the view, a blank string will be instead as array to string conversion is not possible</div>
+:::caution
+If the field you have given to `@old` is not a string or a number, it will not be output to the view, a blank string will be instead as array to string conversion is not possible
+:::
 
 ## Working with Arrays
 
 Most of the time request data is not nested but if you have to nest your data, you can access nested elements by using dot notation where applicable. For example, to access nested values during validation:
 
-```
+```php
 $request->validate([
 		'blog.post.heading' => ['Required', 'Max:64'],
 		'blog.post.content' => ['Required', 'Between:100, 2500'],
@@ -325,7 +322,7 @@ $request->validate([
 
 If your array has multiple elements you can validate those by using `*` as a wildcard:
 
-```
+```php
 $request->validate([
 		'user.*.email' => ['Required', 'Email'],
 		'user.*.bio' => ['Required', 'Max:500],
@@ -338,7 +335,7 @@ You can also validate array elements at the start or end as well, like `*.user.e
 
 Sometimes your data may pass validation and be completely correct in the format your applications expects, but there may be a time where you need to perform more complex checks and actions once your data is valid. So, that is why Voltis allows you to redirect with errors which in the end you can treat them the same as if they were errors coming from the validator.
 
-```
+```php
 return redirect('/payment/trading')->withErrors([
 	'card' => 'This card will not work with this type of account',
 	]);
@@ -348,7 +345,7 @@ From the Controller level you can return this type of redirect and Voltis will i
 
 If you want to attach these redirect errors into a group because you have multiple forms on a page, pass in a second argument:
 
-```
+```php
 return redirect('/payment/trading')->withErrors([
 	'card' => 'This card will not work with this type of account',
 	], 'payment');
@@ -466,13 +463,13 @@ Validate that the field is a date and that the date is after the given value.
 
 For example:
 
-```
+```php
 'end_date' => ['Required', 'After:tomorrow']
 ```
 
 Or you can pass in a formatted date:
 
-```
+```php
 'end_date' => ['Required', 'After:2021-08-28']
 ```
 
@@ -480,7 +477,7 @@ You may pass other date formats in but it is best to stick to `yyy-mm-dd` as all
 
 You can also use another field's value:
 
-```
+```php
 'end_date' => ['Required', 'After:start_date']
 ```
 
@@ -619,7 +616,7 @@ The field being validated must be numeric and between the `min` and `max` parame
 
 Allows you to validate an image and its dimensions based on the parameters you pass to the validator. For example:
 
-```
+```php
 'profileImage' => 'Dimensions:minWidth=400,maxHeight=400'
 ```
 
@@ -632,13 +629,13 @@ The parameters which you can use are: minWidth, maxWidth, minHeight, maxHeight, 
 
 If you are working with arrays, you can validate that a field must not have any duplicate values:
 
-```
+```php
 'person.*.name' => 'UniqueArray'
 ```
 
 You can also ignore case differences by passing the parameter:
 
-```
+```php
 'person.*.name' => 'UniqueArray:IgnoreCase'
 ```
 
@@ -665,7 +662,9 @@ The field being validated will have its data and rule removed from the validator
 
 If you have multiple values you want to validate against you can just keep adding them as parameters like `RemoveIf:foo,bar1,bar2,bar3,…` and `foo` will be checked against all `bar` values.
 
-<div class="noteMsg">If a field is removed because it fails its removal rule validation and the field has other rules to validate against, they won’t be processed because the field has already been removed.</div>
+:::info
+If a field is removed because it fails its removal rule validation and the field has other rules to validate against, they won’t be processed because the field has already been removed.
+:::
 
 #### RemoveUnless
 ---
@@ -676,7 +675,9 @@ The field being validated will have its data and rule removed from the validator
 
 If you have multiple values you want to validate against you can just keep adding them as parameters like `RemoveUnless:foo,bar1,bar2,bar3,…` and `foo` will be checked against all `bar` values.
 
-<div class="noteMsg">If a field is removed because it fails its removal rule validation and the field has other rules to validate against, they won’t be processed because the field has already been removed.</div>
+:::info
+If a field is removed because it fails its removal rule validation and the field has other rules to validate against, they won’t be processed because the field has already been removed.
+:::
 
 #### Exists
 ---
@@ -687,7 +688,7 @@ The field being validated must exist within the given database table and column.
 
 The Exists rule expects you to pass in the table name and the column name where the validator should check for existing values in the database. However, if you omit the column, the validator will assume the column name is the same as the field name.
 
-```
+```php
 'tag' => `Exists:post_tags'
 
 'tag' => `Exists:post_tags,tag'
@@ -702,7 +703,7 @@ With the Exists rule you can also pass in an array and check if multiple values 
 
 The field being validated must not exist within the given database table and column.
 
-```
+```php
 'email' => 'Unique:users,email'
 ```
 
@@ -710,7 +711,7 @@ With the Unique rule you can ignore a specific ID and this is useful for when a 
 
 Ignoring the current logged in user:
 
-```
+```php
 // $auth is from Polyel\Auth\AuthManager
 $userId = $auth->userId();
 
@@ -721,7 +722,9 @@ $userId = $auth->userId();
 'email' => "Unique:users,email,$userId,user_id"
 ```
 
-<div class="warnMsg">You should never let the user provide the actual ID to ignore otherwise you will be vulnerable to SQL injection attacks, always use an ID which is generated from the server side, like in our example, we use the currently logged in user’s ID from the AuthManager</div>
+:::caution
+You should never let the user provide the actual ID to ignore otherwise you will be vulnerable to SQL injection attacks, always use an ID which is generated from the server side, like in our example, we use the currently logged in user’s ID from the AuthManager
+:::
 
 #### File
 ---
@@ -831,13 +834,13 @@ The file being validated must match one of the given MIME types.
 
 For example, if you want to make sure a file is a `png` image only:
 
-```
+```php
 'profile_image' => 'MimesAllowed:image/png'
 ```
 
 Or if you want to only accept a selection of image types:
 
-```
+```php
 'profile_image' => 'MimesAllowed:image/png,image/jpeg,image/gif,image/bmp'
 ```
 
@@ -872,7 +875,7 @@ Within the framework, the PHP function `preg_match` is used to execute the given
 
 An example use:
 
-```
+```php
 'username' => 'Regex:/^[a-z0-9_-]{3,16}$/'
 ```
 
@@ -887,7 +890,7 @@ Within the framework, the PHP function `preg_match` is used to execute the given
 
 An example use:
 
-```
+```php
 'email' => 'RegexNot:/(\W|^)[\w.\-]{0,25}@(yahoo|hotmail|gmail)\.com(\W|$)/'
 ```
 
@@ -898,7 +901,7 @@ The field being validated is allowed to be `null`. When using the `Optional` rul
 
 For example, here is a date input but it is also allowed to be `null` or not present in the request data at all:
 
-```
+```php
 'date' => ['Optional', 'Date']
 ```
 
@@ -915,7 +918,7 @@ The field being validated must pass the authentication from the chosen protector
 
 For example:
 
-```
+```php
 'password' => ['PasswordAuth:web']
 ```
 
@@ -923,7 +926,7 @@ The above would validate the current authenticated user’s password against the
 
 ##### API Auth
 
-```
+```php
 'api' => ['PasswordAuth:api']
 ```
 
@@ -931,7 +934,7 @@ The above would validate the given API token against the user based upon the giv
 
 For example, to send the client ID and token using a form you can do this like so:
 
-```
+```html
 <form action="/" method="POST" enctype="multipart/form-data">
 	<input id="api_client_id" name="api[0]">
 	<input id="api_token" name="api[1]">
@@ -940,7 +943,7 @@ For example, to send the client ID and token using a form you can do this like s
 
 Or if you are using JSON:
 
-```
+```php
 {
 	"api": ["de480d78-a958...", "Bearer 54de0f90e2e4d875741a..."]
 }
@@ -988,7 +991,7 @@ The field being validated must be present and not empty only when any of the oth
 #### RequiredWithoutAll
 ---
 
-`RequiredWithoutAllfield1,field2,...`
+`RequiredWithoutAll:field1,field2,...`
 
 The field being validated must be present and not empty only when all of the other given fields are not present, the ones defined in the rules parameters.
 
@@ -1041,7 +1044,7 @@ The Validator by default uses the error messages provided to you by default, eac
 
 To set custom error messages, you may pass an array as the 2rd parameter when validating data:
 
-```
+```php
 $customErrorMessages = [
 	'name' => [
 		'Max' => 'Your name cannot be longer than 32 characters',
@@ -1059,7 +1062,7 @@ $data = $request->validate([
 
 If you want to only change a rules error message on a global level you can specify to only do this by not giving the field name:
 
-```
+```php
 $customErrorMessages = [
 	'Required' => 'Your {field} is required to register your interest with us',
 	'name' => [
@@ -1077,7 +1080,7 @@ You have may noticed as well, that you can use all of the available placeholders
 
 Here are some examples of using placeholders in custom error messages:
 
-```
+```php
 $customErrorMessages = [
 	'BeforeOrEqual' => '{field} must be a date before or equal to {date}',
 	'Match' => '{field} must be the same as {other}',
@@ -1091,7 +1094,7 @@ The placeholders for each rule follow the same order as the rules parameters.
 
 You are also free to set custom error messages when using arrays or wildcards:
 
-```
+```php
 $customErrorMessages = [
             'users.name.*.id' => [
                 'Required' => 'An ID is Required for each name you give',
