@@ -66,6 +66,11 @@ const config = {
             position: 'right',
           },
           {
+            href: 'https://github.com/Superbition/Polyel-Framework',
+            label: 'GitHub',
+            position: 'right',
+          },
+          {
             href: 'https://phpnexus.io/',
             label: 'Community',
             position: 'right',
