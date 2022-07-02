@@ -15,7 +15,7 @@ Voltis provides you with some default Middleware out of the box, such as CSRF pr
 To create a new Middleware, you can use the Voltis command `middleware`:
 
 ```text
-php polyel middleware:create LogRequestMiddleware
+php voltis middleware:create LogRequestMiddleware
 ```
 
 You can use `middleware:create` to define a new Middleware and this command will create a new class for you and place it in the appropriate directory for you, created from the default Middleware definition.

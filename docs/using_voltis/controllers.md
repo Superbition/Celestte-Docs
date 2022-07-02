@@ -39,7 +39,7 @@ Note how the Controller is extending the base Controller class. All your Control
 You can use the `create:controller` command to quickly generate a new controller with an action:
 
 ```text
-php polyel create:controller TestController --action=show
+php voltis create:controller TestController --action=show
 ```
 
 ## Controller Location and Namespaces

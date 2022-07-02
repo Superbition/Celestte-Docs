@@ -712,7 +712,7 @@ With the Unique rule you can ignore a specific ID and this is useful for when a 
 Ignoring the current logged in user:
 
 ```php
-// $auth is from Polyel\Auth\AuthManager
+// $auth is from Voltis\Auth\AuthManager
 $userId = $auth->userId();
 
 // Only providing the ID

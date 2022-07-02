@@ -7,7 +7,7 @@ title: Installing Voltis
 This project uses composer to manage some dependencies, versioning and install process, you should create a new PHP Voltis project by using the composer command:
 
 ```bash
-composer create-project superbition/polyel
+composer create-project superbition/voltis
 ```
 
 Please make sure you have Swoole installed before trying to make a new Voltis project.
@@ -21,7 +21,7 @@ composer update
 After creating a new Voltis project, you will want to generate a encryption key:
 
 ```bash
-php polyel key:generate
+php voltis key:generate
 ```
 :::caution Support
 If you have any problems trying to install Voltis, please get in touch on GitHub
